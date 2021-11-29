@@ -1,0 +1,3 @@
+# Aprendizados da semana
+Nessa semana de onboarding na **Labenu**, eu aprendi a diferença entre **terminal** e **interface gráfica** e como usar o terminal. Aprendi a criar novas pastas e arquivos, me mover entre os diretórios, checar os itens dentro de um diretório, e ver os conteúdos dentro de um arquivo usando os comandos **cat, head, tail e grep**. Além disso também aprendi a usar comandos relacionados ao **github**, onde armazenamos todo o trabalho que iremos fazer durante o curso.
+E Agora estou aprendendo a usar o **VSCode**, onde iremos escrever o nosso códido.
