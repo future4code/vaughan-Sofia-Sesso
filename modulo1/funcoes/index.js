@@ -27,7 +27,7 @@ b) i. eu gosto de cenoura true
 ii. cenoura é bom pra vista true
 iii. cenouras crescem na terra true
 */
-/*
+
 //Exercícios de Escrita de Código:
 //1)
 //a)
@@ -103,7 +103,7 @@ function operaçoesBasicas(numero1, numero2){
 }
 
 console.log(operaçoesBasicas())
-*/
+
 //Desafio:
 //1)
 //a)
