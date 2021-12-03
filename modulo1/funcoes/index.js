@@ -112,8 +112,8 @@ const imprimirParametro = parametro => console.log(parametro)
 //b)
 const semRetorno = (numero1, numero2) => {
     const soma = numero1 + numero2
+    
     return imprimirParametro(soma)
-
 }
 
 semRetorno(5,6)
