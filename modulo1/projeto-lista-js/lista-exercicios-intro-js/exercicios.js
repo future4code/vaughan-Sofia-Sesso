@@ -151,24 +151,30 @@ function checaAnoBissexto(ano) {
   const multiploDe4 = ano % 4 === 0
   const multiploDe100 = ano % 100 === 0
 
-  return multiploDe400 || (multiploDe4 && (multiploDe100 && multiploDe400))
+  return multiploDe400 || (multiploDe4 && !multiploDe100)
 }
 
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu(maiorDe18, temEnsinoMedio, temDisponibilidade) {
   // implemente sua lógica aqui
-  maiorDe18 = promp("Você tem mais de 18 anos?")
+  maiorDe18 = prompt("Você tem mais de 18 anos?")
   temEnsinoMedio = prompt("Você possui ensino médio completo?")
   temDisponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso?")
 
   if (maiorDe18 === "sim"){
-   maiorDe18 === true
+   maiorDe18 = true
+  } else if (maiorDe18 === "nao"){
+    maiorDe18 = false
   }
   if (temEnsinoMedio === "sim"){
-   temEnsinoMedio === true
+   temEnsinoMedio = true
+  } else if (temEnsinoMedio === "nao"){
+    maiorDe18 = false
   }
   if (temDisponibilidade === "sim"){
-   temDisponibilidade === true
+   temDisponibilidade = true
+  } else if (temDisponibilidade === "nao"){
+    maiorDe18 = false
   }
 
   return console.log(maiorDe18 && temEnsinoMedio && temDisponibilidade)
