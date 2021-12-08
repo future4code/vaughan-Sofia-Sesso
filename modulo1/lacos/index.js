@@ -59,3 +59,54 @@ let quantosPets = Number(prompt("Quantos bichinhos de estimação você tem?"))
     }
 
 //2)
+//a)
+function imprimirArray (array) {
+    for (elemento of array) {
+        console.log(elemento)
+    }
+}
+
+//b)
+function divirPor10 (array) {
+    for (elemento of array) {
+        console.log(elemento / 10)
+    }
+}
+
+//c)
+function criarArrayComPares (array) {
+    const novaArray = []
+    for (elemento of array) {
+        if (elemento % 2 === 0) {
+            novaArray.push(elemento)
+        }
+    }
+    return console.log(novaArray)
+}
+
+//d)
+function criarArrayComStrings (array) {
+    const novaArray = []
+    for (elemento of array) {
+        let mensagem = `O elemento do índex ${array.indexOf(elemento)} é: ${elemento}`
+        novaArray.push(mensagem)
+    }
+    return console.log(novaArray)
+}
+
+//e)
+function imprimirMaiorEMenorNumeros (array) {
+    let maior = 0
+    for (elemento of array) {
+        if (elemento > maior) {
+            maior = elemento
+        }
+    }
+    let menor = maior
+    for (elemento of array) {
+        if (elemento < menor) {
+            menor = elemento
+        }
+    }
+    return console.log(`O maior número é ${maior} e o menor é ${menor}`)
+}
