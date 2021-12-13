@@ -99,13 +99,21 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
     } else {
         triangulo = "Escaleno"
     }
-    
+
     return triangulo
 }
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    array.sort(function (a,b) {
+        return a - b
+    })
+    console.log(array)
+    const novaArray = []
+    novaArray.push(array[array.length - 2])
+    novaArray.push(array[1])
+
+    return novaArray
 }
 
 // EXERCÍCIO 11
