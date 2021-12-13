@@ -108,7 +108,7 @@ function retornaSegundoMaiorESegundoMenor(array) {
     array.sort(function (a,b) {
         return a - b
     })
-    console.log(array)
+    
     const novaArray = []
     novaArray.push(array[array.length - 2])
     novaArray.push(array[1])
@@ -118,7 +118,8 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+    const atoresString = filme.atores.join(', ')
+    return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${atoresString}.`
 }
 
 // EXERCÍCIO 12
