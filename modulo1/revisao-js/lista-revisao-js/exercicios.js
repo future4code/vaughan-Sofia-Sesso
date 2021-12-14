@@ -174,5 +174,8 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
-}
+    const datasEmOrdem = consultas.sort ((primeiraData, segundaData) => {
+        return new Date(primeiraData.dataDaConsulta) - new Date(segundaData.dataDaConsulta)
+    })
+    return datasEmOrdem
+} // essa função não funcionou no meu navegador porque ele le mes/dia/ano ao inves de dia/mes/ano
