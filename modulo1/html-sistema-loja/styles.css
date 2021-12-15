@@ -1,0 +1,80 @@
+h1 {
+    background-color: pink;
+    border: solid rgb(95, 10, 50);
+    border-radius: 40px;
+    padding: 50px;
+    color: rgb(95, 10, 50);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    width: 55%;
+    margin: auto;
+}
+
+.cabecalho-de-cada-pagina{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: pink;
+    border: solid rgb(95, 10, 50);
+    padding: 10px;
+    color: rgb(95, 10, 50);
+    border-radius: 20px;
+    font-size:x-large;
+    text-align: center;
+}
+body {
+    background-color: rgb(193, 253, 209);
+    color: rgb(95, 10, 50);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.texto-centralizado{
+    text-align: center;
+    margin: auto;
+}
+
+.texto-maior{
+    font-size: large;
+}
+
+.border-nas-fotos{
+    border: solid rgb(95, 10, 50);
+    border-radius: 20px;
+}
+
+.border-nos-itens-da-tabela{
+    border: solid rgb(95, 10, 50);
+    border-radius: 20px;
+    padding: 10px
+}
+
+.titulo-de-cada-pagina{
+    border: dotted rgb(95, 10, 50);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.border-nas-divs{
+    border: dotted rgb(95, 10, 50);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px
+}
+
+table{
+    border: dotted rgb(95, 10, 50);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px
+}
+
+.rodape{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: pink;
+    border: solid rgb(95, 10, 50);
+    padding: 10px;
+    color: rgb(95, 10, 50);
+    border-radius: 20px;
+    font-size:x-large;
+    text-align: center;
+}
