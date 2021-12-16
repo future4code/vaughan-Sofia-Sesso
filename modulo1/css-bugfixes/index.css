@@ -80,7 +80,6 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
-    
 }
 
 #container-de-descricao>ol {
@@ -120,6 +119,10 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+}
+
+td button:active {
+    color: white; /*Já existe um button:focus que deixa a cor dos texto dos botões de comprar branca quando clicados*/
 }
 
 .container-do-search {
