@@ -75,6 +75,10 @@ div img {
     opacity: 0.4;
 }
 
+.icone:active {
+    opacity: 1;
+}
+
 .texto-centralizado{
     margin-top: 0;
     position: absolute;
