@@ -124,6 +124,10 @@ table {
     margin: auto;
 }
 
+td {
+    padding: 0 40px;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
