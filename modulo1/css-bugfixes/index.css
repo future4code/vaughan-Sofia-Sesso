@@ -69,8 +69,7 @@ div img {
 }
 
 .icone:hover {
-    opacity:0.4;
-  filter:alpha(opacity = 40);
+    opacity: 0.4;
 }
 
 .texto-centralizado{
@@ -146,8 +145,16 @@ td button:hover {
     height: 100px;
 }
 
+.container-do-back-button {
+    height: 200px;
+}
 
 #back-button {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
     background-color: white;
     width: 100px;
     height: 20px;
