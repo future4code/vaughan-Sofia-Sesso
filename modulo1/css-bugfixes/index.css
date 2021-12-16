@@ -125,6 +125,10 @@ td button:active {
     color: white; /*Já existe um button:focus que deixa a cor dos texto dos botões de comprar branca quando clicados*/
 }
 
+td button:hover {
+    background-color: #a5923e;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;
