@@ -68,6 +68,11 @@ div img {
     height: 15px;
 }
 
+.icone:hover {
+    opacity:0.4;
+  filter:alpha(opacity = 40);
+}
+
 .texto-centralizado{
     margin-top: 0;
     position: absolute;
