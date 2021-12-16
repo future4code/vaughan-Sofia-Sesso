@@ -37,13 +37,6 @@ div img {
     background: black;
 }
 
-.texto-centralizado{
-  margin-top: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 .botao-amarelo {
     background-color: #ffaf43;
@@ -66,6 +59,14 @@ div img {
 
 .icone {
     height: 15px;
+}
+
+.texto-centralizado{
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -109,6 +110,7 @@ div:last-child {
 
 table {
     width: 60%;
+    text-align: center;
 }
 
 td button {
