@@ -1,0 +1,78 @@
+/* Website inteiro */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    margin: 15px;
+    color: white;
+}
+
+a:hover {
+    color: violet;
+}
+
+div > ul {
+    padding: 0 30px 30px 30px
+}
+
+header {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 25px;
+}
+
+body {
+    background-image: url(img/ceu-estrelado.jpg);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Página Inicial */
+
+div > div {
+    margin: 15px;
+    border: dotted;
+    padding: 0 30px 30px 30px;
+    border-radius: 30px;
+    line-height: 1.4;
+}
+
+div > div > div {
+    padding: 40px;
+    text-align: center;
+    border: hidden;
+}
+
+h1 {
+    margin: 15px;
+    text-align: center;
+}
+
+#container-pagina-inicial {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#container-texto {
+    text-align: justify;
+}
+
+#img-pagina-inicial {
+    
+    height: 200px;
+    width: 150px;
+    border: solid rgb(82, 32, 82);
+    border-radius: 75px;
+}
+
+/* Projetos */
+
+/* Redes Sociais */
+
+a > img {
+    height: 30px;
+    width: 30px;
+}
