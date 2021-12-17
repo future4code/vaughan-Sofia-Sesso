@@ -72,7 +72,42 @@ h1 {
 
 /* Redes Sociais */
 
+
 a > img {
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
+}
+
+#container-social-media {
+    margin: 5% 30%;
+    border: dotted;
+    padding: 30px 0 0 30px;
+    border-radius: 30px;
+    background-color: black;
+    line-height: 2;
+}
+
+/* Contato */
+form {
+    margin: 5% 30%;
+    border: dotted;
+    padding: 10px 30px 30px 30px;
+    border-radius: 30px;
+}
+
+form > input {
+    width: 75%;
+    padding: 10px;
+}
+
+form > label {
+    line-height: 3;
+    font-weight: bold;
+}
+
+.input-mensagem {
+    width: 100%;
+    box-sizing: border-box;
+    height: 200px;
+    padding: 15px;
 }
