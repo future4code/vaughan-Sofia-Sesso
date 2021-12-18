@@ -61,7 +61,6 @@ h1 {
 }
 
 #img-pagina-inicial {
-
     height: 200px;
     width: 150px;
     border: solid rgb(82, 32, 82);
@@ -72,6 +71,7 @@ h1 {
 
 h3 {
     padding: 30px;
+    text-align: center;
 }
 
 #container-pagina-projetos {
@@ -79,16 +79,17 @@ h3 {
     grid-template-columns: 1fr 1fr;
 }
 
-/* Redes Sociais */
-
-
-a > img {
+.img-projetos {
     position: relative;
-    top: 4px;
+    left: 50%;
+    transform: translate(-50%);
 
-    height: 20px;
-    width: 20px;
+    height: 180px;
+    width: 350px;
+    border: solid rgb(82, 32, 82);
 }
+
+/* Redes Sociais */
 
 #container-social-media {
     margin: 5% 30%;
@@ -100,7 +101,16 @@ a > img {
     font-weight: bold;
 }
 
+.img-rede-sociais {
+    position: relative;
+    top: 4px;
+
+    height: 20px;
+    width: 20px;
+}
+
 /* Contato */
+
 form {
     margin: 5% 30%;
     border: dotted;
