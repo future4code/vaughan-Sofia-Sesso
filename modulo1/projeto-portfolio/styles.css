@@ -61,7 +61,7 @@ h1 {
 }
 
 #img-pagina-inicial {
-    
+
     height: 200px;
     width: 150px;
     border: solid rgb(82, 32, 82);
@@ -70,10 +70,22 @@ h1 {
 
 /* Projetos */
 
+h3 {
+    padding: 30px;
+}
+
+#container-pagina-projetos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 /* Redes Sociais */
 
 
 a > img {
+    position: relative;
+    top: 4px;
+
     height: 20px;
     width: 20px;
 }
@@ -85,6 +97,7 @@ a > img {
     border-radius: 30px;
     background-color: black;
     line-height: 2;
+    font-weight: bold;
 }
 
 /* Contato */
