@@ -1,0 +1,208 @@
+/* Website inteiro */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    margin: 15px;
+    color: white;
+}
+
+a:hover {
+    color: violet;
+}
+
+button {
+    position: relative;
+    bottom: 25px;
+
+    float: right;
+    margin: 0 40px 0 0;
+    border: solid;
+    border-color: white;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(8, 6, 22);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+}
+
+div > ul {
+    padding: 0 30px 30px 30px
+}
+
+header {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 25px;
+}
+
+body {
+    background-image: url(img/ceu-estrelado.jpg);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Página Inicial */
+
+div > div {
+    margin: 15px;
+    border: dotted;
+    padding: 0 30px 30px 30px;
+    border-radius: 30px;
+    line-height: 1.4;
+}
+
+div > div > div {
+    padding: 40px;
+    text-align: center;
+    border: hidden;
+}
+
+h1 {
+    margin: 15px;
+    text-align: center;
+}
+
+#container-pagina-inicial {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#container-texto {
+    text-align: justify;
+}
+
+#img-pagina-inicial {
+    height: 200px;
+    width: 150px;
+    border: solid rgb(82, 32, 82);
+    border-radius: 75px;
+}
+
+.img-direita {
+    float: right;
+    height: 300px;
+    width: 550px;
+    margin: 20px 80px 20px 10px;
+    border: solid rgb(82, 32, 82);
+}
+
+.img-esquerda {
+    float: left;
+    height: 300px;
+    width: 550px;
+    margin:  20px 10px 20px 80px;
+    border: solid rgb(82, 32, 82);
+}
+
+/* Projetos */
+
+h3 {
+    padding: 30px;
+    text-align: center;
+}
+
+#container-pagina-projetos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.img-projetos {
+    position: relative;
+    left: 46%;
+    transform: translate(-50%);
+
+    height: 180px;
+    width: 350px;
+    border: solid rgb(82, 32, 82);
+}
+
+/* Redes Sociais */
+
+#container-social-media {
+    margin: 5% 30%;
+    border: dotted;
+    padding: 30px 0 0 30px;
+    border-radius: 30px;
+    background-color: black;
+    line-height: 2;
+    font-weight: bold;
+}
+
+.img-rede-sociais {
+    position: relative;
+    top: 4px;
+
+    height: 20px;
+    width: 20px;
+}
+
+/* Contato */
+
+form {
+    margin: 5% 30%;
+    border: dotted;
+    padding: 10px 30px 30px 30px;
+    border-radius: 30px;
+}
+
+form > input {
+    width: 75%;
+    padding: 10px;
+}
+
+form > label {
+    line-height: 3;
+    font-weight: bold;
+}
+
+.input-mensagem {
+    width: 100%;
+    box-sizing: border-box;
+    height: 200px;
+    padding: 15px;
+}
+
+/* Sweet Tooth */
+
+#container-descricao-st {
+    float: left;
+    text-align: justify;
+    width: 40%;
+    height: 230px;
+    margin: 0 10px 20px 60px;
+    padding: 20px 30px;
+    line-height: 1.6;
+}
+
+#container-tecnologias-st {
+    float: right;
+    width: 40%;
+    height: 230px;
+    margin: 0 60px 20px 10px;
+    padding: 20px;
+}
+
+/* CSS Bugfixes */
+
+#container-descricao-cb {
+    float: left;
+    text-align: justify;
+    width: 40%;
+    height: 160px;
+    margin: 0 10px 20px 60px;
+    padding: 20px 30px;
+    line-height: 1.6;
+}
+
+#container-tecnologias-cb {
+    float: right;
+    width: 40%;
+    height: 160px;
+    margin: 0 60px 20px 10px;
+    padding: 20px;
+}
