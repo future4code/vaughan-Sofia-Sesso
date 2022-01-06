@@ -1,0 +1,164 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+div > div {
+    border: 1px solid black;
+}
+
+#first-block {
+    background-color: red;
+    height: 10vh;
+}
+
+.blue-block {
+    background-color: blue;
+    height: 10vh;
+    width: 30vw;
+}
+
+.yellow-block {
+    background-color: yellow;
+    height: 10vh;
+    width: 30vw;
+}
+
+.green-block {
+    background-color: green;
+    height: 10vh;
+    width: 30vw;
+}
+
+.black-block {
+    background-color: black;
+    color: white;
+    height: 30vh;
+    width: 45vw;
+}
+
+.white-block {
+    background-color: white;
+    height: 10vh;
+    width: 30vw;
+}
+
+.first-second-containers {
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw;
+    text-align: center;
+    line-height: 10vh;
+}
+
+#third-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw;
+    text-align: center;
+    line-height: 30vh;
+}
+
+#fourth-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw;
+    text-align: center;
+    line-height: 10vh;
+}
+
+@media screen and (min-device-width: 500px) and (max-device-width: 800px) {
+    .blue-block {
+        background-color: blue;
+        height: 10vh;
+        width: 44vw;
+        margin-right: 1vw;
+    }
+    
+    .yellow-block {
+        background-color: yellow;
+        height: 10vh;
+        width: 44vw;
+        margin-left: 1vw;
+    }
+    
+    .green-block {
+        background-color: green;
+        height: 10vh;
+        width: 90vw;
+        margin-top: 2vh;
+    }
+
+
+    .first-second-containers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #third-container {
+        justify-content: space-evenly;
+    }
+    
+    #fourth-container {
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-device-width: 499px) {
+    .blue-block {
+        background-color: blue;
+        height: 10vh;
+        width: 96vw;
+        margin-bottom: 2vh;
+    }
+    
+    .yellow-block {
+        background-color: yellow;
+        height: 10vh;
+        width: 96vw;
+        margin-bottom: 2vh;
+    }
+    
+    .green-block {
+        background-color: green;
+        height: 10vh;
+        width: 96vw;
+        margin-bottom: 2vh;
+    }
+    
+    .black-block {
+        background-color: black;
+        color: white;
+        height: 10vh;
+        width: 96vw;
+        margin-bottom: 2vh;
+    }
+
+    .white-block {
+        background-color: white;
+        height: 10vh;
+        width: 96vw;
+        margin-bottom: 2vh;
+    }
+
+    .first-second-containers {
+        display: flex;
+        flex-direction: column;
+        padding: 4vw 2vw 0 2vw;
+    }
+    
+    #third-container {
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: 0 2vw;
+    }
+    
+    #fourth-container {
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: 0 2vw;
+    }
+}
