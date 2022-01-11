@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-bottom: 25px;
+  border-bottom: 1px black solid;
+}
+
+input {
+  width: 300px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.container-icones {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.page-section-container {
+  width: 40vw;
+  margin: 10px 0;
+}
+
+.page-section-container > h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
