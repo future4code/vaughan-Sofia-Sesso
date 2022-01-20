@@ -38,7 +38,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const tarefasSalvas = JSON.parse(localStorage.getItem("tarefasSalvas"))
-    this.setState({tarefas: tarefasSalvas})
+    if (tarefasSalvas) {
+      this.setState({tarefas: tarefasSalvas})
+    }
   };
 
   onChangeInput = (event) => {
