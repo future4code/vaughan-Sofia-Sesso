@@ -9,7 +9,7 @@ export default class ManagePlaylists extends React.Component {
         playlistNameInput: "",
         playlists: []
     }
-    
+
     componentDidMount () {
         this.getAllPlaylists()
     }

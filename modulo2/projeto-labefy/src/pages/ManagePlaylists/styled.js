@@ -6,7 +6,7 @@ export const PlaylistContainer = styled.div`
     width: 400px;
     padding: 10px;
     border-bottom: dashed black 1px;
-
+    
     p {
         margin: 0;
     }
