@@ -4,29 +4,109 @@ export const BodyContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    background-image: linear-gradient(#1c024d, rgb(24,24,24));
 `
 
 export const TitleContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 50px;
-    width: calc(100vw - 40px);
-    padding: 10px;
+    grid-template-columns: 1fr 100px;
+    align-items: center;
+    width: calc(100vw - 100px);
+    padding: 30px 10px 10px 10px;
 
     h2 {
         justify-self: center;
         margin: 0;
         margin-left: 50px;
+        color: white;
     }
 
     button {
-        width: 50px;
+        width: 100px;
         margin-right: 40px;
+        height: 3em;
+        background-color: rgb(28,185,83);
+        color: black;
+        border: rgb(28,185,83) solid 1px;
+        border-radius: 1em;
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: #169442;
+            border: #169442 solid 1px;
+        }
+        &:active{
+            background-color: transparent;
+            color: rgb(28,185,83);
+        }
     }
 `
 
-export const SearchContainer = styled.div`
+export const DescriptionContainer = styled.div`
+    display: grid;
+    grid-template-columns: 70px repeat(4, 1fr);
+    align-items: center;
+    width: 1050.6px;
+    padding-bottom: 10px;
+
+    #hash {
+        grid-area: 1/1/2/2;
+        text-align: center;
+    }
+
+    #title {
+        grid-area: 1/3/2/4;
+        text-align: center;
+    }
+
+    #artist {
+        grid-area: 1/4/2/5;
+        text-align: center;
+    }
+`
+
+export const FormContainer = styled.div`
     display: flex;
-    padding: 20px;
+    align-items: center;
+    padding: 20px 20px 40px 20px;
+
+    input {
+        height: calc(3em - 10px);
+        padding: 5px;
+        margin: 5px;
+        background-color: transparent;
+        border: none;
+        border-bottom: rgb(28,185,83) solid 2px;
+        color: white;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    button {
+        height: 3em;
+        background-color: rgb(28,185,83);
+        color: black;
+        border: rgb(28,185,83) solid 1px;
+        border-radius: 1em;
+        width: 150px;
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: #169442;
+            border: #169442 solid 1px;
+        }
+        &:active{
+            background-color: transparent;
+            color: rgb(28,185,83);
+        }
+    }
 `
 
 export const Url = styled.input`
@@ -34,26 +114,51 @@ export const Url = styled.input`
 `
 
 export const TrackContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 70px repeat(4, 1fr);
     align-items: center;
-    width: 800px;
-    padding: 10px;
-    border-bottom: dashed black 1px;
+    width: 1050.6px;
+    padding: 10px 0;
+    border-top: solid rgb(28,185,83) 1px;
+
+    &:hover{
+        opacity: 0.7
+    }
     
     p {
         margin: 0;
+        text-align: center;
     }
 
     iframe {
         height: 5em;
         width: 5em;
         border: none;
+
+        &:hover{
+            border: rgb(28,185,83) solid 1px;
+        }
     }
 
     button {
-        height: 2em;
-        background-color: white;
+        justify-self: flex-end;
+        height: 2.2em;
+        width: 2em;
+        background-color: transparent;
         border: none;
+        border-radius: 0.5em;
+        margin-right: 10px;
+        cursor: pointer;    
+    }
+
+    #deleteButton {
+      filter: invert(100%) sepia(0%) saturate(6234%) hue-rotate(246deg) brightness(87%) contrast(156%);
+
+      &:hover{
+        filter: invert(63%) sepia(27%) saturate(1262%) hue-rotate(89deg) brightness(100%) contrast(92%);
+      }
+      &:active{
+        filter: invert(18%) sepia(35%) saturate(990%) hue-rotate(89deg) brightness(97%) contrast(89%);
+      }
     }
 `
