@@ -51,6 +51,22 @@ export const FormContainer = styled.div`
             color: rgb(28,185,83);
         }
     }
+
+    
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+        width: 80vw;
+
+        input {
+            width: 70vw;
+        }
+
+        button {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+    }
 `
 
 export const DescriptionContainer = styled.div`
@@ -66,6 +82,11 @@ export const DescriptionContainer = styled.div`
 
     #title {
         grid-area: 1/2/2/3;
+    }
+
+    
+    @media (max-width: 600px) {
+        width: 80vw;
     }
 `
 
@@ -117,5 +138,10 @@ export const PlaylistContainer = styled.div`
       &:active{
         filter: invert(18%) sepia(35%) saturate(990%) hue-rotate(89deg) brightness(97%) contrast(89%);
       }
+    }
+
+    
+    @media (max-width: 600px) {
+        width: 80vw;
     }
 `

@@ -4,20 +4,42 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
 
     h1 {
         text-align: center;
         font-size: 7em;
         color: rgb(28,185,83);
         margin: 0;
-        padding: 10%;
+        padding-top: 10%;
+        padding-bottom: 5%;
+    }
+
+    img {
+        display: none;
+    }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 3em;
+            padding: 20% 0;
+        }
+
+        img {
+            display: inline;
+            width: 40%;
+            height: 40%;
+            margin-bottom: 20%;
+            filter: invert(63%) sepia(27%) saturate(1262%) hue-rotate(89deg) brightness(100%) contrast(92%);
+        }
     }
 `
 
 export const Button = styled.button`
     width: 100px;
+        justify-self: center;
         text-align: center;
-        height: 5em;
+        height: 65px;
         width: 150px;
         background-color: rgb(28,185,83);
         color: black;
@@ -27,8 +49,9 @@ export const Button = styled.button`
     
 
         &:hover{
-            background-color: #169442;
             border: #169442 solid 1px;
+            width: 155px;
+            height: 70px;
         }
         &:active{
             background-color: transparent;

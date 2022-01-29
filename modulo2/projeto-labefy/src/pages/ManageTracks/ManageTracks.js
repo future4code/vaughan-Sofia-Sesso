@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 import { BASE_URL } from "../../constants/urls"
 import { axiosConfig } from "../../constants/urls"
-import { TrackContainer, TitleContainer, FormContainer, BodyContainer, DescriptionContainer, Url } from "./styled"
+import { TrackContainer, TitleContainer, FormContainer, BodyContainer, DescriptionContainer } from "./styled"
 import Trashcan from "../../images/trashcan.svg"
 
 export default class ManageTracks extends React.Component {
@@ -77,15 +77,15 @@ export default class ManageTracks extends React.Component {
             const newUrl = urlSplit.join('')
 
             return <TrackContainer key={track.id}>
-                <p>{this.state.tracks.indexOf(track) + 1}</p>
+                <p id="number">{this.state.tracks.indexOf(track) + 1}</p>
                 <iframe
                     src={newUrl}
                     allow="encrypted-media"
                 >
                 </iframe>
-                <p>{track.name}</p>
-                <p>{track.artist}</p>
-                <button id="deleteButton" onClick={() => this.removeTrackFromPlaylist(track.id)}><img src={Trashcan} /></button>
+                <p id="nome">{track.name}</p>
+                <p id="artista">{track.artist}</p>
+                <button id="deleteButton" onClick={() => this.removeTrackFromPlaylist(track.id)}><img src={Trashcan} alt="Icone Remover Musica" /></button>
             </TrackContainer>
         })
 
@@ -107,7 +107,8 @@ export default class ManageTracks extends React.Component {
                     onChange={this.onChangeTrackArtist}
                     placeholder="Artista"
                 />
-                <Url
+                <input
+                    id="url"
                     type="url"
                     value={this.state.trackUrlInput}
                     onChange={this.onChangeTrackUrl}

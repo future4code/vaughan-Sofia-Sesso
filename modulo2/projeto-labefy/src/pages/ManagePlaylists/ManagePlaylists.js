@@ -63,7 +63,7 @@ export default class ManagePlaylists extends React.Component {
             return <PlaylistContainer key={playlist.id}>
                 <p>{this.state.playlists.indexOf(playlist) + 1}</p>
                 <p id="playlistName" onClick={() => this.props.switchToTracks(playlist)}>{playlist.name}</p>
-                <button id="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}><img src={Trashcan} /></button>
+                <button id="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}><img src={Trashcan} alt="Icone Remover Musica" /></button>
             </PlaylistContainer>
         })
 

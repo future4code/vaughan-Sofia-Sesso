@@ -7,7 +7,6 @@ export const BodyContainer = styled.div`
     width: 100%;
     height: 100vh;
     color: white;
-    background-image: linear-gradient(#1c024d, rgb(24,24,24));
 `
 
 export const TitleContainer = styled.div`
@@ -44,28 +43,24 @@ export const TitleContainer = styled.div`
             color: rgb(28,185,83);
         }
     }
-`
 
-export const DescriptionContainer = styled.div`
-    display: grid;
-    grid-template-columns: 70px repeat(4, 1fr);
-    align-items: center;
-    width: 1050.6px;
-    padding-bottom: 10px;
+    @media (max-width: 600px) {
+        display: grid;
+        grid-template-columns: 68px 5fr 1fr;
+        width: 93vw;
 
-    #hash {
-        grid-area: 1/1/2/2;
-        text-align: center;
-    }
+        h2 {
+            grid-area: 1/2/2/3;
+            margin: 0;
+            justify-self: center;
+        }
 
-    #title {
-        grid-area: 1/3/2/4;
-        text-align: center;
-    }
-
-    #artist {
-        grid-area: 1/4/2/5;
-        text-align: center;
+        button {
+            grid-area: 1/3/2/4;
+            width: 60px;
+            margin: 0;
+            margin-left: 10px;
+        }
     }
 `
 
@@ -73,6 +68,10 @@ export const FormContainer = styled.div`
     display: flex;
     align-items: center;
     padding: 20px 20px 40px 20px;
+
+    #url {
+        width: 500px;
+    }
 
     input {
         height: calc(3em - 10px);
@@ -107,10 +106,50 @@ export const FormContainer = styled.div`
             color: rgb(28,185,83);
         }
     }
+
+    @media (max-width: 600px) {
+        width: 98vw;
+        flex-direction: column;
+        padding: 20px 0 40px 0;
+
+        #url {
+        width: 80vw;
+        }
+
+        button {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        }
+    }
+
+    
 `
 
-export const Url = styled.input`
-    width: 500px;
+export const DescriptionContainer = styled.div`
+    display: grid;
+    grid-template-columns: 70px repeat(4, 1fr);
+    align-items: center;
+    width: 1050.6px;
+    padding-bottom: 10px;
+
+    #hash {
+        grid-area: 1/1/2/2;
+        text-align: center;
+    }
+
+    #title {
+        grid-area: 1/3/2/4;
+        text-align: center;
+    }
+
+    #artist {
+        grid-area: 1/4/2/5;
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+    }
 `
 
 export const TrackContainer = styled.div`
@@ -160,5 +199,36 @@ export const TrackContainer = styled.div`
       &:active{
         filter: invert(18%) sepia(35%) saturate(990%) hue-rotate(89deg) brightness(97%) contrast(89%);
       }
+    }
+
+    @media (max-width: 600px) {
+        display: grid;
+        grid-template-columns: 50px 100px 1fr 50px;
+        grid-template-rows: 1fr 1fr;
+        width: 98vw;
+
+        iframe {
+            grid-area: 1/2/3/3;
+        }
+
+        #number {
+            grid-area: 1/1/3/2;
+        }
+
+        #nome {
+            grid-area: 1/3/2/4;
+            align-self: flex-end;
+            border-bottom: white solid 0.3px;
+            padding-bottom: 12.5px;
+        }
+
+        #artista {
+            grid-area: 2/3/3/4;
+        }
+
+        button {
+            grid-area: 1/-2/3/-1;
+            justify-self: center;
+        }
     }
 `
