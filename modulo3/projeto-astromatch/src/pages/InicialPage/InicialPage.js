@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../../constants/BaseUrl'
 import Profile from '../../components/Profile'
+import { ProfileContainer, ButtonContainer } from '../../styles'
+import reject from '../../images/reject.png'
+import heart from '../../images/heart.png'
 
 export default function InicialPage() {
 
@@ -36,11 +39,14 @@ export default function InicialPage() {
             })
     }
 
-    return (
+    return (<ProfileContainer>
         <Profile
             profile={profile}
-            getProfileToChoose={getProfileToChoose}
-            choosePerson={choosePerson}
         />
+        <ButtonContainer>
+            <button id='reject-button' onClick={getProfileToChoose}><img src={reject} alt='Icone de rejeitar perfil' /></button>
+            <button id='accept-button' onClick={() => choosePerson(profile.id)}><img src={heart} alt='Icone de aceitar perfil' /></button>
+        </ButtonContainer>
+    </ProfileContainer>
     )
 }

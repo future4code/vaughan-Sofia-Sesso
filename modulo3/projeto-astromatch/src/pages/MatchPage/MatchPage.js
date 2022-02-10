@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BaseUrl } from '../../constants/BaseUrl'
 import { MatchesContainer } from '../../styles'
 
-export default function MatchPage(props) {
+export default function MatchPage() {
 
     const [matchesList, setMatchesList] = useState([])
 

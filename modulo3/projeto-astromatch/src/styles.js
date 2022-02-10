@@ -91,47 +91,34 @@ export const InfoCard = styled.div`
 `
 
 export const ButtonContainer = styled.div`
-    background-color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #3b022b;
 
     button {
-        height: 70px;
-        width: 70px;
+        background: transparent;
         border: none;
-        cursor: pointer;
-        border-radius: 35px;
-
-        &:active {
-            filter: invert(10%) sepia(10%) saturate(350%) hue-rotate(110deg) brightness(87%) contrast(205%);
-        }
-    }
-
-    #heart-img {
-        position: relative;
-        top: -64.6px;
-        left: -2px;
-        height: 50px;
-        width: 57px;
-    }
-
-    #background-img{
-        height: 70px;
-        width: 70px;
-    }
-
-    #reject-button {
-        border: none;
-        cursor: pointer;
+        cursor: pointer; 
 
         img {
             height: 70px;
             width: 70px;
         }
 
+        &:hover{
+	        transform: scale(1.15, 1.15);
+        }
+    }
+
+    #accept-button {
         &:active {
+            filter: invert(10%) sepia(10%) saturate(350%) hue-rotate(110deg) brightness(87%) contrast(205%);
+        }
+    }
+
+    #reject-button {
+          &:active {
             filter: invert(10%) sepia(10%) saturate(350%) hue-rotate(380deg) brightness(87%) contrast(205%);
         }
     } 
