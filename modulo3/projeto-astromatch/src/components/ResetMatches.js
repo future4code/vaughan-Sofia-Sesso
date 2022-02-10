@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../constants/BaseUrl'
-import { ResetMatch } from '../styles'
+import { ResetMatchContainer } from '../styles'
 
 export default function ResetMatches() {
 
@@ -19,8 +19,8 @@ export default function ResetMatches() {
     }
 
     return (
-        <ResetMatch>
+        <ResetMatchContainer>
             <button onClick={clearMatches}>Limpar swipes e matches</button>
-        </ResetMatch>
+        </ResetMatchContainer>
     )
 }

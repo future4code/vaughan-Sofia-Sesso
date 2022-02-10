@@ -29,6 +29,7 @@ export const HeaderContainer = styled.div`
     h3 {
         margin: 0;
         display: inline;
+        font-size: 25px;
     }
 
     button {
@@ -47,67 +48,96 @@ export const HeaderContainer = styled.div`
     }
 `
 
-export const ProfileCard = styled.div`
+export const ProfileContainer = styled.div`
     border-radius: 15px;
     display: grid;
     grid-template-rows: 450px 1fr;
     width: 340px;
     height: 100%;
+`
 
-    #info-container {
+export const InfoCard = styled.div`    
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    display: grid;
+    grid-template-rows: 1fr 80px;
+    height: 450px;
+    border-radius: 15px;
+    position: relative;
+
+    #img-container {
+        height: 450px;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
-        display: grid;
-        grid-template-rows: 1fr 80px;
-        height: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
         border-radius: 15px;
 
-        #img-container {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-
-            img {
-                max-width: 340px;
-                max-height: 370px;
-            }
+        img {
+            max-width: 340px;
+            max-height: 350px;
         }
 
-        #text-container {
-            width: 100%;
-            justify-self: flex-end;
+        div {
+            padding-left: 10px;
+            padding-top: 10px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            background-color: #3b022b;    
-            padding-top: 20px;        
-        }
-    }
-
-    #button-container {
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #3b022b;
-
-            button {
-                height: 70px;
-                width: 70px;
-                border: none;
-                cursor: pointer;
-                border-radius: 35px;
-                border: 3px #EF3A47 solid;
-            }
-
-            img {
-            height: 50px;
-            width: 50px;
+            justify-self: center;
         }
     }
 `
 
-export const MatchCard = styled.div`
+export const ButtonContainer = styled.div`
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3b022b;
+
+    button {
+        height: 70px;
+        width: 70px;
+        border: none;
+        cursor: pointer;
+        border-radius: 35px;
+
+        &:active {
+            filter: invert(10%) sepia(10%) saturate(350%) hue-rotate(110deg) brightness(87%) contrast(205%);
+        }
+    }
+
+    #heart-img {
+        position: relative;
+        top: -64.6px;
+        left: -2px;
+        height: 50px;
+        width: 57px;
+    }
+
+    #background-img{
+        height: 70px;
+        width: 70px;
+    }
+
+    #reject-button {
+        border: none;
+        cursor: pointer;
+
+        img {
+            height: 70px;
+            width: 70px;
+        }
+
+        &:active {
+            filter: invert(10%) sepia(10%) saturate(350%) hue-rotate(380deg) brightness(87%) contrast(205%);
+        }
+    } 
+`
+
+export const MatchesContainer = styled.div`
     display: flex;
     align-items: center;
     align-self: flex-start;
@@ -124,10 +154,9 @@ export const MatchCard = styled.div`
     &:hover{
         background-color: #26021c;
     }
-        
 `
 
-export const ResetMatch = styled.div`
+export const ResetMatchContainer = styled.div`
     position: fixed;
     bottom: 0;
     right: 0;
