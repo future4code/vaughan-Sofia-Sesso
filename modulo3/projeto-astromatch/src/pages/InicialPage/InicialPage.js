@@ -60,12 +60,21 @@ export default function InicialPage() {
             })
     }
 
+    // console.log(profile)
+
     return (<ProfileContainer>
-        <Profile
-            profile={profile}
-            swipeRight={swipeRight}
-            swipeLeft={swipeLeft}
-        />
+        {profile ? (
+            <Profile
+                profile={profile}
+                swipeRight={swipeRight}
+                swipeLeft={swipeLeft}
+            />
+        ) :
+            <div id='no-profiles-message-box'>
+                <h3>Acabaram os perfis 😵</h3>
+                <p>Por favor, delete suas matches atuais para receber mais perfis 😊</p>
+            </div>
+        }
         <ButtonContainer>
             <button
                 id='reject-button'

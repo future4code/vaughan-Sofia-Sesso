@@ -55,6 +55,28 @@ export const ProfileContainer = styled.div`
     width: 340px;
     height: 100%;
 
+    #no-profiles-message-box{
+        border-radius: 15px;
+        background-color: lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: justify;
+
+        h3 {
+            margin-bottom: 20px;
+            font-size: x-large;
+        }
+
+        p {
+            width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: aliceblue;
+        }
+    }
+
     @keyframes swipeRight {
         0% {
             transform: rotate(0deg);
@@ -170,6 +192,14 @@ export const ButtonContainer = styled.div`
 `
 
 export const MatchesContainer = styled.div`
+    width: 100%;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`
+
+export const MatchCard = styled.div`
     display: flex;
     align-items: center;
     align-self: flex-start;
@@ -185,6 +215,7 @@ export const MatchesContainer = styled.div`
 
     &:hover{
         background-color: #26021c;
+        border-radius: 15px;
     }
 `
 

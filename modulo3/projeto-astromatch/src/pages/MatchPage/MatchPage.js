@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../../constants/BaseUrl'
-import { MatchesContainer } from '../../styled'
+import { MatchCard, MatchesContainer } from '../../styled'
 
 export default function MatchPage() {
 
@@ -23,14 +23,14 @@ export default function MatchPage() {
 
 
     const renderizedMatches = matchesList.map((match) => {
-        return <MatchesContainer key={match.id}>
+        return <MatchCard key={match.id}>
             <img src={match.photo} alt='Foto do Perfil' />
             <p>{match.name}</p>
-        </MatchesContainer>
+        </MatchCard>
     })
 
     return (
-        <>
+        <MatchesContainer>
             {renderizedMatches}
-        </>)
+        </MatchesContainer>)
 }
