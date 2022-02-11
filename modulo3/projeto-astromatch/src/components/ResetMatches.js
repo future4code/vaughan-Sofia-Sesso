@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../constants/BaseUrl'
 import { ResetMatchContainer } from '../styled'
+import trashcan from '../images/trashcan.png'
 
 export default function ResetMatches() {
 
@@ -20,7 +21,7 @@ export default function ResetMatches() {
 
     return (
         <ResetMatchContainer>
-            <button onClick={clearMatches}>Limpar swipes e matches</button>
+            <button onClick={clearMatches}>Limpar Matches <img src={trashcan} /></button>
         </ResetMatchContainer>
     )
 }

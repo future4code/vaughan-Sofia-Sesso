@@ -220,17 +220,24 @@ export const MatchCard = styled.div`
 `
 
 export const ResetMatchContainer = styled.div`
-    position: fixed;
-    bottom: 2px;
-    right: 2px;
+    img {
+        height: 25px;
+        width: 25px;
+        margin-left: 7px;
+    }
 
-    button {
+     button {
         border: none;
         cursor: pointer;
-        color: #EF3A47;
-        background-color: #3b022b;
+        background-color: #EF3A47;
         width: 180px;
-        height: 25px;
-        border-radius: 5px;
+        height: 35px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0;
+        font-size: large;
+        color: lightgrey;
     }
 `

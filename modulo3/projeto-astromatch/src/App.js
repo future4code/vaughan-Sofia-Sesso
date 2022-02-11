@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import InicialPage from './pages/InicialPage/InicialPage'
 import MatchPage from './pages/MatchPage/MatchPage'
-import ResetMatches from './components/ResetMatches'
 import { DisplayContainer, AppContainer, HeaderContainer } from './styled'
 import match from './images/match.png'
 import profiles from './images/profiles.png'
@@ -39,7 +38,6 @@ function App() {
         </HeaderContainer>
         {switchPage()}
       </AppContainer>
-      <ResetMatches />
     </DisplayContainer>
   )
 }

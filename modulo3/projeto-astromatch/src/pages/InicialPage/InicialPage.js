@@ -59,9 +59,7 @@ export default function InicialPage() {
                 alert(error.response.data)
             })
     }
-
-    // console.log(profile)
-
+    console.log(profile)
     return (<ProfileContainer>
         {profile ? (
             <Profile
@@ -72,7 +70,7 @@ export default function InicialPage() {
         ) :
             <div id='no-profiles-message-box'>
                 <h3>Acabaram os perfis 😵</h3>
-                <p>Por favor, delete suas matches atuais para receber mais perfis 😊</p>
+                <p>Por favor, volte para a página de matches e delete suas matches atuais para receber mais perfis 😊</p>
             </div>
         }
         <ButtonContainer>

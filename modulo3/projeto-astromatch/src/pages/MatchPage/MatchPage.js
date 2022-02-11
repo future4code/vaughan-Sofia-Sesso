@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../../constants/BaseUrl'
 import { MatchCard, MatchesContainer } from '../../styled'
+import ResetMatchContainer from '../../components/ResetMatches'
 
 export default function MatchPage() {
 
@@ -30,7 +31,11 @@ export default function MatchPage() {
     })
 
     return (
-        <MatchesContainer>
-            {renderizedMatches}
-        </MatchesContainer>)
+        <>
+            <MatchesContainer>
+                {renderizedMatches}
+            </MatchesContainer>
+            <ResetMatchContainer />
+        </>
+    )
 }
