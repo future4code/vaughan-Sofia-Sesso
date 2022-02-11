@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../../constants/BaseUrl'
-import { MatchesContainer } from '../../styles'
+import { MatchesContainer } from '../../styled'
 
 export default function MatchPage() {
 

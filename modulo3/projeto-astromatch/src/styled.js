@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const DisplayContainer = styled.div`
     height: 100vh;
@@ -54,6 +54,53 @@ export const ProfileContainer = styled.div`
     grid-template-rows: 450px 1fr;
     width: 340px;
     height: 100%;
+
+    @keyframes swipeRight {
+        0% {
+            transform: rotate(0deg);
+            left: 0;
+        }
+
+        100% {
+            transform: rotate(20deg);
+            left: 200px;
+            opacity: 0;
+        }
+    }
+
+    .swipe-right {
+        animation: swipeRight 0.5s;
+    }
+
+    @keyframes swipeLeft {
+        0% {
+            transform: rotate(0deg);
+            left: 0;
+        }
+
+        100% {
+            transform: rotate(-20deg);
+            left: -200px;
+            opacity: 0;
+        }
+    }
+
+    #swipe-left {
+        animation: swipeLeft 0.5s;
+    }
+`
+
+export const SwipeRight = keyframes`
+    0% {
+        transform: rotate(0deg);
+        left: 0;
+    }
+
+    100% {
+        transform: rotate(20deg);
+        left: 200px;
+        opacity: 0;
+    }
 `
 
 export const InfoCard = styled.div`    
@@ -71,7 +118,7 @@ export const InfoCard = styled.div`
         backdrop-filter: blur(20px);
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
         align-self: center;
         border-radius: 15px;
 
@@ -82,10 +129,8 @@ export const InfoCard = styled.div`
 
         div {
             padding-left: 10px;
-            padding-top: 10px;
             display: flex;
             flex-direction: column;
-            justify-self: center;
         }
     }
 `
@@ -145,6 +190,16 @@ export const MatchesContainer = styled.div`
 
 export const ResetMatchContainer = styled.div`
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 2px;
+    right: 2px;
+
+    button {
+        border: none;
+        cursor: pointer;
+        color: #EF3A47;
+        background-color: #3b022b;
+        width: 180px;
+        height: 25px;
+        border-radius: 5px;
+    }
 `

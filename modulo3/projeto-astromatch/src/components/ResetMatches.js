@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { BaseUrl } from '../constants/BaseUrl'
-import { ResetMatchContainer } from '../styles'
+import { ResetMatchContainer } from '../styled'
 
 export default function ResetMatches() {
 
