@@ -59,7 +59,7 @@ export default function InicialPage() {
                 alert(error.response.data)
             })
     }
-    console.log(profile)
+
     return (<ProfileContainer>
         {profile ? (
             <Profile
