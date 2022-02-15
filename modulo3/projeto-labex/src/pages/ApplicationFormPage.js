@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useHandleInput } from '../hooks/useHandleInput'
 
 export default function ApplicationFormPage() {
@@ -6,6 +7,12 @@ export default function ApplicationFormPage() {
     const [ageInput, handleAgeInput] = useHandleInput()
     const [textInput, handleTextInput] = useHandleInput()
     const [occupationInput, handleOccupationInput] = useHandleInput()
+
+    const navigate = useNavigate()
+
+    const goToListTrips = () => {
+        navigate('/trips/list')
+    }
 
     return (
         <>
@@ -40,7 +47,7 @@ export default function ApplicationFormPage() {
             <select>
                 <option>Escolha um País</option>
             </select>
-            <button>Voltar</button>
+            <button onClick={goToListTrips}>Voltar</button>
             <button>Enviar</button>
         </>
     )

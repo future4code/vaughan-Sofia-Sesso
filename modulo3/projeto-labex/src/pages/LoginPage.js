@@ -1,9 +1,20 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useHandleInput } from '../hooks/useHandleInput'
 
 export default function LoginPage() {
     const [emailInput, handleEmailInput] = useHandleInput()
     const [passwordInput, handlePasswordInput] = useHandleInput()
+
+    const navigate = useNavigate()
+
+    const goToHome = () => {
+        navigate('/')
+    }
+
+    const goToAdminHome = () => {
+        navigate('/admin/trips/list')
+    }
 
     return (
         <>
@@ -20,8 +31,8 @@ export default function LoginPage() {
                 value={passwordInput}
                 onChange={handlePasswordInput}
             />
-            <button>Voltar</button>
-            <button>Entrar</button>
+            <button onClick={goToHome}>Voltar</button>
+            <button onClick={goToAdminHome}>Entrar</button>
         </>
     )
 }

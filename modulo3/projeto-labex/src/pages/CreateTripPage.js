@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useHandleInput } from '../hooks/useHandleInput'
 
 export default function CreateTripPage() {
@@ -6,6 +7,12 @@ export default function CreateTripPage() {
     const [dateInput, handleDateInput] = useHandleInput()
     const [descriptionInput, handleDescriptionInput] = useHandleInput()
     const [daysInput, handleDaysInput] = useHandleInput()
+
+    const navigate = useNavigate()
+
+    const goToAdminHome = () => {
+        navigate('/admin/trips/list')
+    }
 
     console.log(dateInput)
     return (
@@ -37,7 +44,7 @@ export default function CreateTripPage() {
                 value={daysInput}
                 onChange={handleDaysInput}
             />
-            <button>Voltar</button>
+            <button onClick={goToAdminHome}>Voltar</button>
             <button>Criar</button>
         </>
     )
