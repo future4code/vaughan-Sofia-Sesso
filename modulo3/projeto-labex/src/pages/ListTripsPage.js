@@ -1,21 +1,16 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useGetData } from '../hooks/useGetData'
 import { BaseUrl } from '../constants/BaseUrl'
+import { useGoToPage } from '../hooks/useGoToPage'
 
 export default function ListTripsPage() {
-    const navigate = useNavigate()
-    const [trips, isLoading] = useGetData(`${BaseUrl}/trips`)
 
-    const goToHome = () => {
-        navigate('/')
-    }
+    const goToHome = useGoToPage('/')
+    const goToApplicationForm = useGoToPage('/trips/application')
 
-    const goToApplicationForm = () => {
-        navigate('/trips/application')
-    }
+    const [trips, isLoading, error] = useGetData(`${BaseUrl}/trips`)
 
-    const tripsList = trips && trips.map((trip) => {
+    const tripsList = trips && trips.trips.map((trip) => {
         return <div key={trip.id}>
             <p><strong>Nome: </strong>{trip.name}</p>
             <p><strong>Descrição: </strong>{trip.description}</p>
@@ -31,6 +26,7 @@ export default function ListTripsPage() {
                 <button onClick={goToHome}>Voltar</button>
                 <h2>Lista de Viagens</h2>
                 {isLoading && <p>Carregando...</p>}
+                {!isLoading && error && <p>Ocorreu um erro na requisição</p>}
                 {!isLoading && trips && tripsList}
                 {!isLoading && trips && tripsList.length === 0 && <p>Não há nenhuma viagem disponível</p>}
                 <button onClick={goToApplicationForm}>Inscrever-se</button>

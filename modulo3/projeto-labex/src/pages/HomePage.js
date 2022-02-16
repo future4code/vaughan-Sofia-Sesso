@@ -1,16 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useGoToPage } from '../hooks/useGoToPage'
+
 
 export default function HomePage() {
-    const navigate = useNavigate()
 
-    const goToListTrips = () => {
-        navigate('/trips/list')
-    }
-
-    const goToAdminHome = () => {
-        navigate('/admin/trips/list')
-    }
+    const goToListTrips = useGoToPage('/trips/list')
+    const goToAdminHome = useGoToPage('/admin/trips/list')
 
     return (
         <>

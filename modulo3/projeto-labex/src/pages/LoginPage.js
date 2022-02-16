@@ -1,19 +1,30 @@
+import axios from 'axios'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useHandleInput } from '../hooks/useHandleInput'
+import { BaseUrl } from '../constants/BaseUrl'
+import { useGoToPage } from '../hooks/useGoToPage'
 
 export default function LoginPage() {
     const [emailInput, handleEmailInput] = useHandleInput()
     const [passwordInput, handlePasswordInput] = useHandleInput()
 
-    const navigate = useNavigate()
+    const goToHome = useGoToPage('/')
+    const goToAdminHome = useGoToPage('/admin/trips/list')
 
-    const goToHome = () => {
-        navigate('/')
-    }
+    const onSubmitLogin = () => {
+        const body = {
+            email: emailInput,
+            password: passwordInput
+        }
 
-    const goToAdminHome = () => {
-        navigate('/admin/trips/list')
+        axios.post(`${BaseUrl}/login`, body)
+            .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                goToAdminHome()
+            })
+            .catch((err) => {
+                alert(err.response)
+            })
     }
 
     return (
@@ -32,7 +43,7 @@ export default function LoginPage() {
                 onChange={handlePasswordInput}
             />
             <button onClick={goToHome}>Voltar</button>
-            <button onClick={goToAdminHome}>Entrar</button>
+            <button onClick={onSubmitLogin}>Entrar</button>
         </>
     )
 }

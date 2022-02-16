@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export const useGetData = (url) => {
+export const useGetData = (url, headers) => {
     const [data, setData] = useState(undefined)
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState("")
 
-    const getData = (url) => {
+    const getData = (url, headers) => {
         setIsLoading(true)
-        axios.get(url)
+        axios.get(url, headers)
             .then((res) => {
-                setData(res.data.trips)
+                setData(res.data)
                 setIsLoading(false)
             })
             .catch((err) => {
-                console.log(err.data)
                 setIsLoading(false)
+                setError(err.response)
             })
     }
 
     useEffect(() => {
-        getData(url)
+        getData(url, headers)
     }, [url])
 
-    return [data, isLoading]
+    return [data, isLoading, error]
 }

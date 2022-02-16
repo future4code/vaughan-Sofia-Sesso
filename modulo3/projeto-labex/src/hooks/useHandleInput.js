@@ -7,5 +7,9 @@ export const useHandleInput = () => {
         setInput(event.target.value)
     }
 
-    return [input, handleInput]
+    const eraseInput = () => {
+        setInput("")
+    }
+
+    return [input, handleInput, eraseInput]
 }
