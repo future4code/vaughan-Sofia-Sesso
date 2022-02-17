@@ -1,47 +1,36 @@
 import React, { useState } from 'react'
 import { useGoToPage } from '../hooks/useGoToPage'
-import { useHandleInput } from '../hooks/useHandleInput'
+import { useForm } from '../hooks/useForm'
 import { useGetData } from '../hooks/useGetData'
 import { BaseUrl } from '../constants/BaseUrl'
 import CountrySelector from '../components/CountrySelector'
 import axios from 'axios'
 
 export default function ApplicationFormPage() {
-    const [nameInput, handleNameInput, eraseNameInput] = useHandleInput()
-    const [ageInput, handleAgeInput, eraseAgeInput] = useHandleInput()
-    const [textInput, handleTextInput, eraseTextInput] = useHandleInput()
-    const [occupationInput, handleOccupationInput, eraseOccupationInput] = useHandleInput()
-    const [trip, setTrip] = useState("")
-    const [countryInput, setCountryInput] = useState("")
+    const [form, onChange, clearForm] = useForm({
+        name: "",
+        age: "",
+        applicationText: "",
+        profession: "",
+        country: ""
+    })
 
     const goToListTrips = useGoToPage('/trips/list')
 
     const [trips] = useGetData(`${BaseUrl}/trips`)
 
-    const pickTrip = (event) => {
-        setTrip(event.target.value)
+    const [tripId, setTripId] = useState("")
+
+    const onChangeTrip = (event) => {
+        setTripId(event.target.value)
     }
 
-    const pickCountry = (event) => {
-        setCountryInput(event.target.value)
-    }
-
-    const applyToTrip = () => {
-        const body = {
-            name: nameInput,
-            age: ageInput,
-            applicationText: textInput,
-            profession: occupationInput,
-            country: countryInput
-        }
-
-        axios.post(`${BaseUrl}/trips/${trip}/apply`, body)
+    const applyToTrip = (event) => {
+        event.preventDefault()
+        axios.post(`${BaseUrl}/trips/${tripId}/apply`, form)
             .then(() => {
                 alert("Sua inscrição foi enviada com sucesso!")
-                eraseNameInput()
-                eraseAgeInput()
-                eraseTextInput()
-                eraseOccupationInput()
+                clearForm()
             })
             .catch((err) => {
                 alert(err.response.data.message)
@@ -51,45 +40,62 @@ export default function ApplicationFormPage() {
     return (
         <>
             <h2>Inscreva-se para uma viagem</h2>
-            <select onChange={pickTrip}>
-                <option value={''}>Escolha uma Viagem</option>
-                {trips && trips.trips.map((trip) => {
-                    return (
-                        <option key={trip.id} value={trip.id}>
-                            {trip.name}
-                        </option>
-                    )
-                })}
-            </select>
-            <input
-                type='text'
-                placeholder='Nome'
-                value={nameInput}
-                onChange={handleNameInput}
-            />
-            <input
-                type='number'
-                placeholder='Idade'
-                value={ageInput}
-                onChange={handleAgeInput}
-            />
-            <input
-                type='text'
-                placeholder='Texto de Candidatura'
-                value={textInput}
-                onChange={handleTextInput}
-            />
-            <input
-                type='text'
-                placeholder='Profissão'
-                value={occupationInput}
-                onChange={handleOccupationInput}
-            />
-            <CountrySelector
-                pickCountry={pickCountry}
-            />
-            <button onClick={goToListTrips}>Voltar</button>
-            <button onClick={applyToTrip}>Enviar</button>
+            <form onSubmit={applyToTrip}>
+                <select onChange={onChangeTrip} required>
+                    <option value={''}>Escolha uma Viagem</option>
+                    {trips && trips.trips.map((trip) => {
+                        return (
+                            <option key={trip.id} value={trip.id}>
+                                {trip.name} - {trip.planet}
+                            </option>
+                        )
+                    })}
+                </select>
+                <input
+                    placeholder='Nome'
+                    name='name'
+                    value={form.name}
+                    onChange={onChange}
+                    pattern={'^.{3,}'}
+                    title={"O nome deve ter no mínimo 3 letras"}
+                    required
+                />
+                <input
+                    type='number'
+                    placeholder='Idade'
+                    name='age'
+                    value={form.age}
+                    onChange={onChange}
+                    min={18}
+                    required
+                />
+                <input
+                    placeholder='Texto de Candidatura'
+                    name='applicationText'
+                    value={form.applicationText}
+                    onChange={onChange}
+                    pattern={'^.{30,}'}
+                    title={"O texto de candidatura deve ter no mínimo 30 letras"}
+                    required
+                />
+                <input
+                    type='text'
+                    placeholder='Profissão'
+                    name='profession'
+                    value={form.profession}
+                    onChange={onChange}
+                    pattern={'^.{10,}'}
+                    title={"A profissão de candidatura deve ter no mínimo 10 letras"}
+                    required
+                />
+                <CountrySelector
+                    name={'country'}
+                    value={form.country}
+                    onChange={onChange}
+                />
+                <button onClick={goToListTrips}>Voltar</button>
+                <button>Enviar</button>
+            </form>
         </>
     )
 }

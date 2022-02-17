@@ -23,5 +23,5 @@ export const useGetData = (url, headers) => {
         getData(url, headers)
     }, [url])
 
-    return [data, isLoading, error]
+    return [data, isLoading, error, getData]
 }

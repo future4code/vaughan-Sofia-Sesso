@@ -7,31 +7,23 @@ export default function MappedCandidates(props) {
 
     const authorization = useToken()
 
-    const approveCandidate = (id) => {
+    const approveCandidate = (id, boolean) => {
         const body = {
-            approve: true
+            approve: boolean
         }
 
         axios.put(`${BaseUrl}/trips/${props.clickedTripId}/candidates/${id}/decide`, body, authorization)
-            .then((res) => {
-                alert("Candidato aprovado!")
+            .then(() => {
+                if (body.approve) {
+                    alert("Candidato aprovado!")
+                    props.getData(`${BaseUrl}/trip/${props.clickedTripId}`, authorization)
+                } else {
+                    alert("Candidato reprovado!")
+                    props.getData(`${BaseUrl}/trip/${props.clickedTripId}`, authorization)
+                }
             })
             .catch((err) => {
-                alert(err.response)
-            })
-    }
-
-    const rejectCandidate = (id) => {
-        const body = {
-            approve: false
-        }
-
-        axios.put(`${BaseUrl}/trips/${props.clickedTripId}/candidates/${id}/decide`, body, authorization)
-            .then((res) => {
-                alert("Candidato reprovado!")
-            })
-            .catch((err) => {
-                alert(err.response)
+                alert(err.response.data.message)
             })
     }
 
@@ -44,8 +36,8 @@ export default function MappedCandidates(props) {
                 <p><strong>País: </strong>{candidate.country}</p>
                 <p><strong>Texto de Candidatura:  </strong>{candidate.applicationText}</p>
                 <div style={{ display: `${props.buttonsDisplay}` }}>
-                    <button onClick={() => approveCandidate(candidate.id)}>Aprovar</button>
-                    <button onClick={() => rejectCandidate(candidate.id)}>Reprovar</button>
+                    <button onClick={() => approveCandidate(candidate.id, true)}>Aprovar</button>
+                    <button onClick={() => approveCandidate(candidate.id, false)}>Reprovar</button>
                 </div>
             </div>
         })

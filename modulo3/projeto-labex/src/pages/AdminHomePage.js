@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGoToPage } from '../hooks/useGoToPage'
 import { useNavigate } from 'react-router-dom'
 import { useVerifyToken } from '../hooks/useVerifyToken'
@@ -8,33 +8,15 @@ import { useToken } from '../hooks/useToken'
 import axios from 'axios'
 
 export default function AdminHomePage() {
-
     useVerifyToken()
 
     const goToHome = useGoToPage('/')
     const goToCreateTrip = useGoToPage('/admin/trips/create')
     const goToLogin = useGoToPage('/login')
 
-    const [trips, isLoading, error] = useGetData(`${BaseUrl}/trips`)
-
     const navigate = useNavigate()
     const goToTripDetail = (id) => {
         navigate(`/admin/trips/${id}`)
-    }
-
-    const authorization = useToken()
-
-    const deleteTrips = (id) => {
-        if (window.confirm("Tem certeza que deseja essa viagem?")) {
-            axios.delete(`${BaseUrl}/tips/${id}`, authorization)
-                .then((res) => {
-                    alert("Viagem deletada com sucesso!")
-
-                })
-                .catch((err) => {
-                    alert(err.response)
-                })
-        }
     }
 
     const logout = () => {
@@ -42,10 +24,27 @@ export default function AdminHomePage() {
         goToLogin()
     }
 
+    const [trips, isLoading, error, getData] = useGetData(`${BaseUrl}/trips`)
+
+    const authorization = useToken()
+
+    const deleteTrip = (id) => {
+        if (window.confirm("Tem certeza que deseja essa viagem?")) {
+            axios.delete(`${BaseUrl}/trips/${id}`, authorization)
+                .then(() => {
+                    alert("Viagem deletada com sucesso!")
+                    getData(`${BaseUrl}/trips`)
+                })
+                .catch((err) => {
+                    alert(err.response.data.message)
+                })
+        }
+    }
+
     const tripsList = trips && trips.trips.map((trip) => {
         return <div key={trip.id}>
             <p onClick={() => goToTripDetail(trip.id)}>{trip.name}</p>
-            <button onClick={() => deleteTrips(trip.id)}><img alt='Ícone de remover viagem' /></button>
+            <button onClick={() => deleteTrip(trip.id)}><img alt='Ícone de remover viagem' /></button>
         </div>
     })
 

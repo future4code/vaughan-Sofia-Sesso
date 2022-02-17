@@ -16,7 +16,7 @@ export default function TripDetailsPage() {
     const params = useParams()
     const authorization = useToken()
 
-    const [clickedTrip, isLoading, error] = useGetData(`${BaseUrl}/trip/${params.id}`, authorization)
+    const [clickedTrip, isLoading, error, getData] = useGetData(`${BaseUrl}/trip/${params.id}`, authorization)
 
     return (
         <>
@@ -41,6 +41,7 @@ export default function TripDetailsPage() {
                                 clickedTripCandidates={clickedTrip.trip.candidates}
                                 message={<p>Não há candidatos pendentes</p>}
                                 buttonsDisplay={'inline'}
+                                getData={getData}
                             />
                         </div>
                         <div>
@@ -50,6 +51,7 @@ export default function TripDetailsPage() {
                                 clickedTripCandidates={clickedTrip.trip.approved}
                                 message={<p>Não há candidatos aprovados</p>}
                                 buttonsDisplay={'none'}
+                                getData={getData}
                             />
                         </div>
                     </div>

@@ -1,49 +1,54 @@
 import axios from 'axios'
 import React from 'react'
-import { useHandleInput } from '../hooks/useHandleInput'
+import { useForm } from '../hooks/useForm'
 import { BaseUrl } from '../constants/BaseUrl'
 import { useGoToPage } from '../hooks/useGoToPage'
 
 export default function LoginPage() {
-    const [emailInput, handleEmailInput] = useHandleInput()
-    const [passwordInput, handlePasswordInput] = useHandleInput()
+    const [form, onChange] = useForm({
+        email: "",
+        password: ""
+    })
 
     const goToHome = useGoToPage('/')
     const goToAdminHome = useGoToPage('/admin/trips/list')
 
-    const onSubmitLogin = () => {
-        const body = {
-            email: emailInput,
-            password: passwordInput
-        }
-
-        axios.post(`${BaseUrl}/login`, body)
+    const onSubmitLogin = (event) => {
+        event.preventDefault()
+        axios.post(`${BaseUrl}/login`, form)
             .then((res) => {
                 localStorage.setItem('token', res.data.token)
                 goToAdminHome()
             })
             .catch((err) => {
-                alert(err.response)
+                alert(err.response.data.message)
             })
     }
 
     return (
         <>
             <h2>Login</h2>
-            <input
-                type='text'
-                placeholder='E-mail'
-                value={emailInput}
-                onChange={handleEmailInput}
-            />
-            <input
-                type='password'
-                placeholder='Senha'
-                value={passwordInput}
-                onChange={handlePasswordInput}
-            />
-            <button onClick={goToHome}>Voltar</button>
-            <button onClick={onSubmitLogin}>Entrar</button>
+
+            <form onSubmit={onSubmitLogin}>
+                <input
+                    type='email'
+                    placeholder='E-mail'
+                    value={form.email}
+                    name='email'
+                    onChange={onChange}
+                    required
+                />
+                <input
+                    type='password'
+                    placeholder='Senha'
+                    value={form.password}
+                    name='password'
+                    onChange={onChange}
+                    required
+                />
+                <button onClick={goToHome}>Voltar</button>
+                <button>Entrar</button>
+            </form>
         </>
     )
 }

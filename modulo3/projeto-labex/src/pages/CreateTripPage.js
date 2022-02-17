@@ -1,46 +1,34 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React from 'react'
 import { useGoToPage } from '../hooks/useGoToPage'
-import { useHandleInput } from '../hooks/useHandleInput'
+import { useForm } from '../hooks/useForm'
 import { useVerifyToken } from '../hooks/useVerifyToken'
 import { BaseUrl } from '../constants/BaseUrl'
 import { useToken } from '../hooks/useToken'
 
 export default function CreateTripPage() {
-
     useVerifyToken()
 
-    const [nameInput, handleNameInput, eraseNameInput] = useHandleInput()
-    const [dateInput, handleDateInput, eraseDateInput] = useHandleInput()
-    const [descriptionInput, handleDescriptionInput, eraseDescriptionInput] = useHandleInput()
-    const [daysInput, handleDaysInput, eraseDaysInput] = useHandleInput()
-    const [planetInput, setPlanetInput] = useState("")
+    const [form, onChange, clearForm] = useForm({
+        name: "",
+        planet: "",
+        date: "",
+        description: "",
+        durationInDays: ""
+    })
 
     const goToAdminHome = useGoToPage('/admin/trips/list')
 
     const planets = ["Mercúrio", "Vênus", "Terra", "Marte", "Jupiter", "Saturno", "Urano", "Netuno", "Plutão"]
     const authorization = useToken()
+    const todaysDate = new Date().toISOString().slice(0, 10)
 
-    const changePlanets = (event) => {
-        setPlanetInput(event.target.value)
-    }
-
-    const createTrip = () => {
-        const body = {
-            name: nameInput,
-            planet: planetInput,
-            date: dateInput,
-            description: descriptionInput,
-            durationInDays: daysInput
-        }
-
-        axios.post(`${BaseUrl}/trips`, body, authorization)
+    const createTrip = (event) => {
+        event.preventDefault()
+        axios.post(`${BaseUrl}/trips`, form, authorization)
             .then(() => {
                 alert("Viagem criada com sucesso!")
-                eraseNameInput()
-                eraseDateInput()
-                eraseDescriptionInput()
-                eraseDaysInput()
+                clearForm()
             })
             .catch((err) => {
                 alert(err.response.data.message)
@@ -50,41 +38,55 @@ export default function CreateTripPage() {
     return (
         <>
             <h2>Criar Viagem</h2>
-            <input
-                type='text'
-                placeholder='Nome'
-                value={nameInput}
-                onChange={handleNameInput}
-            />
-            <select onChange={changePlanets}>
-                <option value={""}>Escolha um Planeta</option>
-                {planets.map((planet) => {
-                    return (
-                        <option key={planet} value={planet}>
-                            {planet}
-                        </option>
-                    )
-                })}
-            </select>
-            <input
-                type='date'
-                value={dateInput}
-                onChange={handleDateInput}
-            />
-            <input
-                type='text'
-                placeholder='Descrição'
-                value={descriptionInput}
-                onChange={handleDescriptionInput}
-            />
-            <input
-                type='number'
-                placeholder='Duração em dias'
-                value={daysInput}
-                onChange={handleDaysInput}
-            />
-            <button onClick={goToAdminHome}>Voltar</button>
-            <button onClick={createTrip}>Criar</button>
+            <form onSubmit={createTrip}>
+                <input
+                    placeholder='Nome'
+                    name='name'
+                    value={form.name}
+                    onChange={onChange}
+                    pattern={'^.{5,}'}
+                    title={"O nome deve ter no mínimo 5 letras"}
+                    required
+                />
+                <select name='planet' value={form.planet} onChange={onChange} required>
+                    <option value={""}>Escolha um Planeta</option>
+                    {planets.map((planet) => {
+                        return (
+                            <option key={planet}>
+                                {planet}
+                            </option>
+                        )
+                    })}
+                </select>
+                <input
+                    type='date'
+                    name='date'
+                    value={form.date}
+                    onChange={onChange}
+                    min={todaysDate}
+                    required
+                />
+                <input
+                    placeholder='Descrição'
+                    name='description'
+                    value={form.description}
+                    onChange={onChange}
+                    pattern={'^.{30,}'}
+                    title={"A descrição deve ter no mínimo 30 letras"}
+                    required
+                />
+                <input
+                    type='number'
+                    placeholder='Duração em dias'
+                    name='durationInDays'
+                    value={form.durationInDays}
+                    onChange={onChange}
+                    min={50}
+                    required
+                />
+                <button onClick={goToAdminHome}>Voltar</button>
+                <button>Criar</button>
+            </form>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function CountrySelector(props) {
-    return <select onChange={props.pickCountry}>
+    return <select name={props.name} value={props.value} onChange={props.onChange} required>
         <option value={''}>Escolha um País</option>
         <option value="Afghanistan">Afghanistan</option>
         <option value="Åland Islands">Åland Islands</option>
