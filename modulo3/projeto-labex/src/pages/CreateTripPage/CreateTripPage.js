@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React from 'react'
-import { useGoToPage } from '../hooks/useGoToPage'
-import { useForm } from '../hooks/useForm'
-import { useVerifyToken } from '../hooks/useVerifyToken'
-import { BaseUrl } from '../constants/BaseUrl'
-import { useToken } from '../hooks/useToken'
+import { useGoToPage } from '../../hooks/useGoToPage'
+import { useForm } from '../../hooks/useForm'
+import { useVerifyToken } from '../../hooks/useVerifyToken'
+import { BaseUrl } from '../../constants/BaseUrl'
+import { useToken } from '../../hooks/useToken'
+import { CreateTripPageContainer } from './styled'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export default function CreateTripPage() {
     useVerifyToken()
@@ -36,8 +39,10 @@ export default function CreateTripPage() {
     }
 
     return (
-        <>
-            <h2>Criar Viagem</h2>
+        <CreateTripPageContainer>
+            <Typography variant='h4'
+                sx={{ textAlign: 'center', mb: '15px', padding: '10px 0', backgroundColor: '#232E7A', width: '100%', '@media (max-width: 376px)': { fontSize: '20px' } }}
+            >Criar Viagem</Typography>
             <form onSubmit={createTrip}>
                 <input
                     placeholder='Nome'
@@ -84,9 +89,13 @@ export default function CreateTripPage() {
                     min={50}
                     required
                 />
-                <button onClick={goToAdminHome}>Voltar</button>
-                <button>Criar</button>
+
+                <div div id='button-container'>
+                    <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToAdminHome}>Voltar</Button>
+                    <Button type='submit' color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }}>Criar</Button>
+                </div>
+
             </form>
-        </>
+        </CreateTripPageContainer>
     )
 }

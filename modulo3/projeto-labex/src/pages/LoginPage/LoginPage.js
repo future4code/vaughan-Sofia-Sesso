@@ -1,8 +1,13 @@
 import axios from 'axios'
 import React from 'react'
-import { useForm } from '../hooks/useForm'
-import { BaseUrl } from '../constants/BaseUrl'
-import { useGoToPage } from '../hooks/useGoToPage'
+import { useForm } from '../../hooks/useForm'
+import { BaseUrl } from '../../constants/BaseUrl'
+import { useGoToPage } from '../../hooks/useGoToPage'
+import { LoginPageContainer } from './styled'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+
 
 export default function LoginPage() {
     const [form, onChange] = useForm({
@@ -26,8 +31,10 @@ export default function LoginPage() {
     }
 
     return (
-        <>
-            <h2>Login</h2>
+        <LoginPageContainer>
+            <Typography variant='h4'
+                sx={{ textAlign: 'center', padding: '10px 0', backgroundColor: '#232E7A', width: '100%', '@media (max-width: 376px)': { fontSize: '20px' } }}
+            >Login</Typography>
 
             <form onSubmit={onSubmitLogin}>
                 <input
@@ -46,9 +53,13 @@ export default function LoginPage() {
                     onChange={onChange}
                     required
                 />
-                <button onClick={goToHome}>Voltar</button>
-                <button>Entrar</button>
+
+                <Stack spacing={2} direction="row">
+                    <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToHome}>Voltar</Button>
+                    <Button type='submit' color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }}>Entrar</Button>
+                </Stack>
+
             </form>
-        </>
+        </LoginPageContainer >
     )
 }

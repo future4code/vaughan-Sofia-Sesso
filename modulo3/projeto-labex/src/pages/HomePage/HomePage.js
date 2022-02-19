@@ -12,9 +12,10 @@ export default function HomePage() {
     return (
         <HomePageContainer>
             <img src={homePageImage} alt='Imagem da home page' />
+
             <Stack spacing={2} direction="row">
-                <Button sx={{ backgroundColor: '#232E7A', color: '#FFF68E' }} onClick={goToListTrips}>Ver Viagens</Button>
-                <Button sx={{ backgroundColor: '#232E7A', color: '#FFF68E' }} onClick={goToAdminHome}>Área do Admin</Button>
+                <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToListTrips}>Ver Viagens</Button>
+                <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToAdminHome}>Área do Admin</Button>
             </Stack>
 
         </HomePageContainer>

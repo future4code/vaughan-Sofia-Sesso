@@ -5,8 +5,10 @@ export const ContainerListTripPage = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(https://cdn-icons.flaticon.com/png/512/1146/premium/1146300.png?token=exp=1645136702~hmac=3565be0c58a6c239408d138aaa98c325);
-
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
     div{
         margin-bottom: 20px;
     }

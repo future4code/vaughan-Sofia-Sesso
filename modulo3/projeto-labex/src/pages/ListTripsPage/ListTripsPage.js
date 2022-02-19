@@ -8,6 +8,8 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { ContainerListTripPage, CardContainer } from './styled'
+import { Loading } from '../../styled'
+import rocket from '../../images/rocket.png'
 
 export default function ListTripsPage() {
     const goToHome = useGoToPage('/')
@@ -31,17 +33,25 @@ export default function ListTripsPage() {
 
     return (
         <ContainerListTripPage>
-            <Typography variant='h4' sx={{ textAlign: 'center', mb: '15px', padding: '10px 0', backgroundColor: '#232E7A', width: '100%' }}>Lista de Viagens</Typography>
+            <Typography variant='h4'
+                sx={{ textAlign: 'center', mb: '15px', padding: '10px 0', backgroundColor: '#232E7A', width: '100%', '@media (max-width: 376px)': { fontSize: '20px' } }}
+            >Lista de Viagens</Typography>
+
             <CardContainer>
-                {isLoading && <p>Carregando...</p>}
+                {isLoading &&
+                    <Loading>
+                        <img src={rocket} alt='Imagem foguete' />
+                        <Typography variant='h4' sx={{ textAlign: 'center' }}>Carregando...</Typography>
+                    </Loading>
+                }
                 {!isLoading && error && <p>Ocorreu um erro na requisição</p>}
                 {!isLoading && trips && tripsList}
                 {!isLoading && trips && tripsList.length === 0 && <p>Não há nenhuma viagem disponível</p>}
-
             </CardContainer>
+
             <Stack spacing={2} direction="row">
-                <Button sx={{ backgroundColor: '#232E7A', color: '#FFF68E', width: '140px' }} onClick={goToHome}>Voltar</Button>
-                <Button sx={{ backgroundColor: '#232E7A', color: '#FFF68E', width: '140px' }} onClick={goToApplicationForm}>Inscrever-se</Button>
+                <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToHome}>Voltar</Button>
+                <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToApplicationForm}>Inscrever-se</Button>
             </Stack>
         </ContainerListTripPage>
     )

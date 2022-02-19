@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { useGoToPage } from '../hooks/useGoToPage'
-import { useForm } from '../hooks/useForm'
-import { useGetData } from '../hooks/useGetData'
-import { BaseUrl } from '../constants/BaseUrl'
-import CountrySelector from '../components/CountrySelector'
+import { useGoToPage } from '../../hooks/useGoToPage'
+import { useForm } from '../../hooks/useForm'
+import { useGetData } from '../../hooks/useGetData'
+import { BaseUrl } from '../../constants/BaseUrl'
+import CountrySelector from '../../components/CountrySelector'
 import axios from 'axios'
+import { ApplicationFormPageContainer } from './styled'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export default function ApplicationFormPage() {
     const [form, onChange, clearForm] = useForm({
@@ -38,8 +41,11 @@ export default function ApplicationFormPage() {
     }
 
     return (
-        <>
-            <h2>Inscreva-se para uma viagem</h2>
+        <ApplicationFormPageContainer>
+            <Typography variant='h4'
+                sx={{ textAlign: 'center', mb: '15px', padding: '10px 0', backgroundColor: '#232E7A', width: '100%', '@media (max-width: 376px)': { fontSize: '20px' } }}
+            >Inscreva-se para uma viagem</Typography>
+
             <form onSubmit={applyToTrip}>
                 <select onChange={onChangeTrip} required>
                     <option value={''}>Escolha uma Viagem</option>
@@ -93,9 +99,13 @@ export default function ApplicationFormPage() {
                     value={form.country}
                     onChange={onChange}
                 />
-                <button onClick={goToListTrips}>Voltar</button>
-                <button>Enviar</button>
+
+                <div id='button-container'>
+                    <Button color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }} onClick={goToListTrips}>Voltar</Button>
+                    <Button type='submit' color="secondary" sx={{ backgroundColor: '#232E7A', width: '140px' }}>Enviar</Button>
+                </div>
+
             </form>
-        </>
+        </ApplicationFormPageContainer>
     )
 }
