@@ -11,5 +11,5 @@ export const goToFeed = (navigate) => {
 }
 
 export const goToPost = (navigate, id) => {
-    navigate(`/post${id}`)
+    navigate(`/post/${id}`)
 }

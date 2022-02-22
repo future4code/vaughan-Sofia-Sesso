@@ -1,5 +1,5 @@
 import React from 'react'
-import error from '../../images/error.png'
+import error from '../../assets/error.png'
 import { ErrorPageContainer } from './styled'
 import Typography from '@material-ui/core/Typography'
 

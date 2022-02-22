@@ -11,7 +11,7 @@ export const login = (form, clear, navigate, setButtonText) => {
             setButtonText("Logout")
         })
         .catch((err) => {
-            alert(err.response.data)
+            alert(err.response.data.message)
         })
 }
 
@@ -24,6 +24,6 @@ export const signUp = (form, clear, navigate, setButtonText) => {
             setButtonText("Logout")
         })
         .catch((err) => {
-            alert(err.response.data)
+            alert(err.response.data.message)
         })
 }
