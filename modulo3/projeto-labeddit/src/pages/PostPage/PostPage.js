@@ -14,7 +14,7 @@ const PostPage = () => {
 
     const params = useParams()
 
-    const { data, getData } = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
+    const { data, isLoading, getData } = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
     const [posts, setPosts] = useState([])
 
     const getPosts = () => {
@@ -44,10 +44,15 @@ const PostPage = () => {
         />
         <CreateComment
             params={params}
-            getData={getData} />
-        <MappedComments
-            data={data}
+            getData={getData}
         />
+        {isLoading ? <p>Carregando...</p> :
+            <MappedComments
+                data={data}
+                getData={getData}
+                params={params}
+            />
+        }
     </PostPageContainer>
 }
 

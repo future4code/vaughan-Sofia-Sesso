@@ -1,22 +1,33 @@
 import React from 'react'
-import useForm from '../../hooks/useForm'
-import { login } from '../../services/users'
 import { useNavigate } from 'react-router-dom'
-import { FormContainer, TextFieldStyled, ButtonStyled } from './styled'
+import useForm from '../../../hooks/useForm'
+import { signUp } from '../../../services/users'
+import { FormContainer, TextFieldStyled, ButtonStyled } from '../styled'
 
-const LoginForm = ({ setButtonText }) => {
+const SignUpForm = ({ setButtonText }) => {
     const navigate = useNavigate()
+
     const [form, onChange, clear] = useForm({
+        username: "",
         email: "",
         password: ""
     })
 
-    const onSubmitLogin = (event) => {
+    const onSubmitSignUpForm = (event) => {
         event.preventDefault()
-        login(form, clear, navigate, setButtonText)
+        signUp(form, clear, navigate, setButtonText)
     }
 
-    return <FormContainer onSubmit={onSubmitLogin}>
+    return <FormContainer onSubmit={onSubmitSignUpForm}>
+        <TextFieldStyled
+            label="Nome de Usuário"
+            variant="outlined"
+            color="secondary"
+            name={'username'}
+            value={form.username}
+            onChange={onChange}
+            required
+        />
         <TextFieldStyled
             label="E-mail"
             variant="outlined"
@@ -35,15 +46,16 @@ const LoginForm = ({ setButtonText }) => {
             value={form.password}
             onChange={onChange}
             type='password'
+            inputProps={{ pattern: '^.{8,30}', title: "A senha precisa ter no mínimo 8 e no máximo 30 caracteres" }}
             required
         />
         <ButtonStyled
             type='submit'
             variant="outlined"
             color="secondary"
-        >Entrar
+        >Criar Conta
         </ButtonStyled>
     </FormContainer>
 }
 
-export default LoginForm
+export default SignUpForm

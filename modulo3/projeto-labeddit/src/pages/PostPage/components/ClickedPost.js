@@ -46,18 +46,18 @@ const ClickedPost = ({ params, posts, getPosts }) => {
         {posts && post[0] ?
             <Card color="secondary">
                 <div id='info-container'>
-                    <Typography color='secondary' >Postado por {post[0].username}</Typography>
-                    <Typography color='secondary' ><strong>{post[0].title}</strong></Typography>
-                    <Typography color='primary'>{post[0].body}</Typography>
+                    <Typography color='secondary' >Postado por {post[0].username} às {post[0].createdAt.slice(11, 19)}, {post[0].createdAt.slice(0, 10)}</Typography>
+                    <Typography color='secondary' variant='h6' ><strong>{post[0].title}</strong></Typography>
+                    <Typography color='primary' >{post[0].body}</Typography>
                 </div>
                 <div>
                     <div id='interaction-container'>
                         <button onClick={() => onClickUpArrow(post[0].id)}>
-                            <img id='arrow-up' src={arrow} alt='Ícone de upvote' />
+                            <img id={post[0].userVote === 1 ? 'clicked-arrow-up' : 'arrow-up'} src={arrow} alt='Ícone de upvote' />
                         </button>
                         <Typography color='secondary'>{post[0].voteSum ? post[0].voteSum : 0}</Typography>
                         <button onClick={() => onClickDownArrow(post[0].id)}>
-                            <img id='arrow-down' src={arrow} alt='Ícone de downvote' />
+                            <img id={post[0].userVote === -1 ? 'clicked-arrow-down' : 'arrow-down'} src={arrow} alt='Ícone de downvote' />
                         </button>
                     </div>
                     <div id='interaction-container'>

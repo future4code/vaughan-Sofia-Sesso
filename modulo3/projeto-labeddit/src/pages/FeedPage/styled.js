@@ -36,6 +36,7 @@ export const Card = styled.div`
         background: transparent;
         border: none;
         cursor: pointer;
+        padding: 0;
     }
 
     img {
@@ -46,23 +47,28 @@ export const Card = styled.div`
     #interaction-container {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     #arrow-up {
         transform: rotate(-90deg);
+        margin-right: 5px;
     }
 
     #clicked-arrow-up {
         transform: rotate(-90deg);
-        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(8%) contrast(70%);
+        margin-right: 5px;
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(20%) contrast(70%);
     }
 
     #arrow-down {
         transform: rotate(90deg);
+        margin-left: 5px;
     }
 
     #clicked-arrow-down {
         transform: rotate(90deg);
+        margin-left: 5px;
         filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(8%) contrast(70%);
     }
 
@@ -99,6 +105,7 @@ export const CreatePostContainer = styled.form`
         width: 100%;
         height: 100px;
         padding: 11px;
+        font-family: 'Roboto', sans-serif;
 
         &:focus {
             outline: none;
@@ -121,5 +128,44 @@ export const CreatePostContainer = styled.form`
             background-color: #FFC2F6;
             color: #282928;
         }
+    }
+`
+
+export const SearchContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    max-width: 472px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #282928;
+    border: 1px solid #FFC2F6;
+
+input {
+        background-color: #282928;
+        border: none;
+        color: #FFC2F6;
+        width: 100%;
+        padding: 11px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding-top: 3px;
+
+        &:active {
+            filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(70%) contrast(70%);
+        }
+    }
+
+    img {
+        filter: invert(84%) sepia(13%) saturate(1067%) hue-rotate(278deg) brightness(99%) contrast(104%);
     }
 `

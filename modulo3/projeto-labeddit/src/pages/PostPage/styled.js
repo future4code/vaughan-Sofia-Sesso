@@ -1,4 +1,9 @@
 import styled from "styled-components"
+import Typography from '@material-ui/core/Typography'
+
+export const TypographyStyled = styled(Typography)`
+    margin-bottom: 15px;
+`
 
 export const PostPageContainer = styled.div`
     display: flex;
@@ -11,6 +16,8 @@ export const CommentsContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    width: 90vw;
+    max-width: 450px;
 `
 
 export const CreateCommentContainer = styled.form`
@@ -28,6 +35,7 @@ export const CreateCommentContainer = styled.form`
         width: 100%;
         height: 100px;
         padding: 11px;
+        font-family: 'Roboto', sans-serif;
 
         &:focus {
             outline: none;

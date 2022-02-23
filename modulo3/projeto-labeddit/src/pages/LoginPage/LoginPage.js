@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginForm from './LoginForm'
+import LoginForm from './components/LoginForm'
 import { LoginPageContainer, ButtonStyled } from './styled'
 import { goToSignUp } from '../../routes/coordinator'
 import { useNavigate } from 'react-router-dom'
