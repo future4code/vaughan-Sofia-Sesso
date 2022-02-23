@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
-import { StyledToolbar } from './styled'
+import { StyledToolbar, Logo } from './styled'
 import { goToFeed, goToLogin } from '../../routes/coordinator'
+import logo from '../../assets/logo.png'
 
 
 const Header = ({ buttonText, setButtonText }) => {
@@ -26,8 +27,14 @@ const Header = ({ buttonText, setButtonText }) => {
     return (
         <AppBar position="static">
             <StyledToolbar>
-                <Button onClick={() => goToFeed(navigate)} color="secondary">LabEddit</Button>
-                <Button onClick={() => buttonAction(navigate)} color="secondary">{buttonText}</Button>
+                <Button color="secondary" onClick={() => goToFeed(navigate)}>
+                    <Logo
+                        onClick={() => goToFeed(navigate)}
+                        src={logo}
+                        alt='Logo'
+                    />LabEddit
+                </Button>
+                <Button color="secondary" onClick={() => buttonAction(navigate)}>{buttonText}</Button>
             </StyledToolbar>
         </AppBar>
     )

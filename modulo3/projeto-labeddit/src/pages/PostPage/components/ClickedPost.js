@@ -66,7 +66,7 @@ const ClickedPost = ({ params, posts, getPosts }) => {
                     </div>
                 </div>
             </Card>
-            : <p>Carregando...</p>
+            : <Typography color='secondary'>Carregando...</Typography>
         }
     </>
 

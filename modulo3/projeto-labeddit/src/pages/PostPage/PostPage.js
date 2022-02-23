@@ -46,13 +46,11 @@ const PostPage = () => {
             params={params}
             getData={getData}
         />
-        {isLoading ? <p>Carregando...</p> :
-            <MappedComments
-                data={data}
-                getData={getData}
-                params={params}
-            />
-        }
+        <MappedComments
+            data={data}
+            getData={getData}
+            params={params}
+        />
     </PostPageContainer>
 }
 
