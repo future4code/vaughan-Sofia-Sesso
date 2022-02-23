@@ -14,7 +14,7 @@ const FeedPage = () => {
     return <FeedPageContainer>
         <CreatePost getData={getData} />
         <CardsContainer>
-            <MappedPosts data={data} />
+            <MappedPosts data={data} getData={getData} />
         </CardsContainer>
     </FeedPageContainer>
 }

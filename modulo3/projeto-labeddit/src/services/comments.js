@@ -14,6 +14,6 @@ export const createComment = (form, clear, id, getData) => {
             clear()
         })
         .catch((err) => {
-            alert(err.response.data.message)
+            alert(err.response.data)
         })
 }

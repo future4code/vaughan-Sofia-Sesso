@@ -15,13 +15,10 @@ const PostPage = () => {
     const params = useParams()
 
     const { data, getData } = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
-
-    const [isLoading, setIsLoading] = useState(false)
     const [posts, setPosts] = useState([])
 
     const getPosts = () => {
         const token = localStorage.getItem('token')
-        setIsLoading(true)
         axios.get(`${BASE_URL}/posts`, {
             headers: {
                 Authorization: token
@@ -29,11 +26,9 @@ const PostPage = () => {
         })
             .then((res) => {
                 setPosts(res.data)
-                setIsLoading(false)
             })
             .catch((err) => {
                 alert(err.response)
-                setIsLoading(false)
             })
     }
 
@@ -45,7 +40,7 @@ const PostPage = () => {
         <ClickedPost
             params={params}
             posts={posts}
-            isLoading={isLoading}
+            getPosts={getPosts}
         />
         <CreateComment
             params={params}

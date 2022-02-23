@@ -32,6 +32,12 @@ export const Card = styled.div`
         justify-content: space-between;
     }
 
+    button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
     img {
         height: 20px;
         filter: invert(84%) sepia(13%) saturate(1067%) hue-rotate(278deg) brightness(99%) contrast(104%);
@@ -44,12 +50,20 @@ export const Card = styled.div`
 
     #arrow-up {
         transform: rotate(-90deg);
-        margin-right: 5px;
+    }
+
+    #clicked-arrow-up {
+        transform: rotate(-90deg);
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(8%) contrast(70%);
     }
 
     #arrow-down {
         transform: rotate(90deg);
-        margin-left: 5px;
+    }
+
+    #clicked-arrow-down {
+        transform: rotate(90deg);
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(8%) contrast(70%);
     }
 
     #speech-bubble {
@@ -64,10 +78,6 @@ export const CreatePostContainer = styled.form`
     width: 90vw;
     max-width: 450px;
     margin-top: 20px;
-
-    button {
-
-    }
 
     input {
         background-color: #282928;

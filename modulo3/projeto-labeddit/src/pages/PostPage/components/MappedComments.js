@@ -12,9 +12,13 @@ const MappedComments = (props) => {
             <Typography color='primary'>{comment.body}</Typography>
             <div id='interaction-container'>
                 <div>
-                    <img id='arrow-up' src={arrow} alt='Ícone de upvote' />
+                    <button>
+                        <img id='arrow-up' src={arrow} alt='Ícone de upvote' />
+                    </button>
                     <Typography color='secondary'>{comment.voteSum ? comment.voteSum : 0}</Typography>
-                    <img id='arrow-down' src={arrow} alt='Ícone de downvote' />
+                    <button>
+                        <img id='arrow-down' src={arrow} alt='Ícone de downvote' />
+                    </button>
                 </div>
             </div>
         </Card>

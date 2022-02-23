@@ -3,7 +3,7 @@ import useForm from '../../../hooks/useForm'
 import { createComment } from '../../../services/comments'
 import { CreateCommentContainer } from '../styled'
 
-const CreateComment = (props) => {
+const CreateComment = ({ params, getData }) => {
 
     const [form, onChange, clear] = useForm({
         body: ""
@@ -11,7 +11,7 @@ const CreateComment = (props) => {
 
     const onSubmitComment = (event) => {
         event.preventDefault()
-        createComment(form, clear, props.params.id, props.getData)
+        createComment(form, clear, params.id, getData)
     }
 
     return <CreateCommentContainer onSubmit={onSubmitComment}>
