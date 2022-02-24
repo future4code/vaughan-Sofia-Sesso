@@ -1,7 +1,7 @@
 import React from 'react'
-import useForm from '../../../hooks/useForm'
-import { createPost } from '../../../services/posts'
-import { CreatePostContainer } from '../styled'
+import useForm from '../../../../hooks/useForm'
+import { createPost } from '../../../../services/posts'
+import { CreatePostContainer } from './styled'
 
 const CreatePost = (props) => {
 

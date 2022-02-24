@@ -1,15 +1,16 @@
 import React from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import { FeedPageContainer } from './styled'
-import CreatePost from './components/CreatePost'
-import MappedPosts from './components/MappedPosts'
+import CreatePost from './components/CreatePost/CreatePost'
+import MappedPosts from './components/MappedPosts/MappedPosts'
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/urls'
 
 const FeedPage = () => {
+
     useProtectedPage()
 
-    const { data, getData } = useRequestData([], `${BASE_URL}/posts`)
+    const { data, isLoading, getData } = useRequestData([], `${BASE_URL}/posts`)
 
     return <FeedPageContainer>
         <CreatePost
@@ -18,6 +19,7 @@ const FeedPage = () => {
         <MappedPosts
             data={data}
             getData={getData}
+            isLoading={isLoading}
         />
     </FeedPageContainer>
 }

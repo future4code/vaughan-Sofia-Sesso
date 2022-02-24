@@ -1,7 +1,7 @@
 import React from 'react'
-import useForm from '../../../hooks/useForm'
-import { createComment } from '../../../services/comments'
-import { CreateCommentContainer } from '../styled'
+import useForm from '../../../../hooks/useForm'
+import { createComment } from '../../../../services/comments'
+import { CreateCommentContainer } from './styled'
 
 const CreateComment = ({ params, getData }) => {
 

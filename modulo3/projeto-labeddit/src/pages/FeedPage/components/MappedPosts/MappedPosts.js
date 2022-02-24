@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import { Card, CardsContainer } from '../styled'
+import { CardsContainer, MainContainer } from './styled'
+import { Card } from '../../../../styled/styled'
 import Typography from '@material-ui/core/Typography'
-import { goToPost } from '../../../routes/coordinator'
+import { goToPost } from '../../../../routes/coordinator'
 import { useNavigate } from 'react-router-dom'
-import SearchFeed from './SearchFeed'
-import VoteButtons from '../../../components/VoteButtons/VoteButtons'
-import { createPostVote, changePostVote, deletePostVote } from '../../../services/posts'
-import CommentCounter from '../../../components/CommentCounter/CommentCounter'
+import SearchFeed from '../SearchFeed/SearchFeed'
+import VoteButtons from '../../../../components/VoteButtons/VoteButtons'
+import { createPostVote, changePostVote, deletePostVote } from '../../../../services/posts'
+import CommentCounter from '../../../../components/CommentCounter/CommentCounter'
 
-const MappedPosts = ({ data, getData }) => {
+const MappedPosts = ({ data, getData, isLoading }) => {
     const navigate = useNavigate()
     const [query, setQuery] = useState("")
 
@@ -22,14 +23,14 @@ const MappedPosts = ({ data, getData }) => {
                 post.body.toLowerCase().includes(query.toLocaleLowerCase())
         })
         .map((post) => {
-            const formattedTime = post.createdAt.slice(11, 19)
+            const formattedTime = post.createdAt.slice(11, 16)
             const formattedDate = post.createdAt.slice(0, 10)
 
             return <Card color="secondary" key={post.id}>
                 <div id='info-container' onClick={() => onClickPost(post.id)}>
                     <Typography color='secondary' >Postado por {post.username} às {formattedTime}, {formattedDate}</Typography>
                     <Typography color='secondary' variant='h6' ><strong>{post.title}</strong></Typography>
-                    <Typography color='primary' >{post.body}</Typography>
+                    <Typography color='primary'>{post.body}</Typography>
                 </div>
                 <div>
                     <VoteButtons
@@ -48,15 +49,17 @@ const MappedPosts = ({ data, getData }) => {
             </Card>
         })
 
-    return <div>
+    return <MainContainer>
         <SearchFeed
             query={query}
             setQuery={setQuery}
         />
-        <CardsContainer>
-            {postCards}
-        </CardsContainer>
-    </div>
+        {isLoading ? <Typography color='secondary' variant='h6'>Carregando...</Typography> :
+            <CardsContainer>
+                {postCards}
+            </CardsContainer>
+        }
+    </MainContainer>
 }
 
 export default MappedPosts

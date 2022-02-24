@@ -1,14 +1,14 @@
 import React from 'react'
-import { Card } from '../../FeedPage/styled'
 import Typography from '@material-ui/core/Typography'
-import { CommentsContainer, TypographyStyled } from '../styled'
-import { createCommentVote, changeCommentVote, deleteCommentVote } from '../../../services/comments'
-import VoteButtons from '../../../components/VoteButtons/VoteButtons'
+import { Card } from '../../../../styled/styled'
+import { CommentsContainer, TypographyStyled } from './styled'
+import { createCommentVote, changeCommentVote, deleteCommentVote } from '../../../../services/comments'
+import VoteButtons from '../../../../components/VoteButtons/VoteButtons'
 
-const MappedComments = ({ data, getData, params }) => {
+const MappedComments = ({ data, getData, params, isLoading }) => {
 
     const comments = data && data.map((comment) => {
-        const formattedTime = comment.createdAt.slice(11, 19)
+        const formattedTime = comment.createdAt.slice(11, 16)
         const formattedDate = comment.createdAt.slice(0, 10)
 
         return <Card key={comment.id}>
@@ -32,8 +32,9 @@ const MappedComments = ({ data, getData, params }) => {
 
     return <CommentsContainer>
         <TypographyStyled color='secondary' >Comentários:</TypographyStyled>
-        {comments && comments}
-        {comments.length === 0 && <Typography color='secondary'>Não há comentários neste post</Typography>}
+        {isLoading ? <Typography color='secondary' variant='h6'>Carregando...</Typography> : comments}
+        {!isLoading && comments && comments}
+        {!isLoading && comments.length === 0 && <Typography color='secondary'>Não há comentários neste post</Typography>}
     </CommentsContainer>
 }
 

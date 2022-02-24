@@ -3,9 +3,9 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import { useParams } from 'react-router-dom'
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/urls'
-import ClickedPost from './components/ClickedPost'
-import MappedComments from './components/MappedComments'
-import CreateComment from './components/CreateComment'
+import ClickedPost from './components/ClickedPost/ClickedPost'
+import MappedComments from './components/MappedComments/MappedComments'
+import CreateComment from './components/CreateComment/CreateComment'
 import axios from 'axios'
 import { PostPageContainer } from './styled'
 
@@ -50,6 +50,7 @@ const PostPage = () => {
             data={data}
             getData={getData}
             params={params}
+            isLoading={isLoading}
         />
     </PostPageContainer>
 }

@@ -18,8 +18,7 @@ export const createPost = (form, clear, getData) => {
 export const createPostVote = (id, getData, setIsVotedUp) => {
     axios.post(`${BASE_URL}/posts/${id}/votes`, {
         direction: 1
-    },
-        auth)
+    }, auth)
         .then(() => {
             getData(`${BASE_URL}/posts`)
             setIsVotedUp(true)
@@ -32,8 +31,7 @@ export const createPostVote = (id, getData, setIsVotedUp) => {
 export const changePostVote = (id, getData, setIsVotedDown) => {
     axios.put(`${BASE_URL}/posts/${id}/votes`, {
         direction: -1
-    },
-        auth)
+    }, auth)
         .then(() => {
             getData(`${BASE_URL}/posts`)
             setIsVotedDown(true)

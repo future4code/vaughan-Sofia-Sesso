@@ -5,7 +5,6 @@ import { StyledToolbar, Logo } from './styled'
 import { goToFeed, goToLogin } from '../../routes/coordinator'
 import logo from '../../assets/logo.png'
 
-
 const Header = ({ buttonText, setButtonText }) => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()

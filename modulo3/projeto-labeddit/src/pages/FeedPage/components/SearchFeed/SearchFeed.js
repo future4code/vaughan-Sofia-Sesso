@@ -1,6 +1,6 @@
 import React from 'react'
-import { SearchContainer } from '../styled'
-import search from '../../../assets/search.svg'
+import { SearchContainer } from './styled'
+import search from '../../../../assets/search.svg'
 
 const SearchFeed = ({ query, setQuery }) => {
 
@@ -14,7 +14,7 @@ const SearchFeed = ({ query, setQuery }) => {
             value={query}
             onChange={onChangeQuery}
         />
-        <button><img src={search} alt='Ícone de busca' /></button>
+        <img src={search} alt='Ícone de busca' />
     </SearchContainer>
 }
 
