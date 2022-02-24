@@ -18,7 +18,7 @@ export const createComment = (form, clear, id, getData) => {
         })
 }
 
-export const createCommentVote = (id, getData, params, setIsVotedUp) => {
+export const createCommentVote = (id, getData, setIsVotedUp, params) => {
     axios.post(`${BASE_URL}/comments/${id}/votes`, {
         direction: 1
     }, {
@@ -35,7 +35,7 @@ export const createCommentVote = (id, getData, params, setIsVotedUp) => {
         })
 }
 
-export const changeCommentVote = (id, getData, params, setIsVotedDown) => {
+export const changeCommentVote = (id, getData, setIsVotedDown, params) => {
     axios.put(`${BASE_URL}/comments/${id}/votes`, {
         direction: -1
     }, {
