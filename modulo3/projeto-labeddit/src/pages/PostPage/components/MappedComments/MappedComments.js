@@ -26,14 +26,12 @@ const MappedComments = ({ data, getData, params, isLoading }) => {
                     deleteVote={deleteCommentVote}
                 />
             </div>
-
         </Card>
     })
 
     return <CommentsContainer>
         <TypographyStyled color='secondary' >Comentários:</TypographyStyled>
         {isLoading ? <Typography color='secondary' variant='h6'>Carregando...</Typography> : comments}
-        {!isLoading && comments && comments}
         {!isLoading && comments.length === 0 && <Typography color='secondary'>Não há comentários neste post</Typography>}
     </CommentsContainer>
 }
