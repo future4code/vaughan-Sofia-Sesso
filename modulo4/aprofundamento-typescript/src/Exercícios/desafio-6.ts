@@ -12,6 +12,9 @@ enum IdadeHistorica {
 }
 
 export const determinaIdadeHistorica = (ano: number, sigla?: Sigla): string => {
+    if (!sigla) {
+        return sigla === Sigla.DC
+    }
     if (ano >= 0) {
         if (ano > 4000 && sigla === Sigla.AC) {
             return IdadeHistorica.PREHITORIA
