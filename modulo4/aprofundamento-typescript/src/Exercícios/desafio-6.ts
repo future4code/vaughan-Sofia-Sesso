@@ -12,25 +12,29 @@ enum IdadeHistorica {
 }
 
 export const determinaIdadeHistorica = (ano: number, sigla?: Sigla): string => {
-    if (!sigla) {
-        return sigla === Sigla.DC
-    }
     if (ano >= 0) {
-        if (ano > 4000 && sigla === Sigla.AC) {
-            return IdadeHistorica.PREHITORIA
-        } else if ((ano <= 4000 && sigla === Sigla.AC) || (ano < 476 && sigla === Sigla.DC)) {
-            return IdadeHistorica.IDADEANTIGA
-        } else if (ano >= 476 && ano < 1453 && sigla === Sigla.DC) {
-            return IdadeHistorica.IDADEMEDIA
-        } else if (ano >= 1453 && ano < 1789 && sigla === Sigla.DC) {
-            return IdadeHistorica.IDADEMODERNA
-        } else if (ano >= 1789 && ano <= 2022 && sigla === Sigla.DC) {
-            return IdadeHistorica.IDADECONTEMPORANEA
+        if (sigla === Sigla.AC) {
+            if (ano > 4000) {
+                return IdadeHistorica.PREHITORIA
+            } else if (ano <= 4000) {
+                return IdadeHistorica.IDADEANTIGA
+            }
+        } else if (sigla === Sigla.DC || sigla === undefined) {
+            if (ano < 476) {
+                return IdadeHistorica.IDADEANTIGA
+            } else if (ano >= 476 && ano < 1453) {
+                return IdadeHistorica.IDADEMEDIA
+            } else if (ano >= 1453 && ano < 1789) {
+                return IdadeHistorica.IDADEMODERNA
+            } else if (ano >= 1789 && ano <= 2022) {
+                return IdadeHistorica.IDADECONTEMPORANEA
+            } else {
+                return "Aconteceu um erro"
+            }
         } else {
             return "Aconteceu um erro"
         }
     } else {
         return "Aconteceu um erro"
     }
-
 }
