@@ -21,7 +21,7 @@ const arrayNumerosRomanos: NumeroRomano[] = [
 export const converteParaNumerosRomanos = (numeroNormal: number): string => {
     let numeroRomano: string = ""
     for (let i: number = 0; i < arrayNumerosRomanos.length; i++) {
-        if (numeroNormal >= arrayNumerosRomanos[i].valor && numeroNormal > 0) {
+        if (numeroNormal >= arrayNumerosRomanos[i].valor) {
             numeroNormal = numeroNormal - arrayNumerosRomanos[i].valor
             numeroRomano = numeroRomano + arrayNumerosRomanos[i].letra
         }
