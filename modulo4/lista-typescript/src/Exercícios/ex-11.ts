@@ -12,7 +12,7 @@ const arrayNumerosRomanos: NumeroRomano[] = [
     { letra: "XC", valor: 90 },
     { letra: "L", valor: 50 },
     { letra: "XL", valor: 40 },
-    { letra: "C", valor: 10 },
+    { letra: "X", valor: 10 },
     { letra: "IX", valor: 9 },
     { letra: "V", valor: 5 },
     { letra: "IV", valor: 4 },
@@ -20,10 +20,13 @@ const arrayNumerosRomanos: NumeroRomano[] = [
 
 export const converteParaNumerosRomanos = (numeroNormal: number): string => {
     let numeroRomano: string = ""
-    for (let i: number = 0; i < arrayNumerosRomanos.length; i++) {
-        if (numeroNormal >= arrayNumerosRomanos[i].valor) {
+    let i: number = 0
+    while (i < arrayNumerosRomanos.length) {
+        if (numeroNormal >= arrayNumerosRomanos[i].valor && numeroNormal > 0) {
             numeroNormal = numeroNormal - arrayNumerosRomanos[i].valor
             numeroRomano = numeroRomano + arrayNumerosRomanos[i].letra
+        } else {
+            i++
         }
     }
 
