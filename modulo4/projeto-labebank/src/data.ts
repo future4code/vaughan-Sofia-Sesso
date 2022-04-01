@@ -22,17 +22,17 @@ export const accounts: UserAccount[] = [
             {
                 value: 850,
                 date: "01/02/2022",
-                description: "$890 adicionado à sua conta"
+                description: "Depósito de dinheiro"
             },
             {
-                value: -110,
+                value: 110,
                 date: "24/12/2021",
-                description: "$110 gasto"
+                description: "Depósito de dinheiro"
             }
         ]
     },
     {
-        name: "Lea Skywalker",
+        name: "Leia Skywalker",
         cpf: "123.456.789-02",
         birthDate: "25/05/1983",
         balance: 50450,
@@ -40,12 +40,12 @@ export const accounts: UserAccount[] = [
             {
                 value: 1000,
                 date: "24/03/2022",
-                description: "$1000 adicionado à sua conta"
+                description: "Depósito de dinheiro"
             },
             {
                 value: 500,
                 date: "02/03/2022",
-                description: "$500 adicionado à sua conta"
+                description: "Depósito de dinheiro"
             }
         ]
     },
@@ -56,9 +56,9 @@ export const accounts: UserAccount[] = [
         balance: 5030,
         transactions: [
             {
-                value: -150,
+                value: 150,
                 date: "25/03/2022",
-                description: "$150 gasto"
+                description: "Depósito de dinheiro"
             }
         ]
     },
@@ -69,14 +69,14 @@ export const accounts: UserAccount[] = [
         balance: 7250,
         transactions: [
             {
-                value: -456,
+                value: 456,
                 date: "26/01/2022",
-                description: "$456 gasto"
+                description: "Depósito de dinheiro"
             },
             {
                 value: 145,
                 date: "15/01/2022",
-                description: "$145 adicionado à sua conta"
+                description: "Depósito de dinheiro"
             }
         ]
     },
@@ -89,7 +89,7 @@ export const accounts: UserAccount[] = [
             {
                 value: 6000,
                 date: "01/04/2022",
-                description: "$6000 adicionado à sua conta"
+                description: "Depósito de dinheiro"
             }
         ]
     },
@@ -100,14 +100,14 @@ export const accounts: UserAccount[] = [
         balance: 8900,
         transactions: [
             {
-                value: -123,
+                value: 123,
                 date: "23/02/2022",
-                description: "$123 gasto"
+                description: "Depósito de dinheiro"
             },
             {
-                value: -456,
+                value: 456,
                 date: "15/02/2022",
-                description: "$456 gasto"
+                description: "Depósito de dinheiro"
             }
         ]
     },
