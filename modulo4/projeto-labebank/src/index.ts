@@ -121,9 +121,12 @@ app.post("/accounts/:cpf", (req: Request, res: Response) => {
             description: "Pagamento adicionado"
         }
 
-        const verifyCpf: boolean = accounts.some((account: UserAccount) => {
-            if (account.cpf === userCpf) {
+        const verifyCpf = accounts.some((account: UserAccount) => {
+            if (account.cpf === userCpf && account.balance > value) {
                 return true
+            } else if (account.cpf === userCpf && account.balance < value) {
+                errorCode = 422
+                throw new Error(`Valor do pagamento é maior do que o valor do saldo na conta de ${account.name}`)
             }
         })
 
@@ -154,6 +157,58 @@ app.post("/accounts/:cpf", (req: Request, res: Response) => {
     }
 })
 
+// TRANFERIR ENTRE CONTAS:
+app.post("/accounts/user/:cpf", (req: Request, res: Response) => {
+    let errorCode: number = 400
+
+    try {
+        const senderCpf: string = req.params.cpf
+        const { senderName, recipientName, recipientCpf, value } = req.body
+        const today = new Date()
+        const dd = String(today.getDate()).padStart(2, '0')
+        const mm = String(today.getMonth() + 1).padStart(2, '0')
+        const yyyy = today.getFullYear()
+        const todayFormatted = dd + '/' + mm + '/' + yyyy
+
+        const verifySender = accounts.some((account: UserAccount) => {
+            if (account.name === senderName && account.cpf === senderCpf && account.balance > value) {
+                return true
+            } else {
+                errorCode = 422
+                throw new Error(`Valor da transferência é maior do que o valor do saldo na conta de ${account.name}`)
+            }
+        })
+
+        const verifyRecipient = accounts.some((account: UserAccount) => {
+            if (account.name === recipientName && account.cpf === recipientCpf) {
+                return true
+            }
+        })
+
+        if (verifySender && verifyRecipient) {
+            for (let user of accounts) {
+                if (user.cpf === senderCpf) {
+                    user.transactions.push({
+                        value: value,
+                        date: todayFormatted,
+                        description: "Tranferência feita"
+                    })
+                } else if (user.cpf === recipientCpf) {
+                    user.transactions.push({
+                        value: value,
+                        date: todayFormatted,
+                        description: "Depósito de dinheiro"
+                    })
+                }
+            }
+            res.status(200).send("Tranferência realizada com sucesso")
+        }
+    }
+    catch (err: any) {
+        res.status(errorCode).send(err.message)
+    }
+})
+
 // ADICIONAR VALOR AO SALDO USANDO NOME E CPF:
 app.put("/accounts", (req: Request, res: Response) => {
     let errorCode: number = 400
@@ -164,7 +219,7 @@ app.put("/accounts", (req: Request, res: Response) => {
         const dd = String(today.getDate()).padStart(2, '0')
         const mm = String(today.getMonth() + 1).padStart(2, '0')
         const yyyy = today.getFullYear()
-        const todayFormatted = dd + '/' + mm + '/' + yyyy;
+        const todayFormatted = dd + '/' + mm + '/' + yyyy
 
         const newTransaction: Transaction = {
             value,
@@ -206,6 +261,41 @@ app.put("/accounts", (req: Request, res: Response) => {
 
             res.status(200).send(`Valor adicionado à conta de ${name}`)
         }
+    }
+    catch (err: any) {
+        res.status(errorCode).send(err.message)
+    }
+})
+
+// ATUALIZAR SALDO DO CLIENTE:
+app.put("/accounts/update", (req: Request, res: Response) => {
+    let errorCode: number = 400
+
+    try {
+        const today = new Date()
+        const dd = String(today.getDate()).padStart(2, '0')
+        const mm = String(today.getMonth() + 1).padStart(2, '0')
+        const yyyy = today.getFullYear()
+        const todayFormatted = dd + '/' + mm + '/' + yyyy
+
+        for (let user of accounts) {
+            const verifyDates = user.transactions.some((transaction: Transaction) => {
+                if (new Date(transaction.date).getTime() <= new Date(todayFormatted).getTime()) {
+                    return true
+                }
+            })
+
+            let transactionValue: number = 0
+            if (verifyDates) {
+                for (let i: number = 0; i < user.transactions.length; i++) {
+                    if (new Date(user.transactions[i].date).getTime() <= new Date(todayFormatted).getTime() &&
+                        user.transactions[i].description === "Pagamento adicionado") {
+                        transactionValue = transactionValue + user.transactions[i].value
+                    }
+                }
+            }
+        }
+        res.status(200).send("Saldos atualizados")
     }
     catch (err: any) {
         res.status(errorCode).send(err.message)
