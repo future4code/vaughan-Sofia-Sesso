@@ -116,15 +116,17 @@ app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => 
     }
 })
 
-// Pegar tarefas criadas por um usuário
+// Pegar tarefas criadas por um usuário / Pegar todas as tarefas por status / Procurar tarefa por termos
 app.get("/task", async (req: Request, res: Response): Promise<void> => {
     let errorCode: number = 500
     try {
         const creatorId: string = String(req.query.creatorUserId)
+        const status: string = String(req.query.status)
+        const query: string = String(req.query.query)
 
-        if (!creatorId) {
+        if (!creatorId && !status && !query) {
             errorCode = 422
-            throw new Error("Id do criador da tarefa não enviado")
+            throw new Error("Nenhuma query foi enviada")
         } else if (creatorId) {
             const result = await connection("Tasks")
                 .select(
@@ -151,22 +153,6 @@ app.get("/task", async (req: Request, res: Response): Promise<void> => {
 
                 res.status(200).send({ tasks: resultWithFixedDate })
             }
-        }
-    }
-    catch (err: any) {
-        res.status(errorCode).send(err.sqlMessage || err.message)
-    }
-})
-
-// Pegar todas as tarefas por status
-app.get("/task", async (req: Request, res: Response): Promise<void> => {
-    let errorCode: number = 500
-    try {
-        const status: string = String(req.query.status)
-
-        if (!status) {
-            errorCode = 422
-            throw new Error("Status das tarefas não enviado")
         } else if (status === "done" || status === "to_do" || status === "doing") {
             const result = await connection("Tasks")
                 .select(
@@ -192,9 +178,35 @@ app.get("/task", async (req: Request, res: Response): Promise<void> => {
 
                 res.status(200).send({ tasks: resultWithFixedDate })
             }
-        } else {
+        } else if (status !== "done" && status !== "to_do" && status !== "doing") {
             errorCode = 422
             throw new Error("Status inválido")
+        } else if (query) {
+            const result = await connection("Tasks")
+                .select(
+                    'Tasks.id as taskId',
+                    'title',
+                    'deadline',
+                    'description',
+                    'creator_id as creatorUserId',
+                    'nickname as creatorUserNickname'
+                )
+                .join('Users', { 'Users.id': 'Tasks.creator_id' })
+                .where('title', 'like', `%${query}%`)
+                .orWhere('description', 'like', `%${query}%`)
+
+            if (result.length === 0) {
+                res.status(404).send({ tasks: [] })
+            } else {
+                const resultWithFixedDate = result.map((task) => {
+                    return {
+                        ...task,
+                        deadline: covertDateToDDMMYYYY(task.deadline)
+                    }
+                })
+
+                res.status(200).send({ tasks: resultWithFixedDate })
+            }
         }
     }
     catch (err: any) {
@@ -336,23 +348,32 @@ app.post("/task", async (req: Request, res: Response): Promise<void> => {
     }
 })
 
-// Atribuir um usuário responsável a uma tarefa
+// Atribuir um usuário responsável a uma tarefa / Atribuir mais de um responsável a uma tarefa
 app.post("/task/responsible", async (req: Request, res: Response): Promise<void> => {
     let errorCode: number = 500
     try {
-        const { taskId, responsibleUserId } = req.body
+        const { taskId, responsibleUserIds } = req.body
 
-        if (!taskId || !responsibleUserId) {
+        if (!taskId || responsibleUserIds.length === 0) {
             errorCode = 422
             throw new Error("Um ou mais campos vazios")
         } else {
-            await connection("ToDoList")
-                .insert({
-                    task_id: taskId,
-                    user_id: responsibleUserId
-                })
+            for (let i: number = 0; i < responsibleUserIds.length; i++) {
+                const result = await connection("Users")
+                    .where({ id: responsibleUserIds[i] })
 
-            res.status(201).send(`Tarefa ${taskId} atribuída ao usuário ${responsibleUserId}`)
+                if (result.length === 0) {
+                    errorCode = 404
+                    throw new Error("Usuário(s) não encontrado")
+                } else {
+                    await connection("ToDoList")
+                        .insert({
+                            task_id: taskId,
+                            user_id: responsibleUserIds[i]
+                        })
+                }
+            }
+            res.status(201).send(`Usuário(s) atribuído(s) à tarefa de id ${taskId} com sucesso!`)
         }
     }
     catch (err: any) {
@@ -360,22 +381,149 @@ app.post("/task/responsible", async (req: Request, res: Response): Promise<void>
     }
 })
 
-// Atualizar o status da tarefa pelo id
-app.put("/task/status/:id", async (req: Request, res: Response): Promise<void> => {
+// Atualizar o status da tarefa pelo id / Atualizar o status de várias tarefas
+app.put("/task/status/edit", async (req: Request, res: Response): Promise<void> => {
     let errorCode: number = 500
     try {
-        const taskId: string = req.params.id
+        const taskIds: string = req.body.taskIds
         const status: string = req.body.status
 
-        if (!status) {
+        if (taskIds.length === 0 || !status) {
             errorCode = 422
-            throw new Error("Campo 'status' vazio")
-        } else if (taskId && status) {
-            await connection("Tasks")
-                .update({ status })
+            throw new Error("Um ou mais campos vazios")
+        } else if (taskIds && status) {
+            for (let i: number = 0; i < taskIds.length; i++) {
+                const result = await connection("Tasks")
+                    .where({ id: taskIds[i] })
+
+                if (result.length === 0) {
+                    errorCode = 404
+                    throw new Error("Tarefa(s) não encontrada")
+                } else {
+                    await connection("Tasks")
+                        .update({ status })
+                        .where({ id: taskIds[i] })
+
+                }
+            }
+            res.status(200).send("Status da(s) tarefa(s) atualizado com sucesso!")
+        }
+    }
+    catch (err: any) {
+        res.status(errorCode).send(err.sqlMessage || err.message)
+    }
+})
+
+// Deletar usuário
+app.delete("/user/:id", async (req: Request, res: Response): Promise<void> => {
+    let errorCode: number = 500
+    try {
+        const userId = req.params.id
+
+        if (!userId) {
+            errorCode = 422
+            throw new Error("Id do usuário não enviado")
+        } else {
+            const result = await connection("Users")
+                .where({ id: userId })
+
+            if (result.length === 0) {
+                errorCode = 404
+                throw new Error("Usuário não encontrado")
+            } else {
+                await connection("ToDoList")
+                    .delete()
+                    .where({ user_id: userId })
+
+                await connection("Tasks")
+                    .delete()
+                    .where({ creator_id: userId })
+
+                await connection("Users")
+                    .delete()
+                    .where({ id: userId })
+
+                res.status(200).send("Usuário deletado com sucesso!")
+            }
+        }
+    }
+    catch (err: any) {
+        res.status(errorCode).send(err.sqlMessage || err.message)
+    }
+})
+
+// Deletar tarefa
+app.delete("/task/:id", async (req: Request, res: Response): Promise<void> => {
+    let errorCode: number = 500
+    try {
+        const taskId = req.params.id
+
+        if (!taskId) {
+            errorCode = 422
+            throw new Error("Id da tarefa não enviado")
+        } else {
+            const result = await connection("Tasks")
                 .where({ id: taskId })
 
-            res.status(200).send("Status da tarefa atualizado com sucesso!")
+            if (result.length === 0) {
+                errorCode = 404
+                throw new Error("Tarefa não encontrada")
+            } else {
+                await connection("ToDoList")
+                    .delete()
+                    .where({ task_id: taskId })
+
+                await connection("Tasks")
+                    .delete()
+                    .where({ id: taskId })
+
+                res.status(200).send("Tarefa deletada com sucesso!")
+            }
+        }
+    }
+    catch (err: any) {
+        res.status(errorCode).send(err.sqlMessage || err.message)
+    }
+})
+
+// Retirar um usuário responsável de uma tarefa
+app.delete("/task/:taskId/responsible/:responsibleUserId", async (req: Request, res: Response): Promise<void> => {
+    let errorCode: number = 500
+    try {
+        const taskId: string = req.params.taskId
+        const responsibleUserId: string = req.params.responsibleUserId
+
+        if (!taskId || !responsibleUserId) {
+            errorCode = 422
+            throw new Error("Um ou mais campos vazios")
+        } else {
+            const resultTaskId = await connection("ToDoList")
+                .where({ task_id: taskId })
+
+            const resultResponsibleUserId = await connection("ToDoList")
+                .where({ user_id: responsibleUserId })
+
+            const resultTaskAndUser = await connection("ToDoList")
+                .where({ task_id: taskId })
+                .andWhere({ user_id: responsibleUserId })
+
+            if (resultTaskId.length === 0) {
+                errorCode = 404
+                throw new Error("Tarefa não encontrada")
+            } else if (resultResponsibleUserId.length === 0) {
+                errorCode = 404
+                throw new Error("Usuário não encontrado")
+            } else if (resultTaskAndUser) {
+                errorCode = 404
+                throw new Error("Esta tarefa não tem esse usuário como responsável")
+            } else {
+                await connection("ToDoList")
+                    .delete()
+                    .where({ task_id: taskId })
+                    .andWhere({ user_id: responsibleUserId })
+
+                res.status(200).send("Usuário retirado da tarefa")
+            }
         }
     }
     catch (err: any) {
