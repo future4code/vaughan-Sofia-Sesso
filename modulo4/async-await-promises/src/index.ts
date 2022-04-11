@@ -1,6 +1,7 @@
 import { Subscriber, getAllSubscribersTyped } from './Exercício-3'
 import { postNews } from './Exercício-4'
 import { notifySubscribersPromiseAll } from './Exercício-6'
+import { printMessage } from './desafio'
 
 const getSubscribersIds = (subscribers: Subscriber[]) => {
     return subscribers.map(subscriber => {
@@ -24,4 +25,6 @@ const main = async (): Promise<void> => {
     }
 }
 
-main()
+// main()
+
+printMessage()
