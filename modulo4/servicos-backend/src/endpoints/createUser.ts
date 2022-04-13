@@ -2,13 +2,14 @@ import { Request, Response } from 'express'
 import { getAddress } from '../services/getAddress'
 import { connection } from '../connection'
 import transporter from '../services/mailTransporter'
+import { Address } from '../types'
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     let errorCode: number = 500
     try {
         const { zipcode, number, complement } = req.body
 
-        const address = await getAddress(zipcode, number, complement)
+        const address: Address | null = await getAddress(zipcode, number, complement)
 
         if (!address) {
             errorCode = 404

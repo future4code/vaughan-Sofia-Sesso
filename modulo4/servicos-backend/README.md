@@ -1,3 +1,6 @@
+### Link do Heroku:
+https://vaughan-sofia-servicos-backend.herokuapp.com/user
+
 ### Script para criar a tabela do exercício 2:
 
 ```
