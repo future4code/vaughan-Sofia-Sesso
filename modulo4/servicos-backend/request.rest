@@ -1,0 +1,8 @@
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "zipcode": "05502001",
+    "number": "123",
+    "complement": ""
+}
