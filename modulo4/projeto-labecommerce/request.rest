@@ -1,4 +1,12 @@
-POST http://localhost:3003/users
+GET https://labecommerce-vaughan-sofia.herokuapp.com/users
+
+###
+
+GET https://labecommerce-vaughan-sofia.herokuapp.com/users/1649945595589/purchases
+
+###
+
+POST https://labecommerce-vaughan-sofia.herokuapp.com/users
 Content-Type: application/json
 
 {
@@ -9,11 +17,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3003/users
+GET https://labecommerce-vaughan-sofia.herokuapp.com/products?order=&search=
 
 ###
 
-POST http://localhost:3003/products
+POST https://labecommerce-vaughan-sofia.herokuapp.com/products
 Content-Type: application/json
 
 {
@@ -24,11 +32,7 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:3003/products?order=&search=
-
-###
-
-POST http://localhost:3003/purchases
+POST https://labecommerce-vaughan-sofia.herokuapp.com/purchases
 Content-Type: application/json
 
 {
@@ -36,7 +40,3 @@ Content-Type: application/json
     "productId": "1649947137285",
     "quantity": 2
 }
-
-###
-
-GET http://localhost:3003/users/1649945595589/purchases
