@@ -1,0 +1,42 @@
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "Sofia",
+    "email": "sofia@email.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/users
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Casadinho",
+    "price": 6.5,
+    "imageUrl": "https://docesdangelo.com.br/site/wp-content/uploads/2016/01/casadinho_zoom.png"
+}
+
+### 
+
+GET http://localhost:3003/products?order=&search=
+
+###
+
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "userId": "1649945595589",
+    "productId": "1649947137285",
+    "quantity": 2
+}
+
+###
+
+GET http://localhost:3003/users/1649945595589/purchases
