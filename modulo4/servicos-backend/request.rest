@@ -1,0 +1,8 @@
+POST https://vaughan-sofia-servicos-backend.herokuapp.com/user
+Content-Type: application/json
+
+{
+    "zipcode": "05502001",
+    "number": "123",
+    "complement": ""
+}
