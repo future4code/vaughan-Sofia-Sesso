@@ -1,0 +1,42 @@
+GET https://labecommerce-vaughan-sofia.herokuapp.com/users
+
+###
+
+GET https://labecommerce-vaughan-sofia.herokuapp.com/users/1649945595589/purchases
+
+###
+
+POST https://labecommerce-vaughan-sofia.herokuapp.com/users
+Content-Type: application/json
+
+{
+    "name": "Sofia",
+    "email": "sofia@email.com",
+    "password": "123456"
+}
+
+###
+
+GET https://labecommerce-vaughan-sofia.herokuapp.com/products?order=&search=
+
+###
+
+POST https://labecommerce-vaughan-sofia.herokuapp.com/products
+Content-Type: application/json
+
+{
+    "name": "Casadinho",
+    "price": 6.5,
+    "imageUrl": "https://docesdangelo.com.br/site/wp-content/uploads/2016/01/casadinho_zoom.png"
+}
+
+### 
+
+POST https://labecommerce-vaughan-sofia.herokuapp.com/purchases
+Content-Type: application/json
+
+{
+    "userId": "1649945595589",
+    "productId": "1649947137285",
+    "quantity": 2
+}
