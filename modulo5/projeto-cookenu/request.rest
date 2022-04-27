@@ -1,0 +1,43 @@
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3MTkyOSwiZXhwIjoxNjUxMDc1NTI5fQ.PJKaJeaqv9EGafJH3ULEikWVUaXKrZN671KNwax5hF0
+
+###
+GET http://localhost:3003/user/452ca8b9-bcee-4f06-b577-933ab16713dc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3OTgxNiwiZXhwIjoxNjUxMDgzNDE2fQ.1vMQWrNrrOIQf0dGCJ-ARz5WLJyjopaAv5NIyJ2BYVk
+
+###
+
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Astrodev",
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/recipe/ed7bb9c9-5c4e-4691-9935-6b0a58ef0a34
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA4NzQ1MywiZXhwIjoxNjUxMDkxMDUzfQ.EAwvXQbfsFt3l2VrY0rX4rR0OMRzQH6vDG7avu1YGzU
+
+###
+
+POST http://localhost:3003/recipe
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA4NzQ1MywiZXhwIjoxNjUxMDkxMDUzfQ.EAwvXQbfsFt3l2VrY0rX4rR0OMRzQH6vDG7avu1YGzU
+Content-Type: application/json
+
+{
+    "title": "Brownie",
+    "description": "Descrição da receita"
+}
