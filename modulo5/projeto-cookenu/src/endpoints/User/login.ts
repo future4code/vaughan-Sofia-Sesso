@@ -1,8 +1,9 @@
 import { Request, Response } from 'express'
 import { compareHash } from '../../services/Hash/compareHash'
 import { generateToken } from '../../services/Token/generateToken'
+import { getTokenData } from '../../services/Token/getTokenData'
 import { getUserByEmail } from '../../services/User/getUserByEmail'
-import { UserProfileInfo } from '../../types'
+import { AuthenticationData, UserProfileInfo } from '../../types'
 
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -27,7 +28,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             throw new Error("Senha incorreta")
         }
 
-        const token: string = generateToken({ id: user.id })
+        const token: string = generateToken({ id: user.id, role: user.role })
 
         res.status(200).send({ access_token: token })
     }

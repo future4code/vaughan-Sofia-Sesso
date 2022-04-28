@@ -1,5 +1,11 @@
+export enum USER_ROLE {
+    NORMAL = "NORMAL",
+    ADMIN = "ADMIN"
+}
+
 export type AuthenticationData = {
-    id: string
+    id: string,
+    role: USER_ROLE
 }
 
 export type UserProfileInfo = {
@@ -7,4 +13,5 @@ export type UserProfileInfo = {
     name: string
     email: string
     password: string
+    role: USER_ROLE
 }

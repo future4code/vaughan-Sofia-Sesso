@@ -1,4 +1,5 @@
 import { Recipe } from "./Recipe"
+import { USER_ROLE } from "../types"
 
 export class User {
     public recipes: Recipe[] = []
@@ -8,12 +9,14 @@ export class User {
         private id: string,
         private name: string,
         private email: string,
-        private password: string
+        private password: string,
+        private role: USER_ROLE
     ) {
         this.id = id
         this.name = name
         this.email = email
         this.password = password
+        this.role = role
     }
 
     public getId(): string {
@@ -30,5 +33,9 @@ export class User {
 
     public getPassword(): string {
         return this.password
+    }
+
+    public getRole(): USER_ROLE {
+        return this.role
     }
 }

@@ -1,9 +1,35 @@
+GET http://localhost:3003/user/feed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTE1NDUzNiwiZXhwIjoxNjUxMTcyNTM2fQ.AwladO5WZ1OGBU3Z4rVjgmqMBoDmV4FyYtoW74wk32A
+
+###
+
 GET http://localhost:3003/user/profile
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3MTkyOSwiZXhwIjoxNjUxMDc1NTI5fQ.PJKaJeaqv9EGafJH3ULEikWVUaXKrZN671KNwax5hF0
 
 ###
+
 GET http://localhost:3003/user/452ca8b9-bcee-4f06-b577-933ab16713dc
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3OTgxNiwiZXhwIjoxNjUxMDgzNDE2fQ.1vMQWrNrrOIQf0dGCJ-ARz5WLJyjopaAv5NIyJ2BYVk
+
+###
+
+POST http://localhost:3003/user/follow
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlkNmU2ODY5LThmMWYtNDhjNi04NWY1LTA0MzU0MzllNmFiYSIsImlhdCI6MTY1MTE1MTY1NSwiZXhwIjoxNjUxMTY5NjU1fQ.mFEFkVOTOaqcFBH3QWAqtm29qZR7oxBUg9pHBcYQCuM
+Content-Type: application/json
+
+{
+    "userToFollowId": "452ca8b9-bcee-4f06-b577-933ab16713dc"
+}
+
+###
+
+POST http://localhost:3003/user/unfollow
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlkNmU2ODY5LThmMWYtNDhjNi04NWY1LTA0MzU0MzllNmFiYSIsImlhdCI6MTY1MTE1MTY1NSwiZXhwIjoxNjUxMTY5NjU1fQ.mFEFkVOTOaqcFBH3QWAqtm29qZR7oxBUg9pHBcYQCuM
+Content-Type: application/json
+
+{
+    "userToFollowId": "452ca8b9-bcee-4f06-b577-933ab16713dc"
+}
 
 ###
 
@@ -13,7 +39,8 @@ Content-Type: application/json
 {
     "name": "Astrodev",
     "email": "astrodev@email.com",
-    "password": "123456"
+    "password": "123456",
+    "role": "normal"
 }
 
 ###
