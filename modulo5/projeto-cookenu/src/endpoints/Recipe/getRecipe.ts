@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import { Recipe } from '../../entities/Recipe'
+import { convertDateToDDMMYYYY } from '../../functions/covertDateToDDMMYYYY'
 import { getRecipeById } from '../../services/Recipe/getRecipeById'
 import { getTokenData } from '../../services/Token/getTokenData'
-import { AuthenticationData } from '../../types'
+import { AuthenticationData, RecipeInfo } from '../../types'
 
 export const getRecipe = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -12,7 +12,7 @@ export const getRecipe = async (req: Request, res: Response): Promise<void> => {
         const authentication = getTokenData(token) as AuthenticationData
 
         if (authentication) {
-            const recipe: Recipe = await getRecipeById(recipeId)
+            const recipe: RecipeInfo = await getRecipeById(recipeId)
 
             if (recipe) {
                 res.status(200).send(
@@ -20,7 +20,7 @@ export const getRecipe = async (req: Request, res: Response): Promise<void> => {
                         id: recipe.id,
                         title: recipe.title,
                         description: recipe.description,
-                        createdAt: recipe.createdAt
+                        createdAt: convertDateToDDMMYYYY(recipe.createdAt as object)
                     }
                 )
             } else {

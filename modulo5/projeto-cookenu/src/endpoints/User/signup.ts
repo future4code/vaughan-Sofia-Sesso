@@ -5,7 +5,7 @@ import { createHash } from '../../services/Hash/createHash'
 import { createUser } from '../../services/User/createUser'
 import { generateToken } from '../../services/Token/generateToken'
 import { getUserByEmail } from '../../services/User/getUserByEmail'
-import { UserProfileInfo } from '../../types'
+import { UserProfileInfo, USER_ROLE } from '../../types'
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -27,6 +27,9 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         } else if (verifyEmail) {
             res.statusCode = 409
             throw new Error("Email já cadastrado")
+        } else if (role.toUpperCase() !== USER_ROLE.ADMIN && role.toUpperCase() !== USER_ROLE.NORMAL) {
+            res.statusCode = 422
+            throw new Error("Tipo de usuário inválido")
         }
 
         const cypherPassword: string = createHash(password)

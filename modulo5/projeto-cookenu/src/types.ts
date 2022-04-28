@@ -15,3 +15,11 @@ export type UserProfileInfo = {
     password: string
     role: USER_ROLE
 }
+
+export type RecipeInfo = {
+    id: string
+    title: string
+    description: string
+    createdAt: string | object
+    creatorId: string
+}

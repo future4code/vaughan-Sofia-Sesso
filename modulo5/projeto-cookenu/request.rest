@@ -1,5 +1,5 @@
 GET http://localhost:3003/user/feed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTE1NDUzNiwiZXhwIjoxNjUxMTcyNTM2fQ.AwladO5WZ1OGBU3Z4rVjgmqMBoDmV4FyYtoW74wk32A
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjQ1OTUsImV4cCI6MTY1MTE4MjU5NX0.o4O8xA802aIBhACjA8FKunFoyOI5bgbcoBmSOXA6jXY
 
 ###
 
@@ -14,11 +14,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2Et
 ###
 
 POST http://localhost:3003/user/follow
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlkNmU2ODY5LThmMWYtNDhjNi04NWY1LTA0MzU0MzllNmFiYSIsImlhdCI6MTY1MTE1MTY1NSwiZXhwIjoxNjUxMTY5NjU1fQ.mFEFkVOTOaqcFBH3QWAqtm29qZR7oxBUg9pHBcYQCuM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwZTUwNWUwLWNiYzYtNGRiOC1iZTE3LWVkZTk3ZGFjYTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjc4NDIsImV4cCI6MTY1MTE4NTg0Mn0.2jLvJmXSCcD2uIUjuWObtumNcb_Op0gPQzb5BFHah7M
 Content-Type: application/json
 
 {
-    "userToFollowId": "452ca8b9-bcee-4f06-b577-933ab16713dc"
+    "userToFollowId": "c3098afa-61d9-4af3-97a0-470415aae5c0"
 }
 
 ###
@@ -40,7 +40,7 @@ Content-Type: application/json
     "name": "Astrodev",
     "email": "astrodev@email.com",
     "password": "123456",
-    "role": "normal"
+    "role": "admin"
 }
 
 ###
@@ -49,22 +49,43 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "astrodev@email.com",
+    "email": "astrodev5@email.com",
     "password": "123456"
 }
 
 ###
 
-GET http://localhost:3003/recipe/ed7bb9c9-5c4e-4691-9935-6b0a58ef0a34
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA4NzQ1MywiZXhwIjoxNjUxMDkxMDUzfQ.EAwvXQbfsFt3l2VrY0rX4rR0OMRzQH6vDG7avu1YGzU
+DELETE http://localhost:3003/user/delete/90e505e0-cbc6-4db8-be17-ede97daca7bb
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhZWEzNDdlLWMyNDQtNGNkZi1hZjk4LWY2YTY3YjdjMGEyMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTE2ODMzMSwiZXhwIjoxNjUxMTg2MzMxfQ.xNsNgeCLRZsxNreqdXj6B9Z6szNc940uhLGtXFn71VY
+
+###
+
+GET http://localhost:3003/recipe/cb127a3e-3948-41e4-9693-f6c6b3e0dd99
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjQyMTQsImV4cCI6MTY1MTE4MjIxNH0.tkAMBJBF0ZhWzep9xS5XhucQU4Ib6VsyNEQBUHJD0fQ
 
 ###
 
 POST http://localhost:3003/recipe
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA4NzQ1MywiZXhwIjoxNjUxMDkxMDUzfQ.EAwvXQbfsFt3l2VrY0rX4rR0OMRzQH6vDG7avu1YGzU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwZTUwNWUwLWNiYzYtNGRiOC1iZTE3LWVkZTk3ZGFjYTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjc4NDIsImV4cCI6MTY1MTE4NTg0Mn0.2jLvJmXSCcD2uIUjuWObtumNcb_Op0gPQzb5BFHah7M
 Content-Type: application/json
 
 {
-    "title": "Brownie",
+    "title": "Tiramisu",
     "description": "Descrição da receita"
 }
+
+###
+
+PUT http://localhost:3003/recipe/edit/cb127a3e-3948-41e4-9693-f6c6b3e0dd99
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjUyNTksImV4cCI6MTY1MTE4MzI1OX0.8niUHaJy9FuX4EsVA7kD2JOF7xGfkfVsVj75Zmmx8bI
+Content-Type: application/json
+
+{
+    "title": "Brownie com Nozes",
+    "description": "Modo de preparo"
+}
+
+###
+
+DELETE http://localhost:3003/recipe/delete/8fabbd19-65c9-4b80-b7ff-f36c3dfe8511
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5OWU5OGM4LTA1ZjMtNGM3Ny04OTU5LWIzZjYxY2ZiNmY3NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjU0NTUsImV4cCI6MTY1MTE4MzQ1NX0.bbDBrNBB2vjeDPc6sXiPGYrIOrMJHZUolQ1XROKPGu8

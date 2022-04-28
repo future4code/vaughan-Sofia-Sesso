@@ -1,8 +1,9 @@
 import { connection } from "../../connection"
-import { Recipe } from "../../entities/Recipe"
+import { convertDateToDDMMYYYY } from "../../functions/covertDateToDDMMYYYY"
+import { RecipeInfo } from "../../types"
 
-export const getAllUserRecipes = async (id: string): Promise<Recipe[]> => {
-    const result: Recipe[] = await connection("Cookenu_Recipe")
+export const getAllUserRecipes = async (id: string): Promise<RecipeInfo[]> => {
+    const result: RecipeInfo[] = await connection("Cookenu_Recipe")
         .join('Cookenu_User', { 'Cookenu_User.id': 'creator_id' })
         .select(
             'Cookenu_Recipe.id as id',
@@ -14,5 +15,12 @@ export const getAllUserRecipes = async (id: string): Promise<Recipe[]> => {
         )
         .where({ creator_id: id })
 
-    return result
+    const resultWithFixedDates = result.map((recipe: RecipeInfo) => {
+        return {
+            ...recipe,
+            createdAt: convertDateToDDMMYYYY(recipe.createdAt as object)
+        }
+    })
+
+    return resultWithFixedDates
 }
