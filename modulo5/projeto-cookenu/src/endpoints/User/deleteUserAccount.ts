@@ -4,7 +4,6 @@ import { getTokenData } from '../../services/Token/getTokenData'
 import { deleteUser } from '../../services/User/deleteUser'
 import { getUserById } from '../../services/User/getUserById'
 import { unfollowAll } from '../../services/User/unfollowAll'
-import { unfollowUserById } from '../../services/User/unfollowUserById'
 import { AuthenticationData, UserProfileInfo } from '../../types'
 
 export const deleteUserAccount = async (req: Request, res: Response): Promise<void> => {

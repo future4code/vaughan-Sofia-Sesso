@@ -11,6 +11,7 @@ import { getUserFeed } from "./endpoints/User/getUserFeed"
 import { editRecipe } from "./endpoints/Recipe/editRecipe"
 import { deleteRecipe } from "./endpoints/Recipe/deleteRecipe"
 import { deleteUserAccount } from "./endpoints/User/deleteUserAccount"
+import { forgotPassword } from "./endpoints/User/forgotPassword"
 
 // User:
 app.get("/user/feed", getUserFeed)
@@ -20,6 +21,7 @@ app.post("/user/follow", followUser)
 app.post("/user/unfollow", unfollowUser)
 app.post("/login", login)
 app.post("/signup", signup)
+app.put("/user/edit/password", forgotPassword)
 app.delete("/user/delete/:id", deleteUserAccount)
 
 // Recipe:

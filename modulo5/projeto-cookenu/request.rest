@@ -49,8 +49,18 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "astrodev5@email.com",
+    "email": "astrodev@email.com",
     "password": "123456"
+}
+
+###
+
+PUT http://localhost:3003/user/edit/password
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "newPassword": "123456789"
 }
 
 ###
