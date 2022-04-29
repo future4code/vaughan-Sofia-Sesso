@@ -14,18 +14,18 @@ import { deleteUserAccount } from "./endpoints/User/deleteUserAccount"
 import { forgotPassword } from "./endpoints/User/forgotPassword"
 
 // User:
-app.get("/user/feed", getUserFeed)
-app.get("/user/profile", getUserProfile)
-app.get("/user/:id", getAnotherUserProfile)
-app.post("/user/follow", followUser)
-app.post("/user/unfollow", unfollowUser)
-app.post("/login", login)
-app.post("/signup", signup)
-app.put("/user/edit/password", forgotPassword)
-app.delete("/user/delete/:id", deleteUserAccount)
+app.get("/user/feed", getUserFeed) // Pegar feed de receitas
+app.get("/user/profile", getUserProfile) // Pegar próprio perfil
+app.get("/user/:id", getAnotherUserProfile) // Pegar perfil de outro usuário
+app.post("/user/follow", followUser) // Seguir usuário
+app.post("/user/unfollow", unfollowUser) // Deixar de seguir usuário
+app.post("/login", login) // Login
+app.post("/signup", signup) // Cadastro de usuário
+app.put("/user/edit/password", forgotPassword) // Alterar senha do usuário
+app.delete("/user/delete/:id", deleteUserAccount) // Deletar conta
 
 // Recipe:
-app.get("/recipe/:id", getRecipe)
-app.post("/recipe", postRecipe)
-app.put("/recipe/edit/:id", editRecipe)
-app.delete("/recipe/delete/:id", deleteRecipe)
+app.get("/recipe/:id", getRecipe) // Pegar receita
+app.post("/recipe", postRecipe) // Criar receita
+app.put("/recipe/edit/:id", editRecipe) // Editar receita
+app.delete("/recipe/delete/:id", deleteRecipe) // Deletar receita

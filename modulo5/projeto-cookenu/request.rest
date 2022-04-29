@@ -1,17 +1,33 @@
+# Pegar feed de receitas:
+# Recebe token de autorização
+# Devolve informações das receitas dos usuários que o usuário está seguindo
+
 GET http://localhost:3003/user/feed
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjQ1OTUsImV4cCI6MTY1MTE4MjU5NX0.o4O8xA802aIBhACjA8FKunFoyOI5bgbcoBmSOXA6jXY
 
 ###
+
+# Pegar próprio perfil:
+# Recebe token de autorização
+# Devolve id, nome e email do usuário
 
 GET http://localhost:3003/user/profile
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3MTkyOSwiZXhwIjoxNjUxMDc1NTI5fQ.PJKaJeaqv9EGafJH3ULEikWVUaXKrZN671KNwax5hF0
 
 ###
 
+# Pegar perfil de outro usuário:
+# Recebe token de autorização e id do usuário cujo perfil se desejar pegar
+# Devolve id, nome e email deste usuário
+
 GET http://localhost:3003/user/452ca8b9-bcee-4f06-b577-933ab16713dc
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2ZjYTIwLTI3M2EtNGQ0ZS04ODg4LWM2NDE3ZDcxZjg5MyIsImlhdCI6MTY1MTA3OTgxNiwiZXhwIjoxNjUxMDgzNDE2fQ.1vMQWrNrrOIQf0dGCJ-ARz5WLJyjopaAv5NIyJ2BYVk
 
 ###
+
+# Seguir usuário:
+# Recebe token de autorização e id do usuário que se deseja seguir
+# Devolve mensagem de sucesso
 
 POST http://localhost:3003/user/follow
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwZTUwNWUwLWNiYzYtNGRiOC1iZTE3LWVkZTk3ZGFjYTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjc4NDIsImV4cCI6MTY1MTE4NTg0Mn0.2jLvJmXSCcD2uIUjuWObtumNcb_Op0gPQzb5BFHah7M
@@ -23,6 +39,10 @@ Content-Type: application/json
 
 ###
 
+# Deixar de seguir usuário:
+# Recebe token de autorização e id do usuário que se deseja deixar de seguir
+# Devolve mensagem de sucesso
+
 POST http://localhost:3003/user/unfollow
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlkNmU2ODY5LThmMWYtNDhjNi04NWY1LTA0MzU0MzllNmFiYSIsImlhdCI6MTY1MTE1MTY1NSwiZXhwIjoxNjUxMTY5NjU1fQ.mFEFkVOTOaqcFBH3QWAqtm29qZR7oxBUg9pHBcYQCuM
 Content-Type: application/json
@@ -32,6 +52,24 @@ Content-Type: application/json
 }
 
 ###
+
+# Login:
+# Recebe email e senha
+# Devolve token de autorização
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+# Cadastro de usuário:
+# Recebe nome, email, senha e tipo de usuário
+# Devolve token de autorização
 
 POST http://localhost:3003/signup
 Content-Type: application/json
@@ -45,15 +83,9 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3003/login
-Content-Type: application/json
-
-{
-    "email": "astrodev@email.com",
-    "password": "123456"
-}
-
-###
+# Alterar senha do usuário:
+# Recebe email e senha nova
+# Devolve mensagem de sucesso e envia um e-mail para o usuário
 
 PUT http://localhost:3003/user/edit/password
 Content-Type: application/json
@@ -65,16 +97,26 @@ Content-Type: application/json
 
 ###
 
+# Deletar conta:
+# Recebe token de autorização e id do usuário
+# Devolve mensagem de sucesso
+
 DELETE http://localhost:3003/user/delete/90e505e0-cbc6-4db8-be17-ede97daca7bb
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhZWEzNDdlLWMyNDQtNGNkZi1hZjk4LWY2YTY3YjdjMGEyMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTE2ODMzMSwiZXhwIjoxNjUxMTg2MzMxfQ.xNsNgeCLRZsxNreqdXj6B9Z6szNc940uhLGtXFn71VY
 
 ###
 
+# Pegar receita:
+# Recebe token de autorização e id da receita
+# Devolve id, título, descrição e data de criação da receita
 GET http://localhost:3003/recipe/cb127a3e-3948-41e4-9693-f6c6b3e0dd99
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjQyMTQsImV4cCI6MTY1MTE4MjIxNH0.tkAMBJBF0ZhWzep9xS5XhucQU4Ib6VsyNEQBUHJD0fQ
 
 ###
 
+# Criar receita:
+# Recebe token de autorização, o título e a descrição da receita
+# Devolve mensagem de sucesso
 POST http://localhost:3003/recipe
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwZTUwNWUwLWNiYzYtNGRiOC1iZTE3LWVkZTk3ZGFjYTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjc4NDIsImV4cCI6MTY1MTE4NTg0Mn0.2jLvJmXSCcD2uIUjuWObtumNcb_Op0gPQzb5BFHah7M
 Content-Type: application/json
@@ -86,6 +128,9 @@ Content-Type: application/json
 
 ###
 
+# Editar receita:
+# Recebe token de autorização, o título novo e a descrição nova da receita
+# Devolve mensagem de sucesso
 PUT http://localhost:3003/recipe/edit/cb127a3e-3948-41e4-9693-f6c6b3e0dd99
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMDk4YWZhLTYxZDktNGFmMy05N2EwLTQ3MDQxNWFhZTVjMCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjUyNTksImV4cCI6MTY1MTE4MzI1OX0.8niUHaJy9FuX4EsVA7kD2JOF7xGfkfVsVj75Zmmx8bI
 Content-Type: application/json
@@ -97,5 +142,8 @@ Content-Type: application/json
 
 ###
 
+# Deletar receita:
+# Recebe token de autorização e id da receita
+# Devolve mensagem de sucesso
 DELETE http://localhost:3003/recipe/delete/8fabbd19-65c9-4b80-b7ff-f36c3dfe8511
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5OWU5OGM4LTA1ZjMtNGM3Ny04OTU5LWIzZjYxY2ZiNmY3NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTExNjU0NTUsImV4cCI6MTY1MTE4MzQ1NX0.bbDBrNBB2vjeDPc6sXiPGYrIOrMJHZUolQ1XROKPGu8
