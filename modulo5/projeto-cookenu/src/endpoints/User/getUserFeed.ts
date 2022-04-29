@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { getTokenData } from '../../services/Token/getTokenData'
-import { getAllUserRecipes } from '../../services/User/getAllUserRecipes'
+import { getFeedRecipes } from '../../services/User/getFeedRecipes'
 import { AuthenticationData, RecipeInfo } from '../../types'
 
 export const getUserFeed = async (req: Request, res: Response): Promise<void> => {
@@ -10,7 +10,7 @@ export const getUserFeed = async (req: Request, res: Response): Promise<void> =>
         const authentication = getTokenData(token) as AuthenticationData
 
         if (authentication) {
-            const feed: RecipeInfo[] = await getAllUserRecipes(authentication.id)
+            const feed: RecipeInfo[] = await getFeedRecipes(authentication.id)
 
             res.status(200).send({ recipes: feed })
         } else {

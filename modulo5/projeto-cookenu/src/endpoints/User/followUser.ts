@@ -23,6 +23,11 @@ export const followUser = async (req: Request, res: Response): Promise<void> => 
 
         const authentication = getTokenData(token) as AuthenticationData
 
+        if (authentication.id === userToFollowId) {
+            res.statusCode = 409
+            throw new Error("Usuário não pode seguir sua própria conta")
+        }
+
         if (authentication) {
             await followUserById(authentication.id, userToFollowId)
 

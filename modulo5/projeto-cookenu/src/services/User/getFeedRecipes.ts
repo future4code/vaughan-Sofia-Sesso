@@ -2,9 +2,11 @@ import { connection } from "../../connection"
 import { convertDateToDDMMYYYY } from "../../functions/covertDateToDDMMYYYY"
 import { RecipeInfo } from "../../types"
 
-export const getAllUserRecipes = async (id: string): Promise<RecipeInfo[]> => {
-    const result: RecipeInfo[] = await connection("Cookenu_Recipe")
-        .join('Cookenu_User', { 'Cookenu_User.id': 'creator_id' })
+export const getFeedRecipes = async (id: string): Promise<RecipeInfo[]> => {
+    const result: RecipeInfo[] = await connection("Cookenu_User_Following")
+        .where({ follower_id: id })
+        .join('Cookenu_Recipe', { 'user_to_follow_id': 'creator_id' })
+        .join('Cookenu_User', { 'user_to_follow_id': 'Cookenu_User.id' })
         .select(
             'Cookenu_Recipe.id as id',
             'title',
@@ -13,7 +15,6 @@ export const getAllUserRecipes = async (id: string): Promise<RecipeInfo[]> => {
             'Cookenu_User.id as userId',
             'name as userName'
         )
-        .where({ creator_id: id })
 
     const resultWithFixedDates = result.map((recipe: RecipeInfo) => {
         return {

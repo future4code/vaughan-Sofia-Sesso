@@ -23,6 +23,11 @@ export const unfollowUser = async (req: Request, res: Response): Promise<void> =
 
         const authentication = getTokenData(token) as AuthenticationData
 
+        if (authentication.id === userToUnfollowId) {
+            res.statusCode = 409
+            throw new Error("Usuário não pode deixar de seguir sua própria conta")
+        }
+
         if (authentication) {
             await unfollowUserById(authentication.id, userToUnfollowId)
 
