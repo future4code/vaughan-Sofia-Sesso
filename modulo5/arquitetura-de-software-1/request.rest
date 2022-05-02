@@ -1,0 +1,33 @@
+# Buscar todos os usuários:
+GET http://localhost:3003/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiNmJlZjQ2LWNjYTYtNDNlNi05NDRmLTUwMWFiM2I3YWQ4YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTUxMzU0OCwiZXhwIjoxNjUxNTMxNTQ4fQ.RLpKJ3PFtGiERLIu5y2VrtjoUESjKMd0kFN4SmDW7WY
+
+###
+
+# Cadastro de usuários:
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Michael Scott",
+	"email": "michael@dundermifflin.com",
+	"password": "theboss",
+	"role": "ADMIN"
+}
+
+###
+
+# Login:
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+	"email": "michael@dundermifflin.com",
+	"password": "theboss"
+}
+
+###
+
+# Apagar um usuário:
+DELETE http://localhost:3003/2444ab2f-1b42-47a8-9398-6ff24ef8519d
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiNmJlZjQ2LWNjYTYtNDNlNi05NDRmLTUwMWFiM2I3YWQ4YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MTUxNDI5NywiZXhwIjoxNjUxNTMyMjk3fQ.HARXfOPvk-wLHwwpyJ4-OceYChQ0AHqpZ5JCAqdIJXs
