@@ -3,7 +3,7 @@ import { compareSync, genSaltSync, hashSync } from "bcryptjs"
 const cost = Number(process.env.BCRYPT_COST)
 
 export class HashManager {
-    createHash = (password: string): string => {
+    static createHash = (password: string): string => {
         const salt: string = genSaltSync(cost)
 
         const cypherText: string = hashSync(password, salt)
@@ -11,7 +11,7 @@ export class HashManager {
         return cypherText
     }
 
-    compareHash = (password: string, cypherPassword: string): boolean => {
+    static compareHash = (password: string, cypherPassword: string): boolean => {
         return compareSync(password, cypherPassword)
     }
 }

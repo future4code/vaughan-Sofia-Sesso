@@ -1,0 +1,9 @@
+# Cadastrar usuário:
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "astrodev",
+    "email": "astrodev@email.com",
+    "password": "123456"
+}

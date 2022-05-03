@@ -2,7 +2,7 @@ import * as jwt from "jsonwebtoken"
 import { AuthenticationData } from "../types/AuthenticationData"
 
 export class Authenticator {
-    generateToken = (payload: AuthenticationData): string => {
+    static generateToken = (payload: AuthenticationData): string => {
         return jwt.sign(
             payload,
             process.env.JWT_KEY as string,
@@ -12,7 +12,7 @@ export class Authenticator {
         )
     }
 
-    getTokenData = (token: string): AuthenticationData | null => {
+    static getTokenData = (token: string): AuthenticationData | null => {
         try {
             return jwt.verify(
                 token,
