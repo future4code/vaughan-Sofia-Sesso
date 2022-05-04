@@ -1,0 +1,33 @@
+GET http://localhost:3003/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDc0MWRmLTJkZTQtNDMzZi05NDAzLTFjMTMzMDBlZDc1ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MDk5NzU1OCwiZXhwIjoxNjUxMDAxMTU4fQ.BNYLX2jxQLjaYzO8inuuOxlegrAr9qNeNZJnMa9vpPk
+
+###
+
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDc0MWRmLTJkZTQtNDMzZi05NDAzLTFjMTMzMDBlZDc1ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MDk5NzU1OCwiZXhwIjoxNjUxMDAxMTU4fQ.BNYLX2jxQLjaYzO8inuuOxlegrAr9qNeNZJnMa9vpPk
+
+###
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456",
+    "role": "normal"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+DELETE http://localhost:3003/user/4caa7f23-622f-44ca-ae90-dc9c069fce91
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2YjExYThlLWU3NGYtNDA2Yi05NDM5LTFlYmRiMjIyZGZhZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTA5OTU2NjksImV4cCI6MTY1MDk5OTI2OX0.aFdcRqgVRMEkqmqhG2T_KV-XUgE2aQJnWgefGhLw8zY
