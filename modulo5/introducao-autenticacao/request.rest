@@ -1,0 +1,22 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4N2JhODA4LWFmYWUtNGQ5NC05ZmEzLTAxYmFlNzI5MjhhNiIsImlhdCI6MTY1MDkwOTE3MSwiZXhwIjoxNjUwOTEyNzcxfQ.32g7kZQRvKs_s5yWL8PsArDFQWtXOfb1UZApM7WsF48
