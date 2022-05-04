@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { UserBusiness } from '../business/UserBusiness'
-import { SignupInputDTO } from '../model/User'
+import { InterfaceUserController, SignupInputDTO } from '../model/User'
 
-export class UserController {
+export class UserController implements InterfaceUserController {
     constructor(
         private userBusiness: UserBusiness
     ) { }

@@ -1,3 +1,5 @@
+import { Request, Response } from 'express'
+
 export class User {
     constructor(
         private id: string,
@@ -18,4 +20,14 @@ export interface GetUserByEmailOutput {
     name: string
     email: string
     password: string
+}
+
+export interface InterfaceUserDatabase {
+    getUserByEmail(email: string): Promise<GetUserByEmailOutput>
+
+    insertUser(user: User): Promise<void>
+}
+
+export interface InterfaceUserController {
+    signup(req: Request, res: Response): Promise<any>
 }

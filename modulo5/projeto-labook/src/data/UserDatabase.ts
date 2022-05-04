@@ -1,7 +1,7 @@
-import { User, GetUserByEmailOutput } from '../model/User'
+import { User, GetUserByEmailOutput, InterfaceUserDatabase } from '../model/User'
 import { BaseDatabase } from './BaseDatabase'
 
-export class UserDatabase extends BaseDatabase {
+export class UserDatabase extends BaseDatabase implements InterfaceUserDatabase {
     private USER_TABLE = "labook_users"
 
     public getUserByEmail = async (email: string): Promise<GetUserByEmailOutput> => {
