@@ -20,6 +20,13 @@ export interface LoginInputDTO {
     password: string
 }
 
+export interface UserInput {
+    id: string
+    name: string
+    email: string
+    password: string
+}
+
 export interface GetUserByEmailOutput {
     id: string
     name: string

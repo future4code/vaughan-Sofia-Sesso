@@ -18,3 +18,16 @@ Content-Type: application/json
     "email": "astrodev@email.com",
     "password": "123456"
 }
+
+###
+
+# Criar post:
+POST http://localhost:3003/post
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTY5MDg5MSwiZXhwIjoxNjUxNzA4ODkxfQ.xhZIesrM59cmeGtJt3X8zbtcp7UsM_DPYyrXL-MTxcE
+Content-Type: application/json
+
+{
+    "photo": "urlDaFoto",
+    "description": "Foto do meu cachorro!",
+    "type": "Normal"
+}
