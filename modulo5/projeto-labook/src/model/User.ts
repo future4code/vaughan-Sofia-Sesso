@@ -15,6 +15,11 @@ export interface SignupInputDTO {
     password: string
 }[]
 
+export interface LoginInputDTO {
+    email: string
+    password: string
+}
+
 export interface GetUserByEmailOutput {
     id: string
     name: string
@@ -29,5 +34,7 @@ export interface InterfaceUserDatabase {
 }
 
 export interface InterfaceUserController {
-    signup(req: Request, res: Response): Promise<any>
+    signup(req: Request, res: Response): Promise<void | Response>
+
+    login(req: Request, res: Response): Promise<void | Response>
 }

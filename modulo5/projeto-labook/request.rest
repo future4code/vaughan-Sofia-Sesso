@@ -7,3 +7,14 @@ Content-Type: application/json
     "email": "astrodev@email.com",
     "password": "123456"
 }
+
+###
+
+# Login:
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}

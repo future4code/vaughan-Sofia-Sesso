@@ -8,3 +8,4 @@ const userBusiness: UserBusiness = new UserBusiness(userDatabase)
 const userController: UserController = new UserController(userBusiness)
 
 app.post("/signup", userController.signup)
+app.post("/login", userController.login)
