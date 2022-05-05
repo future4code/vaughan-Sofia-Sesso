@@ -31,6 +31,11 @@ export interface AddFriendInput {
     friendId: string
 }
 
+export interface getFriendshipOutput {
+    userId: string
+    friendId: string
+}
+
 export interface GetUserOutput {
     id: string
     name: string
@@ -46,6 +51,8 @@ export interface InterfaceUserDatabase {
     insertUser(user: User): Promise<void>
 
     insertFriendship(input: AddFriendInput): Promise<void>
+
+    getFriendship(userId: string, friendId: string): Promise<getFriendshipOutput>
 }
 
 export interface InterfaceUserController {

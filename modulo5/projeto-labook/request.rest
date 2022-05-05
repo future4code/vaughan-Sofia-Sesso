@@ -22,8 +22,8 @@ Content-Type: application/json
 ###
 
 # Fazer amizade:
-POST http://localhost:3003/add/ae9d4286-4874-44ee-9c51-8515df3f7dd2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTc4MTc0NCwiZXhwIjoxNjUxNzk5NzQ0fQ.ZcOu0FBXKIy6Z8KhHdli1YYFZRwkAv44ezCVwXg_JwU
+POST http://localhost:3003/add/39c2aafc-f32e-47eb-8b32-8119e4441499
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTc4Mjg3NCwiZXhwIjoxNjUxODAwODc0fQ.Cv_cAnNfOvzZWzUdnjQAezJ279xgSJ4Sp5WCpMLy1K0
 
 ###
 

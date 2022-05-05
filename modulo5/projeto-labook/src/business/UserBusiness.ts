@@ -1,4 +1,4 @@
-import { AddFriendInput, AddFriendInputDTO, GetUserOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
+import { AddFriendInput, AddFriendInputDTO, getFriendshipOutput, GetUserOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
 import { Authenticator } from '../services/Authenticator'
 import { HashManager } from '../services/HashManager'
 import { IdGenerator } from '../services/IdGenerator'
@@ -82,6 +82,16 @@ export class UserBusiness {
 
         if (!registeredUser) {
             throw new NotFound("Usuário não encontrado")
+        }
+
+        if (registeredUser.id === authentication.id) {
+            throw new Conflict("Usuário não pode adicionar sua própria conta à sua lista de amigos")
+        }
+
+        const friendship: getFriendshipOutput = await this.userDatabase.getFriendship(authentication.id, friendId)
+
+        if (friendship) {
+            throw new Conflict(`Usuário já é amigo de ${registeredUser.name}`)
         }
 
         const id = IdGenerator.generateId()

@@ -63,7 +63,7 @@ export class UserController implements InterfaceUserController {
 
             const friendName: string = await this.userBusiness.addFriend(input)
 
-            res.status(200).send(`Você adicionou ${friendName} à sua lista de amigos!`)
+            res.status(200).send(`Usuário adicionou ${friendName} à sua lista de amigos!`)
         }
         catch (error) {
             if (error instanceof CustomError) {

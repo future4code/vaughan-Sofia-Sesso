@@ -1,4 +1,4 @@
-import { User, GetUserOutput, InterfaceUserDatabase, AddFriendInput } from '../model/User'
+import { User, GetUserOutput, InterfaceUserDatabase, AddFriendInput, getFriendshipOutput } from '../model/User'
 import { BaseDatabase } from './BaseDatabase'
 
 export class UserDatabase extends BaseDatabase implements InterfaceUserDatabase {
@@ -59,6 +59,26 @@ export class UserDatabase extends BaseDatabase implements InterfaceUserDatabase 
                     user_id: input.userId,
                     friend_id: input.friendId
                 })
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
+
+    public getFriendship = async (userId: string, friendId: string): Promise<getFriendshipOutput> => {
+        try {
+            const friendship: getFriendshipOutput[] = await this.connection(this.FRIENDSHIP_TABLE)
+                .select('user_id as userId', 'friend_id as friendId')
+                .where({ user_id: userId })
+                .andWhere({ friend_id: friendId })
+                .orWhere({ user_id: friendId })
+                .andWhere({ friend_id: userId })
+
+            return friendship[0]
         }
         catch (err: any) {
             if (err instanceof Error) {
