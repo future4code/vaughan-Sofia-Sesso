@@ -1,9 +1,10 @@
-import { GetUserByEmailOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
+import { AddFriendInput, AddFriendInputDTO, GetUserOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
 import { Authenticator } from '../services/Authenticator'
 import { HashManager } from '../services/HashManager'
 import { IdGenerator } from '../services/IdGenerator'
 import { SignupInputDTO } from '../model/User'
 import { Conflict, NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
+import { AuthenticationData } from '../types/AuthenticationData'
 
 export class UserBusiness {
     constructor(
@@ -13,7 +14,7 @@ export class UserBusiness {
     public signup = async (input: SignupInputDTO): Promise<string> => {
         const { name, email, password } = input
 
-        const registeredEmail: GetUserByEmailOutput = await this.userDatabase.getUserByEmail(email)
+        const registeredEmail: GetUserOutput = await this.userDatabase.getUserByEmail(email)
 
         if (registeredEmail) {
             throw new Conflict("Email já cadastrado")
@@ -47,14 +48,14 @@ export class UserBusiness {
     public login = async (input: LoginInputDTO): Promise<string> => {
         const { email, password } = input
 
-        const registeredUser: GetUserByEmailOutput = await this.userDatabase.getUserByEmail(email)
+        const registeredUser: GetUserOutput = await this.userDatabase.getUserByEmail(email)
 
         if (!email || !password) {
             throw new UnprocessableEntity("Um ou mais campos vazios")
         }
 
         if (!registeredUser) {
-            throw new NotFound("Email não encontrado")
+            throw new NotFound("Usuário não encontrado")
         }
 
         const isPasswordCorrect: boolean = HashManager.compareHash(password, registeredUser.password)
@@ -66,5 +67,33 @@ export class UserBusiness {
         const token: string = Authenticator.generateToken({ id: registeredUser.id })
 
         return token
+    }
+
+    public addFriend = async (input: AddFriendInputDTO): Promise<string> => {
+        const { token, friendId } = input
+
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        const registeredUser: GetUserOutput = await this.userDatabase.getUserById(friendId)
+
+        if (!registeredUser) {
+            throw new NotFound("Usuário não encontrado")
+        }
+
+        const id = IdGenerator.generateId()
+
+        const databaseInput: AddFriendInput = {
+            id,
+            userId: authentication.id,
+            friendId
+        }
+
+        await this.userDatabase.insertFriendship(databaseInput)
+
+        return registeredUser.name
     }
 }

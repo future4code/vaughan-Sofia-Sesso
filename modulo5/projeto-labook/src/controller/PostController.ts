@@ -28,7 +28,7 @@ export class PostController implements InterfacePostController {
             if (error instanceof CustomError) {
                 return res.status(error.statusCode).send(error.message)
             }
-            res.status(500).send("Erro ao cadastrar")
+            res.status(500).send("Erro ao criar post")
         }
     }
 
@@ -50,7 +50,7 @@ export class PostController implements InterfacePostController {
             if (error instanceof CustomError) {
                 return res.status(error.statusCode).send(error.message)
             }
-            res.status(500).send("Erro ao cadastrar")
+            res.status(500).send("Erro ao pegar post")
         }
     }
 }

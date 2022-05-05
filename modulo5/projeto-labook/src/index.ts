@@ -17,6 +17,7 @@ const postController: PostController = new PostController(postBusiness)
 // User:
 app.post("/signup", userController.signup)
 app.post("/login", userController.login)
+app.post("/add/:id", userController.addFriend)
 
 // Post:
 app.get("/post/:id", postController.getPostById)
