@@ -6,7 +6,6 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
 
     public insertPost = async (post: Post): Promise<void> => {
         try {
-            console.log(post)
             await this.connection(this.POST_TABLE)
                 .insert(post)
         }

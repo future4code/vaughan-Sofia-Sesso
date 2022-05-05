@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { PostBusiness } from '../business/PostBusiness'
+import { CustomError } from '../Error/Error'
 import { InterfacePostController, PostInputDTO } from '../model/Post'
 
 export class PostController implements InterfacePostController {
@@ -16,7 +17,7 @@ export class PostController implements InterfacePostController {
                 token,
                 photo,
                 description,
-                type
+                type: type.toLowerCase()
             }
 
             await this.postBusiness.post(input)
@@ -24,8 +25,8 @@ export class PostController implements InterfacePostController {
             res.status(201).send("Post criado com sucesso!")
         }
         catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
             }
             res.status(500).send("Erro ao cadastrar")
         }

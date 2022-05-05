@@ -3,6 +3,7 @@ import { Authenticator } from '../services/Authenticator'
 import { HashManager } from '../services/HashManager'
 import { IdGenerator } from '../services/IdGenerator'
 import { SignupInputDTO } from '../model/User'
+import { Conflict, NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
 
 export class UserBusiness {
     constructor(
@@ -15,19 +16,19 @@ export class UserBusiness {
         const registeredEmail: GetUserByEmailOutput = await this.userDatabase.getUserByEmail(email)
 
         if (registeredEmail) {
-            throw new Error("Email já cadastrado")
+            throw new Conflict("Email já cadastrado")
         }
 
         if (!name) {
-            throw new Error("Campo 'nome' vazio")
+            throw new UnprocessableEntity("Campo 'nome' vazio")
         }
 
         if (!email || email.indexOf("@") === -1) {
-            throw new Error("Email inválido")
+            throw new UnprocessableEntity("Email inválido")
         }
 
         if (!password || password.length < 6) {
-            throw new Error("Senha inválida")
+            throw new UnprocessableEntity("Senha inválida")
         }
 
         const id: string = IdGenerator.generateId()
@@ -49,17 +50,17 @@ export class UserBusiness {
         const registeredUser: GetUserByEmailOutput = await this.userDatabase.getUserByEmail(email)
 
         if (!email || !password) {
-            throw new Error("Um ou mais campos vazios")
+            throw new UnprocessableEntity("Um ou mais campos vazios")
         }
 
         if (!registeredUser) {
-            throw new Error("Email não encontrado")
+            throw new NotFound("Email não encontrado")
         }
 
         const isPasswordCorrect: boolean = HashManager.compareHash(password, registeredUser.password)
 
         if (!isPasswordCorrect) {
-            throw new Error("Senha incorreta")
+            throw new Unauthorized("Senha incorreta")
         }
 
         const token: string = Authenticator.generateToken({ id: registeredUser.id })

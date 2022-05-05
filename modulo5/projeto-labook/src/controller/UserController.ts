@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { UserBusiness } from '../business/UserBusiness'
+import { CustomError } from '../Error/Error'
 import { InterfaceUserController, LoginInputDTO, SignupInputDTO } from '../model/User'
 
 export class UserController implements InterfaceUserController {
@@ -22,8 +23,8 @@ export class UserController implements InterfaceUserController {
             res.status(201).send({ token: response, message: "Usuário criado com sucesso!" })
         }
         catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
             }
             res.status(500).send("Erro ao cadastrar")
         }
@@ -43,8 +44,8 @@ export class UserController implements InterfaceUserController {
             res.status(200).send({ token: response })
         }
         catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
             }
             res.status(500).send("Erro ao cadastrar")
         }

@@ -1,3 +1,4 @@
+import { Unauthorized, UnprocessableEntity } from '../Error/Error'
 import { InterfacePostDatabase, Post, PostInputDTO } from '../model/Post'
 import { Authenticator } from '../services/Authenticator'
 import { IdGenerator } from '../services/IdGenerator'
@@ -10,26 +11,25 @@ export class PostBusiness {
     ) { }
 
     public post = async (input: PostInputDTO): Promise<void> => {
-        const { token, photo, description, type } = input
-        const typeLC: string = type.toLowerCase()
+        let { token, photo, description, type } = input
 
         const authentication = Authenticator.getTokenData(token) as AuthenticationData
 
         if (!authentication) {
-            throw new Error("Token inválido")
+            throw new Unauthorized("Token inválido")
         }
 
-        if (!photo || !description || !type) {
-            throw new Error("Um ou mais campos vazios")
+        if (!photo || !description) {
+            throw new UnprocessableEntity("Um ou mais campos vazios")
         }
 
-        if (typeLC !== POST_TYPE.NORMAL && typeLC !== POST_TYPE.EVENT) {
-            throw new Error("Tipo de post inválido")
+        if (type !== POST_TYPE.EVENT) {
+            type = POST_TYPE.NORMAL
         }
 
         const id: string = IdGenerator.generateId()
 
-        const post: Post = new Post(id, photo, description, typeLC, authentication.id)
+        const post: Post = new Post(id, photo, description, type, authentication.id)
 
         await this.postDatabase.insertPost(post)
     }
