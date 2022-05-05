@@ -1,4 +1,4 @@
-import { AddFriendInput, AddFriendInputDTO, getFriendshipOutput, GetUserOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
+import { AddFriendInput, ManagingFriendshipInputDTO, getFriendshipOutput, GetUserOutput, InterfaceUserDatabase, LoginInputDTO, User } from '../model/User'
 import { Authenticator } from '../services/Authenticator'
 import { HashManager } from '../services/HashManager'
 import { IdGenerator } from '../services/IdGenerator'
@@ -69,7 +69,7 @@ export class UserBusiness {
         return token
     }
 
-    public addFriend = async (input: AddFriendInputDTO): Promise<string> => {
+    public addFriend = async (input: ManagingFriendshipInputDTO): Promise<string> => {
         const { token, friendId } = input
 
         const authentication = Authenticator.getTokenData(token) as AuthenticationData
@@ -103,6 +103,36 @@ export class UserBusiness {
         }
 
         await this.userDatabase.insertFriendship(databaseInput)
+
+        return registeredUser.name
+    }
+
+    public unfriend = async (input: ManagingFriendshipInputDTO): Promise<string> => {
+        const { token, friendId } = input
+
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        const registeredUser: GetUserOutput = await this.userDatabase.getUserById(friendId)
+
+        if (!registeredUser) {
+            throw new NotFound("Usuário não encontrado")
+        }
+
+        if (registeredUser.id === authentication.id) {
+            throw new Conflict("Usuário não pode remover sua própria conta da sua lista de amigos")
+        }
+
+        const friendship: getFriendshipOutput = await this.userDatabase.getFriendship(authentication.id, friendId)
+
+        if (!friendship) {
+            throw new Conflict(`Usuário não é amigo de ${registeredUser.name}`)
+        }
+
+        await this.userDatabase.deleteFriendship(friendship.id)
 
         return registeredUser.name
     }

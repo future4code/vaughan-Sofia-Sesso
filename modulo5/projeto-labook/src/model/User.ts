@@ -20,7 +20,7 @@ export interface LoginInputDTO {
     password: string
 }
 
-export interface AddFriendInputDTO {
+export interface ManagingFriendshipInputDTO {
     token: string
     friendId: string
 }
@@ -32,6 +32,7 @@ export interface AddFriendInput {
 }
 
 export interface getFriendshipOutput {
+    id: string
     userId: string
     friendId: string
 }
@@ -53,6 +54,8 @@ export interface InterfaceUserDatabase {
     insertFriendship(input: AddFriendInput): Promise<void>
 
     getFriendship(userId: string, friendId: string): Promise<getFriendshipOutput>
+
+    deleteFriendship(id: string): Promise<void>
 }
 
 export interface InterfaceUserController {
@@ -61,4 +64,6 @@ export interface InterfaceUserController {
     login(req: Request, res: Response): Promise<void | Response>
 
     addFriend(req: Request, res: Response): Promise<void | Response>
+
+    unfriend(req: Request, res: Response): Promise<void | Response>
 }

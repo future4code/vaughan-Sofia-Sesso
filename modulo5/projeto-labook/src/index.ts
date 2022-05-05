@@ -18,6 +18,7 @@ const postController: PostController = new PostController(postBusiness)
 app.post("/signup", userController.signup)
 app.post("/login", userController.login)
 app.post("/add/:id", userController.addFriend)
+app.delete("/unfriend/:id", userController.unfriend)
 
 // Post:
 app.get("/post/:id", postController.getPostById)
