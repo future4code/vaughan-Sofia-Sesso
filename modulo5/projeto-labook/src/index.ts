@@ -19,4 +19,5 @@ app.post("/signup", userController.signup)
 app.post("/login", userController.login)
 
 // Post:
+app.get("/post/:id", postController.getPostById)
 app.post("/post", postController.post)

@@ -18,10 +18,37 @@ export interface PostInputDTO {
     type: POST_TYPE
 }
 
+export interface GetPostByIdDTO {
+    token: string
+    postId: string
+}
+
+export interface GetPostByIdOutput {
+    id: string
+    photo: string
+    description: string
+    type: POST_TYPE
+    createdAt: object
+    authorId: string
+}
+
+export interface GetPostByIdOutputDTO {
+    id: string
+    photo: string
+    description: string
+    type: POST_TYPE
+    createdAt: string
+    authorId: string
+}
+
 export interface InterfacePostDatabase {
     insertPost(post: Post): Promise<void>
+
+    selectPostById(postId: string): Promise<GetPostByIdOutput>
 }
 
 export interface InterfacePostController {
     post(req: Request, res: Response): Promise<void | Response>
+
+    getPostById(req: Request, res: Response): Promise<void | Response>
 }
