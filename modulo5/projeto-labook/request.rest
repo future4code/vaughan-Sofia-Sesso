@@ -35,7 +35,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUt
 
 # Ver todo o Feed:
 GET http://localhost:3003/feed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg0MDE1MywiZXhwIjoxNjUxODU4MTUzfQ.SsqJwQBcEN6UM_XsFXu1NESKYyB-ckvt9f6hUKhaL0k
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg0NDIxMCwiZXhwIjoxNjUxODYyMjEwfQ.HXxKCEThfkVSIfJkUl8q7aJxC0F5VVEHUzAHHPCIixk
+
+###
+
+# Ver apenas um tipo de post do Feed:
+GET http://localhost:3003/feed/normal
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg0NDIxMCwiZXhwIjoxNjUxODYyMjEwfQ.HXxKCEThfkVSIfJkUl8q7aJxC0F5VVEHUzAHHPCIixk
 
 ###
 

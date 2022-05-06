@@ -46,6 +46,8 @@ export interface InterfacePostDatabase {
 
     getFriendsPosts(id: string): Promise<GetPostOutput[]>
 
+    getPostsByType(type: string): Promise<GetPostOutput[]>
+
     insertPost(post: Post): Promise<void>
 }
 
@@ -53,6 +55,8 @@ export interface InterfacePostController {
     getPostById(req: Request, res: Response): Promise<void | Response>
 
     getFeed(req: Request, res: Response): Promise<void | Response>
+
+    getFeedByType(req: Request, res: Response): Promise<void | Response>
 
     post(req: Request, res: Response): Promise<void | Response>
 }

@@ -53,6 +53,33 @@ export class PostBusiness {
         return feedWithFixedDate
     }
 
+    public getFeedByType = async (token: string, type: string): Promise<GetPostOutputDTO[]> => {
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        if (type !== POST_TYPE.EVENT && type !== POST_TYPE.NORMAL) {
+            throw new UnprocessableEntity("Post tem que ser do tipo 'normal' ou 'event'")
+        }
+
+        const feed: GetPostOutput[] = await this.postDatabase.getPostsByType(type)
+
+        if (feed.length === 0) {
+            throw new NotFound("Não há posts no feed do usuário")
+        }
+
+        const feedWithFixedDate: GetPostOutputDTO[] = feed.map((post: GetPostOutput) => {
+            return {
+                ...post,
+                createdAt: convertDate(post.createdAt)
+            }
+        })
+
+        return feedWithFixedDate
+    }
+
     public post = async (input: PostInputDTO): Promise<void> => {
         let { token, photo, description, type } = input
 

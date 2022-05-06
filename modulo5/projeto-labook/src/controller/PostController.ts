@@ -30,12 +30,29 @@ export class PostController implements InterfacePostController {
         }
     }
 
-
     public getFeed = async (req: Request, res: Response): Promise<void | Response> => {
         try {
             const token = req.headers.authorization as string
 
             const feed: GetPostOutputDTO[] = await this.postBusiness.getFeed(token)
+
+            res.status(200).send({ posts: feed })
+        }
+        catch (error) {
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
+            }
+            res.status(500).send("Erro ao pegar feed do usuário")
+        }
+    }
+
+    public getFeedByType = async (req: Request, res: Response): Promise<void | Response> => {
+        try {
+            const token = req.headers.authorization as string
+
+            const type: string = req.params.type
+
+            const feed: GetPostOutputDTO[] = await this.postBusiness.getFeedByType(token, type)
 
             res.status(200).send({ posts: feed })
         }

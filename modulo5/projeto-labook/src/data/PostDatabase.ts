@@ -29,7 +29,6 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
         }
     }
 
-
     public getFriendsPosts = async (id: string): Promise<GetPostOutput[]> => {
         try {
             const posts: GetPostOutput[] = await this.connection(this.FRIENDSHIP_TABLE)
@@ -43,6 +42,32 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
                     'created_at as createdAt',
                     'author_id as authorId'
                 )
+                .orderBy('created_at', 'DESC')
+
+            return posts
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
+
+    public getPostsByType = async (type: string): Promise<GetPostOutput[]> => {
+        try {
+            const posts: GetPostOutput[] = await this.connection(this.POST_TABLE)
+                .where({ type })
+                .select(
+                    'id',
+                    'photo',
+                    'description',
+                    'type',
+                    'created_at as createdAt',
+                    'author_id as authorId'
+                )
+                .orderBy('created_at', 'DESC')
 
             return posts
         }

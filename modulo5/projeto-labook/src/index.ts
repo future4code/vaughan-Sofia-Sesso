@@ -22,5 +22,6 @@ app.delete("/unfriend/:id", userController.unfriend)
 
 // Post:
 app.get("/feed", postController.getFeed)
+app.get("/feed/:type", postController.getFeedByType)
 app.get("/post/:id", postController.getPostById)
 app.post("/post", postController.post)
