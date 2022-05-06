@@ -1,9 +1,10 @@
-import { GetPostOutput, InterfacePostDatabase, Post } from '../model/Post'
+import { GetPostLikeOutput, GetPostOutput, InterfacePostDatabase, LikePostInput, Post } from '../model/Post'
 import { BaseDatabase } from './BaseDatabase'
 
 export class PostDatabase extends BaseDatabase implements InterfacePostDatabase {
     private POST_TABLE = "labook_posts"
     private FRIENDSHIP_TABLE = "labook_friendships"
+    private LIKE_TABLE = "labook_post_likes"
 
     public selectPostById = async (postId: string): Promise<GetPostOutput> => {
         try {
@@ -80,10 +81,45 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
         }
     }
 
+    public getPostLike = async (userId: string, postId: string): Promise<GetPostLikeOutput> => {
+        try {
+            const postLike: GetPostLikeOutput[] = await this.connection(this.LIKE_TABLE)
+                .where({ user_id: userId })
+                .andWhere({ post_id: postId })
+
+            return postLike[0]
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
+
     public insertPost = async (post: Post): Promise<void> => {
         try {
             await this.connection(this.POST_TABLE)
                 .insert(post)
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
+
+    public insertLike = async (input: LikePostInput): Promise<void> => {
+        try {
+            await this.connection(this.LIKE_TABLE)
+                .insert({
+                    id: input.id,
+                    user_id: input.userId,
+                    post_id: input.postId
+                })
         }
         catch (err: any) {
             if (err instanceof Error) {

@@ -1,5 +1,5 @@
-import { NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
-import { GetPostByIdDTO, GetPostOutputDTO, GetPostOutput, InterfacePostDatabase, Post, PostInputDTO } from '../model/Post'
+import { Conflict, NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
+import { GetPostByIdDTO, GetPostOutputDTO, GetPostOutput, InterfacePostDatabase, Post, PostInputDTO, GetPostLikeOutput, LikePostInput } from '../model/Post'
 import { Authenticator } from '../services/Authenticator'
 import { IdGenerator } from '../services/IdGenerator'
 import { AuthenticationData } from '../types/AuthenticationData'
@@ -102,5 +102,39 @@ export class PostBusiness {
         const post: Post = new Post(id, photo, description, type, authentication.id)
 
         await this.postDatabase.insertPost(post)
+    }
+
+    public likePost = async (token: string, postId: string): Promise<void> => {
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        if (!postId) {
+            throw new UnprocessableEntity("Id do post não enviado")
+        }
+
+        const post: GetPostOutput = await this.postDatabase.selectPostById(postId)
+
+        if (!post) {
+            throw new NotFound("Post não encontrado")
+        }
+
+        const isPostLiked: GetPostLikeOutput = await this.postDatabase.getPostLike(authentication.id, postId)
+
+        if (isPostLiked && isPostLiked.liked === 1) {
+            throw new Conflict("Usuário já curtiu esse post")
+        }
+
+        const id: string = IdGenerator.generateId()
+
+        const input: LikePostInput = {
+            id,
+            userId: authentication.id,
+            postId
+        }
+
+        await this.postDatabase.insertLike(input)
     }
 }

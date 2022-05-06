@@ -28,6 +28,15 @@ class Migrations extends BaseDatabase {
             friend_id VARCHAR(255) NOT NULL,
             FOREIGN KEY (friend_id) REFERENCES labook_users (id)
         );
+
+        CREATE TABLE IF NOT EXISTS labook_post_likes(
+            id VARCHAR(255) PRIMARY KEY,
+            user_id VARCHAR(255) NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES labook_users (id),
+            post_id VARCHAR(255) NOT NULL,
+            FOREIGN KEY (post_id) REFERENCES labook_posts (id),
+            liked BOOLEAN DEFAULT true
+        );
     `)
             .then(console.log)
             .catch(console.log)

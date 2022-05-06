@@ -41,6 +41,19 @@ export interface GetPostOutputDTO {
     authorId: string
 }
 
+export interface GetPostLikeOutput {
+    id: string
+    userId: string
+    postId: string
+    liked: 1 | 0
+}
+
+export interface LikePostInput {
+    id: string
+    userId: string
+    postId: string
+}
+
 export interface InterfacePostDatabase {
     selectPostById(postId: string): Promise<GetPostOutput>
 
@@ -48,7 +61,11 @@ export interface InterfacePostDatabase {
 
     getPostsByType(type: string): Promise<GetPostOutput[]>
 
+    getPostLike(userId: string, postId: string): Promise<GetPostLikeOutput>
+
     insertPost(post: Post): Promise<void>
+
+    insertLike(input: LikePostInput): Promise<void>
 }
 
 export interface InterfacePostController {
@@ -59,4 +76,6 @@ export interface InterfacePostController {
     getFeedByType(req: Request, res: Response): Promise<void | Response>
 
     post(req: Request, res: Response): Promise<void | Response>
+
+    likePost(req: Request, res: Response): Promise<void | Response>
 }

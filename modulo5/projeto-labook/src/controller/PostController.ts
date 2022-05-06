@@ -87,4 +87,23 @@ export class PostController implements InterfacePostController {
             res.status(500).send("Erro ao criar post")
         }
     }
+
+    public likePost = async (req: Request, res: Response): Promise<void | Response> => {
+        try {
+            const token = req.headers.authorization as string
+
+            const postId: string = req.params.id
+
+            await this.postBusiness.likePost(token, postId)
+
+            res.status(200).send("Post curtido com sucesso!")
+        }
+        catch (error: any) {
+            // if (error instanceof CustomError) {
+            //     return res.status(error.statusCode).send(error.message)
+            // }
+            // res.status(500).send("Erro ao curtir post")
+            res.send(error.message)
+        }
+    }
 }
