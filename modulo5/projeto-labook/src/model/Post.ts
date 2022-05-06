@@ -70,7 +70,7 @@ export interface LikePostInput {
 export interface InterfacePostDatabase {
     selectPostById(postId: string): Promise<GetPostOutput>
 
-    getFriendsPosts(id: string): Promise<GetPostOutput[]>
+    getFriendsPosts(id: string, offset: number): Promise<GetPostOutput[]>
 
     getPostsByType(type: string): Promise<GetPostOutput[]>
 

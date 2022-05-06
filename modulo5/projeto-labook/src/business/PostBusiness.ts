@@ -30,14 +30,22 @@ export class PostBusiness {
         return postWithFixedDate
     }
 
-    public getFeed = async (token: string): Promise<GetPostOutputDTO[]> => {
+    public getFeed = async (token: string, page?: number): Promise<GetPostOutputDTO[]> => {
         const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        let offset: number
+
+        if (!page || page === NaN || !Number.isInteger(page) || page <= 0) {
+            offset = 0
+        } else {
+            offset = 5 * (page - 1)
+        }
 
         if (!authentication) {
             throw new Unauthorized("Token inválido")
         }
 
-        const feed: GetPostOutput[] = await this.postDatabase.getFriendsPosts(authentication.id)
+        const feed: GetPostOutput[] = await this.postDatabase.getFriendsPosts(authentication.id, offset)
 
         if (feed.length === 0) {
             throw new NotFound("Não há posts no feed do usuário")

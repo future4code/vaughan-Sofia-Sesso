@@ -23,7 +23,7 @@ Content-Type: application/json
 
 # Fazer amizade:
 POST http://localhost:3003/add/ae9d4286-4874-44ee-9c51-8515df3f7dd2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTgzNzYxNCwiZXhwIjoxNjUxODU1NjE0fQ.TU7XRCugb503qFmD8siY_oY2tD-NqM3JWuF8CyeQGTI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg2Mjk2MSwiZXhwIjoxNjUxODgwOTYxfQ.7xHPWbqdnHM49Ip7zU_VLXEXcW7CZua7veMOU02Lf9o
 
 ###
 
@@ -33,9 +33,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUt
 
 ###
 
-# Ver todo o feed:
-GET http://localhost:3003/feed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg0NDIxMCwiZXhwIjoxNjUxODYyMjEwfQ.HXxKCEThfkVSIfJkUl8q7aJxC0F5VVEHUzAHHPCIixk
+# Ver o feed com paginação de 5 posts por página:
+GET http://localhost:3003/feed?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg2Mjk2MSwiZXhwIjoxNjUxODgwOTYxfQ.7xHPWbqdnHM49Ip7zU_VLXEXcW7CZua7veMOU02Lf9o
 
 ###
 

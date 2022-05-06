@@ -31,7 +31,7 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
         }
     }
 
-    public getFriendsPosts = async (id: string): Promise<GetPostOutput[]> => {
+    public getFriendsPosts = async (id: string, offset: number): Promise<GetPostOutput[]> => {
         try {
             const posts: GetPostOutput[] = await this.connection(this.FRIENDSHIP_TABLE)
                 .where({ user_id: id })
@@ -45,6 +45,8 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
                     'author_id as authorId'
                 )
                 .orderBy('created_at', 'DESC')
+                .limit(5)
+                .offset(offset)
 
             return posts
         }

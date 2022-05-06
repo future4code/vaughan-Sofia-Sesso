@@ -34,7 +34,9 @@ export class PostController implements InterfacePostController {
         try {
             const token = req.headers.authorization as string
 
-            const feed: GetPostOutputDTO[] = await this.postBusiness.getFeed(token)
+            const page: number = Number(req.query.page)
+
+            const feed: GetPostOutputDTO[] = await this.postBusiness.getFeed(token, page)
 
             res.status(200).send({ posts: feed })
         }
