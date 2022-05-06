@@ -23,7 +23,7 @@ export interface GetPostByIdDTO {
     postId: string
 }
 
-export interface GetPostByIdOutput {
+export interface GetPostOutput {
     id: string
     photo: string
     description: string
@@ -32,7 +32,7 @@ export interface GetPostByIdOutput {
     authorId: string
 }
 
-export interface GetPostByIdOutputDTO {
+export interface GetPostOutputDTO {
     id: string
     photo: string
     description: string
@@ -42,13 +42,17 @@ export interface GetPostByIdOutputDTO {
 }
 
 export interface InterfacePostDatabase {
-    insertPost(post: Post): Promise<void>
+    selectPostById(postId: string): Promise<GetPostOutput>
 
-    selectPostById(postId: string): Promise<GetPostByIdOutput>
+    getFriendsPosts(id: string): Promise<GetPostOutput[]>
+
+    insertPost(post: Post): Promise<void>
 }
 
 export interface InterfacePostController {
-    post(req: Request, res: Response): Promise<void | Response>
-
     getPostById(req: Request, res: Response): Promise<void | Response>
+
+    getFeed(req: Request, res: Response): Promise<void | Response>
+
+    post(req: Request, res: Response): Promise<void | Response>
 }

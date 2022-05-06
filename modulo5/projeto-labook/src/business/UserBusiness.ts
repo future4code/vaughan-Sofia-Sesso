@@ -94,10 +94,15 @@ export class UserBusiness {
             throw new Conflict(`Usuário já é amigo de ${registeredUser.name}`)
         }
 
-        const id = IdGenerator.generateId()
+        // A amizade é adicionada duas vezes, na primeira vez é com o id do usuário sendo o userId na tabela e o id do amigo
+        // sendo friendId. Na segunda vez é com o id do amigo sendo o userId e o id do usuário sendo friendId.
+
+        const idForUserFriendship: string = IdGenerator.generateId()
+        const idForFriendFriendship: string = IdGenerator.generateId()
 
         const databaseInput: AddFriendInput = {
-            id,
+            idForUserFriendship,
+            idForFriendFriendship,
             userId: authentication.id,
             friendId
         }
@@ -126,13 +131,15 @@ export class UserBusiness {
             throw new Conflict("Usuário não pode remover sua própria conta da sua lista de amigos")
         }
 
-        const friendship: getFriendshipOutput = await this.userDatabase.getFriendship(authentication.id, friendId)
+        const friendshipForUser: getFriendshipOutput = await this.userDatabase.getFriendship(authentication.id, friendId)
+        const friendshipForFriend: getFriendshipOutput = await this.userDatabase.getFriendship(friendId, authentication.id)
 
-        if (!friendship) {
+        if (!friendshipForUser) {
             throw new Conflict(`Usuário não é amigo de ${registeredUser.name}`)
         }
 
-        await this.userDatabase.deleteFriendship(friendship.id)
+        await this.userDatabase.deleteFriendship(friendshipForUser.id)
+        await this.userDatabase.deleteFriendship(friendshipForFriend.id)
 
         return registeredUser.name
     }

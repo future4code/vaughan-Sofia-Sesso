@@ -15,21 +15,27 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "sofia@email.com",
+    "email": "astrodev@email.com",
     "password": "123456"
 }
 
 ###
 
 # Fazer amizade:
-POST http://localhost:3003/add/39c2aafc-f32e-47eb-8b32-8119e4441499
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTc4Mjg3NCwiZXhwIjoxNjUxODAwODc0fQ.Cv_cAnNfOvzZWzUdnjQAezJ279xgSJ4Sp5WCpMLy1K0
+POST http://localhost:3003/add/ae9d4286-4874-44ee-9c51-8515df3f7dd2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTgzNzYxNCwiZXhwIjoxNjUxODU1NjE0fQ.TU7XRCugb503qFmD8siY_oY2tD-NqM3JWuF8CyeQGTI
 
 ###
 
 # Desfazer Amizade:
 DELETE http://localhost:3003/unfriend/ae9d4286-4874-44ee-9c51-8515df3f7dd2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTc4NDI0MCwiZXhwIjoxNjUxODAyMjQwfQ.FqP5F_sKsMSVxIY9snJE0dCjlxd7xuWv7DTQ8lo_mIY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTgzNzYxNCwiZXhwIjoxNjUxODU1NjE0fQ.TU7XRCugb503qFmD8siY_oY2tD-NqM3JWuF8CyeQGTI
+
+###
+
+# Ver todo o Feed:
+GET http://localhost:3003/feed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg0MDE1MywiZXhwIjoxNjUxODU4MTUzfQ.SsqJwQBcEN6UM_XsFXu1NESKYyB-ckvt9f6hUKhaL0k
 
 ###
 

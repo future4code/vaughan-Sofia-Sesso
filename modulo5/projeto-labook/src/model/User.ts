@@ -26,7 +26,8 @@ export interface ManagingFriendshipInputDTO {
 }
 
 export interface AddFriendInput {
-    id: string
+    idForUserFriendship: string
+    idForFriendFriendship: string
     userId: string
     friendId: string
 }
@@ -49,11 +50,11 @@ export interface InterfaceUserDatabase {
 
     getUserById(id: string): Promise<GetUserOutput>
 
+    getFriendship(userId: string, friendId: string): Promise<getFriendshipOutput>
+
     insertUser(user: User): Promise<void>
 
     insertFriendship(input: AddFriendInput): Promise<void>
-
-    getFriendship(userId: string, friendId: string): Promise<getFriendshipOutput>
 
     deleteFriendship(id: string): Promise<void>
 }

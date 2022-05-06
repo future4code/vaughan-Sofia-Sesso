@@ -1,5 +1,5 @@
-import { Unauthorized, UnprocessableEntity } from '../Error/Error'
-import { GetPostByIdDTO, GetPostByIdOutputDTO, GetPostByIdOutput, InterfacePostDatabase, Post, PostInputDTO } from '../model/Post'
+import { NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
+import { GetPostByIdDTO, GetPostOutputDTO, GetPostOutput, InterfacePostDatabase, Post, PostInputDTO } from '../model/Post'
 import { Authenticator } from '../services/Authenticator'
 import { IdGenerator } from '../services/IdGenerator'
 import { AuthenticationData } from '../types/AuthenticationData'
@@ -10,6 +10,48 @@ export class PostBusiness {
     constructor(
         private postDatabase: InterfacePostDatabase
     ) { }
+
+    public getPostById = async (input: GetPostByIdDTO): Promise<GetPostOutputDTO> => {
+        const { token, postId } = input
+
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        const post: GetPostOutput = await this.postDatabase.selectPostById(postId)
+
+        const postWithFixedDate: GetPostOutputDTO = {
+            ...post,
+            createdAt: convertDate(post.createdAt)
+        }
+
+        return postWithFixedDate
+    }
+
+    public getFeed = async (token: string): Promise<GetPostOutputDTO[]> => {
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        const feed: GetPostOutput[] = await this.postDatabase.getFriendsPosts(authentication.id)
+
+        if (feed.length === 0) {
+            throw new NotFound("Não há posts no feed do usuário")
+        }
+
+        const feedWithFixedDate: GetPostOutputDTO[] = feed.map((post: GetPostOutput) => {
+            return {
+                ...post,
+                createdAt: convertDate(post.createdAt)
+            }
+        })
+
+        return feedWithFixedDate
+    }
 
     public post = async (input: PostInputDTO): Promise<void> => {
         let { token, photo, description, type } = input
@@ -33,24 +75,5 @@ export class PostBusiness {
         const post: Post = new Post(id, photo, description, type, authentication.id)
 
         await this.postDatabase.insertPost(post)
-    }
-
-    public getPostById = async (input: GetPostByIdDTO): Promise<GetPostByIdOutputDTO> => {
-        const { token, postId } = input
-
-        const authentication = Authenticator.getTokenData(token) as AuthenticationData
-
-        if (!authentication) {
-            throw new Unauthorized("Token inválido")
-        }
-
-        const post: GetPostByIdOutput = await this.postDatabase.selectPostById(postId)
-
-        const postWithFixedDate: GetPostByIdOutputDTO = {
-            ...post,
-            createdAt: convertDate(post.createdAt)
-        }
-
-        return postWithFixedDate
     }
 }
