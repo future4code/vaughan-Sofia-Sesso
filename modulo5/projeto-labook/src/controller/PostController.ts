@@ -98,12 +98,29 @@ export class PostController implements InterfacePostController {
 
             res.status(200).send("Post curtido com sucesso!")
         }
-        catch (error: any) {
-            // if (error instanceof CustomError) {
-            //     return res.status(error.statusCode).send(error.message)
-            // }
-            // res.status(500).send("Erro ao curtir post")
-            res.send(error.message)
+        catch (error) {
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
+            }
+            res.status(500).send("Erro ao curtir post")
+        }
+    }
+
+    public dislikePost = async (req: Request, res: Response): Promise<void | Response> => {
+        try {
+            const token = req.headers.authorization as string
+
+            const postId: string = req.params.id
+
+            await this.postBusiness.dislikePost(token, postId)
+
+            res.status(200).send("Post descurtido com sucesso!")
+        }
+        catch (error) {
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
+            }
+            res.status(500).send("Erro ao descurtir post")
         }
     }
 }

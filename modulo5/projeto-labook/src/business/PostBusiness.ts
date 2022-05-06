@@ -137,4 +137,30 @@ export class PostBusiness {
 
         await this.postDatabase.insertLike(input)
     }
+
+    public dislikePost = async (token: string, postId: string): Promise<void> => {
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        if (!postId) {
+            throw new UnprocessableEntity("Id do post não enviado")
+        }
+
+        const post: GetPostOutput = await this.postDatabase.selectPostById(postId)
+
+        if (!post) {
+            throw new NotFound("Post não encontrado")
+        }
+
+        const likedPost: GetPostLikeOutput = await this.postDatabase.getPostLike(authentication.id, postId)
+
+        if (likedPost && likedPost.liked === 1) {
+            await this.postDatabase.insertDislike(likedPost.id)
+        } else {
+            throw new Conflict("Usuário não curtiu esse post")
+        }
+    }
 }

@@ -129,4 +129,19 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
             }
         }
     }
+
+    public insertDislike = async (id: string): Promise<void> => {
+        try {
+            await this.connection(this.LIKE_TABLE)
+                .update({ liked: 0 })
+                .where({ id })
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
 }

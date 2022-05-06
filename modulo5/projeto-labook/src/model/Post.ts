@@ -66,6 +66,8 @@ export interface InterfacePostDatabase {
     insertPost(post: Post): Promise<void>
 
     insertLike(input: LikePostInput): Promise<void>
+
+    insertDislike(id: string): Promise<void>
 }
 
 export interface InterfacePostController {
@@ -78,4 +80,6 @@ export interface InterfacePostController {
     post(req: Request, res: Response): Promise<void | Response>
 
     likePost(req: Request, res: Response): Promise<void | Response>
+
+    dislikePost(req: Request, res: Response): Promise<void | Response>
 }
