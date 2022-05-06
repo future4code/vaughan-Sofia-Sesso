@@ -54,7 +54,7 @@ export class UserController implements InterfaceUserController {
     public addFriend = async (req: Request, res: Response): Promise<void | Response> => {
         try {
             const token = req.headers.authorization as string
-            const friendId = req.params.id
+            const friendId: string = req.params.id
 
             const input: ManagingFriendshipInputDTO = {
                 token,
@@ -76,7 +76,7 @@ export class UserController implements InterfaceUserController {
     public unfriend = async (req: Request, res: Response): Promise<void | Response> => {
         try {
             const token = req.headers.authorization as string
-            const friendId = req.params.id
+            const friendId: string = req.params.id
 
             const input: ManagingFriendshipInputDTO = {
                 token,

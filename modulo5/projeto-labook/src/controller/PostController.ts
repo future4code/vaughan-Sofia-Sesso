@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { PostBusiness } from '../business/PostBusiness'
 import { CustomError } from '../Error/Error'
-import { GetPostByIdDTO, GetPostOutputDTO, InterfacePostController, PostInputDTO } from '../model/Post'
+import { GetPostByIdDTO, GetPostOutputDTO, InterfacePostController, PostCommentInputDTO, PostInputDTO } from '../model/Post'
 
 export class PostController implements InterfacePostController {
     constructor(
@@ -11,7 +11,7 @@ export class PostController implements InterfacePostController {
     public getPostById = async (req: Request, res: Response): Promise<void | Response> => {
         try {
             const token = req.headers.authorization as string
-            const postId = req.params.id
+            const postId: string = req.params.id
 
             const input: GetPostByIdDTO = {
                 token,
@@ -85,6 +85,32 @@ export class PostController implements InterfacePostController {
                 return res.status(error.statusCode).send(error.message)
             }
             res.status(500).send("Erro ao criar post")
+        }
+    }
+
+    public commentOnPost = async (req: Request, res: Response): Promise<void | Response> => {
+        try {
+            const token = req.headers.authorization as string
+
+            const comment: string = req.body.comment
+
+            const postId: string = req.params.id
+
+            const input: PostCommentInputDTO = {
+                token,
+                comment,
+                postId
+            }
+
+            await this.postBusiness.commentOnPost(input)
+
+            res.status(201).send("Comentário postado com sucesso!")
+        }
+        catch (error) {
+            if (error instanceof CustomError) {
+                return res.status(error.statusCode).send(error.message)
+            }
+            res.status(500).send("Erro ao comentar no post")
         }
     }
 

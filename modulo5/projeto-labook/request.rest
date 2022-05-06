@@ -64,6 +64,17 @@ Content-Type: application/json
 
 ###
 
+# Comentar no post:
+POST http://localhost:3003/comment/184aa16d-535d-47d4-a0f3-72c8e4f40b94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg2MTk5NywiZXhwIjoxNjUxODc5OTk3fQ.yN1Dcq67UlGw_2jwIZIu5yjhSaohoUCtPYG26V3m5wY
+Content-Type: application/json
+
+{
+    "comment": "Oie"
+}
+
+###
+
 # Curtir post:
 POST http://localhost:3003/post/184aa16d-535d-47d4-a0f3-72c8e4f40b94
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg1NzEyNSwiZXhwIjoxNjUxODc1MTI1fQ.Kx9KD2dEgL98yEmNgcmXZrMIN52IaT_RXmu5RfhR2go

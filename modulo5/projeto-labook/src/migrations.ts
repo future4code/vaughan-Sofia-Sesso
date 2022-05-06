@@ -37,6 +37,16 @@ class Migrations extends BaseDatabase {
             FOREIGN KEY (post_id) REFERENCES labook_posts (id),
             liked BOOLEAN DEFAULT true
         );
+
+        CREATE TABLE IF NOT EXISTS labook_post_comments(
+            id VARCHAR(255) PRIMARY KEY,
+            author_id VARCHAR(255) NOT NULL,
+            FOREIGN KEY (author_id) REFERENCES labook_users (id),
+            post_id VARCHAR (255) NOT NULL,
+            FOREIGN KEY (post_id) REFERENCES labook_posts (id),
+            comment TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
     `)
             .then(console.log)
             .catch(console.log)

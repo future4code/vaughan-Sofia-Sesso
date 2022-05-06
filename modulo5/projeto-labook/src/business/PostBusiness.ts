@@ -1,5 +1,5 @@
 import { Conflict, NotFound, Unauthorized, UnprocessableEntity } from '../Error/Error'
-import { GetPostByIdDTO, GetPostOutputDTO, GetPostOutput, InterfacePostDatabase, Post, PostInputDTO, GetPostLikeOutput, LikePostInput } from '../model/Post'
+import { GetPostByIdDTO, GetPostOutputDTO, GetPostOutput, InterfacePostDatabase, Post, PostInputDTO, GetPostLikeOutput, LikePostInput, PostCommentInputDTO, PostCommentInput } from '../model/Post'
 import { Authenticator } from '../services/Authenticator'
 import { IdGenerator } from '../services/IdGenerator'
 import { AuthenticationData } from '../types/AuthenticationData'
@@ -102,6 +102,41 @@ export class PostBusiness {
         const post: Post = new Post(id, photo, description, type, authentication.id)
 
         await this.postDatabase.insertPost(post)
+    }
+
+    public commentOnPost = async (input: PostCommentInputDTO): Promise<void> => {
+        const { token, postId, comment } = input
+
+        const authentication = Authenticator.getTokenData(token) as AuthenticationData
+
+        if (!authentication) {
+            throw new Unauthorized("Token inválido")
+        }
+
+        if (!postId) {
+            throw new UnprocessableEntity("Id do post não enviado")
+        }
+
+        const post: GetPostOutput = await this.postDatabase.selectPostById(postId)
+
+        if (!post) {
+            throw new NotFound("Post não encontrado")
+        }
+
+        if (!comment) {
+            throw new UnprocessableEntity("Campo 'comment' vazio")
+        }
+
+        const id: string = IdGenerator.generateId()
+
+        const commentInput: PostCommentInput = {
+            id,
+            userId: authentication.id,
+            postId,
+            comment
+        }
+
+        await this.postDatabase.insertComment(commentInput)
     }
 
     public likePost = async (token: string, postId: string): Promise<void> => {

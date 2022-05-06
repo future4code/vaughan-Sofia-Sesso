@@ -18,6 +18,19 @@ export interface PostInputDTO {
     type: POST_TYPE
 }
 
+export interface PostCommentInputDTO {
+    token: string
+    postId: string
+    comment: string
+}
+
+export interface PostCommentInput {
+    id: string
+    userId: string
+    postId: string
+    comment: string
+}
+
 export interface GetPostByIdDTO {
     token: string
     postId: string
@@ -64,6 +77,8 @@ export interface InterfacePostDatabase {
     getPostLike(userId: string, postId: string): Promise<GetPostLikeOutput>
 
     insertPost(post: Post): Promise<void>
+
+    insertComment(input: PostCommentInput): Promise<void>
 
     insertLike(input: LikePostInput): Promise<void>
 

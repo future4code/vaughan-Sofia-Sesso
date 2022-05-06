@@ -1,10 +1,11 @@
-import { GetPostLikeOutput, GetPostOutput, InterfacePostDatabase, LikePostInput, Post } from '../model/Post'
+import { GetPostLikeOutput, GetPostOutput, InterfacePostDatabase, LikePostInput, Post, PostCommentInput } from '../model/Post'
 import { BaseDatabase } from './BaseDatabase'
 
 export class PostDatabase extends BaseDatabase implements InterfacePostDatabase {
     private POST_TABLE = "labook_posts"
     private FRIENDSHIP_TABLE = "labook_friendships"
     private LIKE_TABLE = "labook_post_likes"
+    private COMMENT_TABLE = "labook_post_comments"
 
     public selectPostById = async (postId: string): Promise<GetPostOutput> => {
         try {
@@ -102,6 +103,25 @@ export class PostDatabase extends BaseDatabase implements InterfacePostDatabase 
         try {
             await this.connection(this.POST_TABLE)
                 .insert(post)
+        }
+        catch (err: any) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            } else {
+                throw new Error(err.sqlMessage)
+            }
+        }
+    }
+
+    public insertComment = async (input: PostCommentInput): Promise<void> => {
+        try {
+            await this.connection(this.COMMENT_TABLE)
+                .insert({
+                    id: input.id,
+                    author_id: input.userId,
+                    post_id: input.postId,
+                    comment: input.comment
+                })
         }
         catch (err: any) {
             if (err instanceof Error) {
