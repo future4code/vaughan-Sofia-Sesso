@@ -1,0 +1,108 @@
+# Cadastrar usuário:
+# Recebe nome, email e senha
+# Devolve token de autorização
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "astrodev",
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+# Login:
+# Recebe email e senha
+# Devolve token de autorização
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@email.com",
+    "password": "123456"
+}
+
+###
+
+# Fazer amizade:
+# Recebe token de autorização e id do usuário que será adicionado à lista de amigos
+# Devolve mensagem de sucesso
+POST http://localhost:3003/add/ae9d4286-4874-44ee-9c51-8515df3f7dd2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg2Mjk2MSwiZXhwIjoxNjUxODgwOTYxfQ.7xHPWbqdnHM49Ip7zU_VLXEXcW7CZua7veMOU02Lf9o
+
+###
+
+# Desfazer amizade:
+# Recebe token de autorização e id do usuário que será removido da lista de amigos
+# Devolve mensagem de sucesso
+DELETE http://localhost:3003/unfriend/ae9d4286-4874-44ee-9c51-8515df3f7dd2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTgzNzYxNCwiZXhwIjoxNjUxODU1NjE0fQ.TU7XRCugb503qFmD8siY_oY2tD-NqM3JWuF8CyeQGTI
+
+###
+
+# Ver o feed com paginação de 5 posts por página:
+# Recebe token de autorização e tem opção de receber o número da página do feed
+# Devolve informações dos posts dos amigos do usuário
+GET http://localhost:3003/feed?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg2Mjk2MSwiZXhwIjoxNjUxODgwOTYxfQ.7xHPWbqdnHM49Ip7zU_VLXEXcW7CZua7veMOU02Lf9o
+
+###
+
+# Ver apenas um tipo de post do feed:
+# Recebe token de autorização e o tipo de post
+# Devolve informações de todos os posts com o tipo passado
+GET http://localhost:3003/feed/normal
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5YzJhYWZjLWYzMmUtNDdlYi04YjMyLTgxMTllNDQ0MTQ5OSIsImlhdCI6MTY1MTg0NDIxMCwiZXhwIjoxNjUxODYyMjEwfQ.HXxKCEThfkVSIfJkUl8q7aJxC0F5VVEHUzAHHPCIixk
+
+###
+
+# Buscar um post por id:
+# Recebe token de autorização e id do post
+# Devolve id do post, foto, descrição, data de criação e tipo 
+GET http://localhost:3003/post/184aa16d-535d-47d4-a0f3-72c8e4f40b94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTc3Njc3MSwiZXhwIjoxNjUxNzk0NzcxfQ.KsCUkReLtxFiToIO09ffrMGVOscaas7KpAvRi6oPZ0w
+
+###
+
+# Criar post:
+# Recebe token de autorização, foto, descrição e tipo
+# Devolve mensagem de sucesso
+POST http://localhost:3003/post
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTY5MDg5MSwiZXhwIjoxNjUxNzA4ODkxfQ.xhZIesrM59cmeGtJt3X8zbtcp7UsM_DPYyrXL-MTxcE
+Content-Type: application/json
+
+{
+    "photo": "urlDaFoto",
+    "description": "Foto do meu cachorro!",
+    "type": "Normal"
+}
+
+###
+
+# Comentar no post:
+# Recebe token de autorização, id do post e comentário
+# Devolve mensagem de sucesso
+POST http://localhost:3003/comment/184aa16d-535d-47d4-a0f3-72c8e4f40b94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg2MTk5NywiZXhwIjoxNjUxODc5OTk3fQ.yN1Dcq67UlGw_2jwIZIu5yjhSaohoUCtPYG26V3m5wY
+Content-Type: application/json
+
+{
+    "comment": "Oie"
+}
+
+###
+
+# Curtir post:
+# Recebe token de autorização e id do post
+# Devolve mensagem de sucesso
+POST http://localhost:3003/post/184aa16d-535d-47d4-a0f3-72c8e4f40b94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg1NzEyNSwiZXhwIjoxNjUxODc1MTI1fQ.Kx9KD2dEgL98yEmNgcmXZrMIN52IaT_RXmu5RfhR2go
+
+###
+
+# Descurtir post:
+# Recebe token de autorização e id do post
+# Devolve mensagem de sucesso
+PUT http://localhost:3003/post/184aa16d-535d-47d4-a0f3-72c8e4f40b94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlOWQ0Mjg2LTQ4NzQtNDRlZS05YzUxLTg1MTVkZjNmN2RkMiIsImlhdCI6MTY1MTg1ODI0OCwiZXhwIjoxNjUxODc2MjQ4fQ.7D0YF2AU8SzUZUth9KHfh-xLM4lE83m5agSJ6Nk7J3Y
